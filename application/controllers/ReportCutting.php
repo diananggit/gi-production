@@ -16,8 +16,8 @@ class ReportCutting extends CI_Controller{
         // $this->load->model('ReportCuttingModel');
         // $data['v_style_cutting']=$this->ReportCuttingModel->
         $rst = $this->ReportCuttingModel->get_by_daterange();
-        print_r($rst);
-        die();
+        // print_r($rst);
+        // die();
         // get_by_daterange();
         // $this->load->view('cutting_by_style_view',$data);
         echo json_encode($rst);

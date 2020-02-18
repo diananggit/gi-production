@@ -66,8 +66,11 @@ class ReportCuttingSingleOrcModel extends CI_Model{
     }    
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
+        // $this->db->distinct();
+        $this->db->select('DISTINCT(orc)');
+        $query = $this->db->get('v_single_orc_cutting');
+        // $query= $this->db->get_where($this->table, array('orc' => $orc));
+
 
         return $query->result();
     }

@@ -58,22 +58,23 @@
             </div>
           </div>
           </br>
+          <div class="card" id="orcTableList" style="display: none;">
           <table id="tableOrc" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
-                <!-- <th>Tanggal</th> -->
+                <th>Tanggal</th>
                 <th>ORC</th>
                 <th>Qty_Order</th>
                 <th>Qty_Cut</th>
-                <th>Qty_Balance</th>
+                <!-- <th>Qty_Balance</th> -->
               </tr>
             </thead>
             <tbody>
               <?php foreach($cuttingorc as $orc): ?>
                 <tr>
-                <!-- <td>
+                <td>
                   <?php echo date('d-m-Y', strtotime($orc->tgl)) ?>
-                  </td> -->
+                  </td>
                   <td>
                     <?php echo $orc->orc ?>
                   </td>
@@ -83,9 +84,7 @@
                   <td>
                   <?php echo $orc->qty_cutting ?>
                   </td>
-                 <td>
-                   <?php echo $orc->balance ?>
-                 </td>
+              
                 </tr>
                 <?php endforeach ?>
             </tbody>
@@ -98,6 +97,7 @@
               </tr> -->
             </tfoot>
           </table>
+          </div>
         
 
         <!-- Small boxes (Stat box) -->
@@ -121,15 +121,7 @@
 
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
-<!-- <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/dataTables.buttons.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.flash.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/jszip.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/pdfmake.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/vfs_fonts.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.html5.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.print.min.js'); ?>"></script> -->
+
 
 
 <script type="text/javascript">
@@ -154,7 +146,7 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 3 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -169,16 +161,16 @@
             // }, 0 );
  
             // Total over this page
-            // pageTotal = api
-            //     .column( 2, { page: 'current'} )
-            //     .data()
-            //     .reduce( function (a, b) {
-            //         return intVal(a) + intVal(b);
-            //     }, 0 );
+            pageTotal = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
  
             // Update footer
-            $( api.column( 2 ).footer() ).html(
-                'Total Cutting :' + total
+            $( api.column( 3 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
             );
 
             // $( api.column( 2 ).footer() ).html(
@@ -196,6 +188,9 @@
   });
  
   $('#filter').click(function(){
+    $('#orcTableList').css('display','');
+    // e.preventDefault();
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -226,10 +221,11 @@
                 // }
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.orc,
                     item.qty_order,
                     item.qty_cutting,
-                    item.balance,
+                    // item.balance,
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

@@ -66,9 +66,8 @@ class ReportSewingBySingleOrcModel extends CI_Model{
     }    
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
-
+        $this->db->select('DISTINCT(orc)');
+        $query = $this->db->get('single_orc_sewing');
         return $query->result();
     }
 

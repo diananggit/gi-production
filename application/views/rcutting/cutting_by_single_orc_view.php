@@ -63,6 +63,10 @@
                   <label>COLOR:</label>
                   <input type="text" id="color" name="color" class="form-control" disabled>
                 </div>
+                <div class="form-group">
+                  <label>BALANCE TO CUT:</label>
+                  <input type="text" id="balance_to_cut" name="balance_to_cut" class="form-control" disabled>
+                </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -72,6 +76,10 @@
                 <div class="form-group">
                   <label>DDD:</label>
                   <input type="date" id="etd" name="etd" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                  <label>BALANCE TO SEWING:</label>
+                  <input type="text" id="balance_to_sewing" name="balance_to_sewing" class="form-control" disabled>
                 </div>
               </div>
 
@@ -104,9 +112,7 @@
                 </table>
               </div>
             </div>
-              <div class="card-tools">
-                <a href="<?php echo site_url('reportwipcutting'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>NEXT</a>
-              </div>
+             
             </div>
           </div>
           <!-- <div class="card-tools">0
@@ -143,6 +149,8 @@
 
   <script type="text/javascript">
     var table;
+    
+    
     // $(document).ready(function() {
       $(".select2").select2();
 
@@ -183,7 +191,7 @@
       });
 
       load_orc();
-
+   
       function load_orc() {
         $('#orc').empty();
         $.ajax({
@@ -192,6 +200,7 @@
           dataType: 'json',
           }).done(function(data){
               console.log('data: ', data);
+            
             $.each(data, function(i, item) {
               $('#orc').append($('<option>', {
                 value: item.orc,
@@ -212,6 +221,7 @@
             $('#color').val(data[0].color);
             $('#qty_order').val(data[0].qty_order);
             $('#etd').val(data[0].etd);
+            $('#balance_to_cut').val(data[0].balance);
             table.clear();
             // var output = [];
             // for (var i=0; i<data.lenght; i++) {

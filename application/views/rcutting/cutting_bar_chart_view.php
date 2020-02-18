@@ -39,10 +39,10 @@
     <section class="content">
       <div class="container-fluid">
         <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Cutting Report</h2>
-        <div class="col-md-10">
+        <div class="col-md-10" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="barCutting" style="height:25%; width:30%"></canvas>
+                    <canvas id="barCutting" style="height:5; width:100"></canvas>
                 </div>
             </div>
         </div>
@@ -143,8 +143,8 @@ function formatDate(date) {
               datasets: [
                 {
                   type: 'line',
-                  borderColor: "#ffffff",
-                  backgroundColor : "#ffffff",
+                  borderColor: "#000000",
+                  backgroundColor : "#000000",
                   label: 'Efficiency',
                   yAxisId: 'axisBarLine',
                   data: chartReportCuttingEff,

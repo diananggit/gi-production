@@ -15,6 +15,7 @@ class ReportCuttingSingleOrc extends CI_Controller{
     }
 
     public function ajax_get_all_orc(){
+    
         $data = $this->ReportCuttingSingleOrcModel->get_all();
 
         echo json_encode($data);
