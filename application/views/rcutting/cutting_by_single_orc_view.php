@@ -213,6 +213,7 @@
        $('#orc').change(function() {
         orc = $(this).val()
         $.ajax({
+          // commit
           url: '<?php echo site_url("reportcuttingsingleorc/ajax_get_by_orc"); ?>/' + orc,
           type: 'GET',
           dataType: 'json',
