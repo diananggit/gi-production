@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportWipSewingModel extends CI_Model{
-    var $table="sewing_wip_view";
+    var $table="v_sewing_wip";
     var $column_order = array('tgl','orc','style','color','qty_cutting','qty','order','balanc_cut','wip_sewing','qt_pqcking');
     
     
@@ -68,11 +68,19 @@ class ReportWipSewingModel extends CI_Model{
     }    
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
-
+        $query = $this->db->query(" SELECT * FROM v_sewing_wip WHERE
+        wip_sewing != '0' ");
         return $query->result();
     }
+   
+    // public function get_all(){
+    //     $this->db->from($this->table);
+    //     $query = $this->db->get(); $query = $this->db->query(" SELECT * FROM sewing_wip_view WHERE
+    //     wip != '0' ");
+
+    //     return $query->result();
+    // }
+    
 
     
 }

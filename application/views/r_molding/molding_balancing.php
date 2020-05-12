@@ -73,13 +73,13 @@
               </div>
 
             </div>
-            <hr />
+            <hr/>
             <!-- <h2 style="color: #007bff">Molding </h2> -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="card bg-primary">
                         <div class="card-header">
-                            <h3 class="card-title" style="height:50%; width:60%" height:"50%" width:"60%">Balancing</h3>
+                            <h3 class="card-title" style="height:50%; width:60%" >Balancing</h3>
                         </div>
                         <div class="card-body">
                             <table id="tableOrcMolding" class="table table-border table-striped" width="100%">
@@ -142,9 +142,7 @@
 
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
-  <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
+
   
   <script type="text/javascript">
     var table;

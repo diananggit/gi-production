@@ -79,8 +79,8 @@
                                                 <th>Color</th>
                                                 <th>Sam</th>
                                                 <th>Output</th>
-                                                <th>Efficiency</th>
-                                                <th>Man Power</th>
+                                                <!-- <th>Efficiency</th>
+                                                <th>Man Power</th> -->
                                             </tr>
                                         </tr>
                                     </thead>
@@ -180,52 +180,93 @@
                     item.style,
                     item.color,
                     item.sam,
-                    item.qty,
-                    item.eff_coba,
-                    item.op,
+                    item.qty_sewing,
+                    // item.effisiensi,
+                    // item.op,
                 ]).draw();
             })
           }),
           $.ajax({
-            url: '<?php echo site_url("linemonthlychart/ajax_get_by_line_month"); ?>' ,
+            url: '<?php echo site_url("linemonthlychart/ajax_get_by_line_month2"); ?>' ,
             type: 'POST',
             dataType: 'json',
-            data: {'dataStr' : dataStr}
-          }).done(function(data){
+            data: {'dataStr' : dataStr},
+          success:function(data){
             var chartSewingLineCanvas = $('#barSewingMonthChart').get(0).getContext('2d');
             var chartSewingLineValues = [];
             var chartSewingLineLabels = [];
             var chartSewingLineEff = [];
+            var arrChartData = [];
+            var arrChartLabel = [];
             $.each(data, function(i, item){
-                chartSewingLineValues.push(parseInt(item.qty));
-                chartSewingLineLabels.push(item.week);
-                chartSewingLineEff.push(parseInt(item.eff_coba));
+                // chartSewingLineValues.push(parseInt(item.qty_sewing));
+                // chartSewingLineLabels.push(item.week);
+                // chartSewingLineEff.push(item.effisiensi);
+              arrChartData.push(JSON.parse(item.qty_sewing)),
+                            // 'eff' : JSON.parse(item.effisiensi)
+                           
+              arrChartLabel.push(item.week);
             });
+            var outputMax = Math.max.apply(null, arrChartData);
+
             if(chartSewingChart != undefined){
                 chartSewingChart.destroy();
             }
-            chartSewingChart = new Chart(chartSewingLineCanvas,{
+            new Chart(chartSewingLineCanvas,{
               type:'bar',
               data: {
-                labels: chartSewingLineLabels,
-                datasets: [
+                labels:arrChartLabel,
+                datasets: [ 
+               
                  {
                   label: 'qty',
-                  data: chartSewingLineValues,
-                  backgroundColor: ["#191970","#191970","#191970","#191970","#191970","#191970"],
+                  yAxisID: 'axisBarChart',
+                data: arrChartData,
+                  backgroundColor: [ "#99d6ff", "#99d6ff", "#99d6ff", "#99d6ff", "#99d6ff", "#99d6ff"],
                 },
                 ]
               },
-              option: {
-                scsales: {
-                  yAxes: [{
-                    tickss: {
-                      beginAtZero: true
-                    }
-                  }]
+              options: {
+              responsive: true,
+              tooltips:{
+                mode: 'label'
+              },
+              element:{
+                line: {
+                  fill: false
                 }
-              }
-            });
+              },
+              scales: {
+                yAxes: [
+                //   {
+                //   id:'axisBarLine',
+                //   type:"linear",
+                //   position:"right",
+                //   ticks: {
+                //     beginAtZero: true,
+                //     // max: parseInt(effMax) + 10,
+                //     callback: function(value){
+                //       return value + "%";
+                //     }
+                //   }
+                // },
+                {
+                  id: 'axisBarChart',
+                  type: "linear",
+                  position: "left",
+                  ticks:{
+                    beginAtZero:true,
+                    max: parseInt(outputMax) + 5000,
+                  }
+               
+                }
+              ]
+              },
+            }
+
+         });
+
+            }
           })  
         )              
     });

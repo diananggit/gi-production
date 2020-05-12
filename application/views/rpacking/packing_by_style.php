@@ -57,10 +57,11 @@
             </div>
           </div>
           </br>
+          <div class="card" id="styleTableList" style="display:none;">
           <table id="tableStyle" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
-                <!-- <th>Tanggal</th> -->
+                <th>Tanggal</th>
                 <th>Style</th>
                 <!-- <th>Tanggal</th> -->
                 <th>Qty (Pcs)</th>
@@ -70,14 +71,14 @@
             <tbody>
             <?php foreach($packingstyle as $cs): ?>
                 <tr>
+                <td>
+                  <?php echo date('d-m-Y', strtotime($cs->tgl)) ?>
+                  </td>
                   <td>
                     <?php echo $cs->style ?>
                   </td>
-                  <!-- <td>
-                  <?php echo date('d-m-Y', strtotime($cs->tgl)) ?>
-                  </td> -->
                   <td>
-                  <?php echo $cs->qty_packing ?>
+                  <?php echo $cs->qty ?>
                   </td>
                 </tr>
                 <?php endforeach ?>
@@ -89,6 +90,7 @@
               </tr>
             </tfoot>
           </table>
+          </div>
         
 
         <!-- Small boxes (Stat box) -->
@@ -166,6 +168,9 @@
   });
  
   $('#filter').click(function(){
+
+    $('#styleTableList').css('display','');
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -191,9 +196,9 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.style,
-                    item.qty_packing,
-                    item.tgl
+                    item.qty
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

@@ -60,18 +60,18 @@
                             <tbody>
                             <?php foreach($cuttingwip as $wip): ?>
                                 <tr>
-                                <td>
-                                    <?php echo $wip->orc ?>
-                                </td>
-                                <td>
-                                    <?php echo $wip->style ?>
-                                </td>
-                                <td>
-                                    <?php echo $wip->color ?>
-                                </td>
-                                <td>
-                                    <?php echo $wip->balance ?>
-                                </td>
+                                  <td>
+                                    <a href="<?php echo site_url('UnscanTrimstore/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
+                                  </td>
+                                  <td>
+                                      <?php echo $wip->style ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $wip->color ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $wip->balance_cutting_ex ?>
+                                  </td>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -84,21 +84,10 @@
                           </table>
                       </div>
                   </div>
-                  <div class="card-tools">
-                    <a href="<?php echo site_url('reportcuttingsingleorc'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
-                  </div>
               </div>
           </div>
-            <!-- </div> -->
           </div>
-          <!-- <div class="card-tools">
-          <a href="#" type="button" id="singleOrc" class="btn btn-primary" class="fa fa-upload"><i ></i> OK</a>
-        </div> -->
 
-
-          <!-- Small boxes (Stat box) -->
-
-          <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
@@ -122,10 +111,6 @@
   
   $(document).ready(function(){
     var table = $('#wipTable').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy','csv','excel','pdf','print'
-      ],
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
@@ -145,17 +130,17 @@
                     return intVal(a) + intVal(b);
                 }, 0 );
  
-            // // Total over this page
-            // pageTotal = api
-            //     .column( 3, { page: 'current'} )
-            //     .data()
-            //     .reduce( function (a, b) {
-            //         return intVal(a) + intVal(b);
-            //     }, 0 );
+            // Total over this page
+            pageTotal = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
  
             // Update footer
             $( api.column( 3 ).footer() ).html(
-                'Total Cutting :' + total
+              +pageTotal + '( ' +total +' Total WIP Cutting)'
             );
         }
    

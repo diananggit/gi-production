@@ -58,9 +58,11 @@
             </div>
           </div>
           </br>
+          <div class="card" id="tableToSewingList" style="display:none;">
           <table id="tableToSewing" class="table table-bordered table-striped" cellspacing="0" width="100%">
             <thead>
               <tr>
+              <th>Line</th>
                 <th>Orc Number</th>
                 <th>Style</th>
                 <th>Color</th>
@@ -71,6 +73,9 @@
             <tbody>
             <?php foreach($sewing as $sw): ?>
                 <tr>
+                <td>
+                <?php echo $sw->line ?>
+                </td>
                   <td>
                     <?php echo $sw->orc ?>
                   </td>
@@ -88,11 +93,12 @@
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="4" style="text-align:right"></th>
+              <th colspan="5" style="text-align:right"></th>
                 <!-- <th></th> -->
               </tr>
             </tfoot>
           </table>
+          </div>
         
 
         <!-- Small boxes (Stat box) -->
@@ -140,7 +146,7 @@
  
             // Total over all pages
             total = api
-                .column( 3)
+                .column( 4)
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -148,15 +154,18 @@
  
             // Total over this page
             pageTotal = api
-                .column( 3, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 3 ).footer() ).html(
-                'Total Cutting :' + total
+            // $( api.column( 3 ).footer() ).html(
+            //     'Total :' + total
+            // );
+            $( api.column( 4 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
             );
         }
     });
@@ -170,6 +179,8 @@
   });
  
   $('#filter').click(function(){
+    $('#tableToSewingList').css('display','');
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -195,6 +206,7 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.line,
                     item.orc,
                     item.style,
                     item.color,

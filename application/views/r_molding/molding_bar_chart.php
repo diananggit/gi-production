@@ -39,15 +39,16 @@
     <section class="content">
       <div class="container-fluid">
         <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report</h2>
-        <div class="col-md-6">
+        <div class="col-md-10" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="barMolding" style="height:35%; width:30%" height:"35%" width:"30%"></canvas>
+                    <canvas id="barMolding" style="height:5; width:100"></canvas>
                 </div>
             </div>
         </div>
         <div class="card-tools">
-          <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>BACK</a>
+          <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
+          <a href="<?php echo site_url('reportmoldingshift'); ?>" class="btn btn-danger" ><i class="fa fa-pencil"></i>SHIFT</a>
         </div>
         
         
@@ -115,45 +116,116 @@ function formatDate(date) {
         return hero.tgl < compare;
         });
 
-            // get last index off array
-            // let lastIndex = data.map( datas => { return datas.tgl; }).indexOf('2020-01-29');
-
-            // slicing array get data view 6 array from last data array.
+         
         let endLength = data.length;
         let startLength = endLength - 7 ;
 
         resultDatas = resultFilter.slice(startLength, endLength);
+
+        var arrChartData = [];
+        var arrChartLabel = [];
+
         $.each(resultDatas, function(i, item) {
-           chartReportMoldingLabels.push(item.tgl);
-           chartReportMoldingValues.push(parseInt(item.total));
+          
+          arrChartData.push({
+                            'val' : JSON.parse(item.qty_mold),
+                            'eff' : JSON.parse(item.eff)
+                             });
+          arrChartLabel.push({'tgl': item.tgl});
+           
          });
-         var chartReportMoldingChart = new Chart(chartReportMoldingCanvas,{
+         var outputMax = Math.max(...arrChartData.map(o => o.val),0);
+         var effMax = Math.max(...arrChartData.map(o => o.eff),0);
+
+         new Chart(chartReportMoldingCanvas,{
             type:'bar',
             data: {
-              labels: chartReportMoldingLabels,
-              datasets: [{
+              labels: [
+                arrChartLabel[0]['tgl'],
+                arrChartLabel[1]['tgl'],
+                arrChartLabel[2]['tgl'],
+                arrChartLabel[3]['tgl'],
+                arrChartLabel[4]['tgl'],
+                arrChartLabel[5]['tgl'],
+                ],
+              datasets: [
+                {
+                  type: 'line',
+                  borderColor: "#3377ff",
+                  backgroundColor : "#3377ff",
+                  label: 'Efficiency',
+                  yAxisID: 'axisBarLine',
+                  data: [
+                    arrChartData[0]['eff'],
+                    arrChartData[1]['eff'],
+                    arrChartData[2]['eff'],
+                    arrChartData[3]['eff'],
+                    arrChartData[4]['eff'],
+                    arrChartData[5]['eff'],
+                  ],
+                  fill: false
+                },
+                {
                 label: 'Output',
-                data: chartReportMoldingValues,
+                yAxisID: 'axisBarChart',
+                data: [
+                  arrChartData[0]['val'],
+                  arrChartData[1]['val'],
+                  arrChartData[2]['val'],
+                  arrChartData[3]['val'],
+                  arrChartData[4]['val'],
+                  arrChartData[5]['val'], 
+                ],
                 backgroundColor : [
-                  "#007bff", "#007bff", "#007bff",
-                  "#007bff", "#007bff", "#007bff",
-                  "#007bff"
-                ]
-              }]
+                  "#ff9900", "#ff9900", "#ff9900",
+                  "#ff9900", "#ff9900", "#ff9900",
+                  "#ff9900"
+                ],
+              }
+              ]
             },
             options: {
+              responsive: true,
+              tooltips:{
+                mode: 'label'
+              },
+              element:{
+                line: {
+                  fill: false
+                }
+              },
               scales: {
                 yAxes: [{
+                  id:'axisBarLine',
+                  type:"linear",
+                  position:"right",
                   ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: parseInt(effMax) + 10,
+                    callback: function(value){
+                      return value + "%";
+                    }
                   }
-                }]
-              }
+                },
+                {
+                  id: 'axisBarChart',
+                  type: "linear",
+                  position: "left",
+                  ticks:{
+                    beginAtZero:true,
+                    max: parseInt(outputMax) + 5000,
+                  }
+               
+                }
+              ]
+              },
             }
+
          });
-      })  
+
+      // }
+    }); 
   }
-  // }   
     
 </script>
 </body>

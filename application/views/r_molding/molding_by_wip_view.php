@@ -70,7 +70,7 @@
                                     <?php echo $wip->color ?>
                                 </td>
                                 <td>
-                                    <?php echo $wip->wip ?>
+                                    <?php echo $wip->wip_mold ?>
                                 </td>
                                 </tr>
                                 <?php endforeach ?>
@@ -121,10 +121,11 @@
   <script type="text/javascript">
   $(document).ready(function(){
     var table = $('#wipTableMolding').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy','csv','excel','pdf','print'
-      ],
+      dom: 'Blfrtip',
+      // lengthMenu: [[10, 25, 50,100,200,300,400], [10, 25, 50,100,200,300,400]],
+      // buttons: [
+      //   'excel','print'
+      // ],
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
@@ -154,7 +155,7 @@
  
             // Update footer
             $( api.column( 3 ).footer() ).html(
-                'Total WIP :' + pageTotal
+                +pageTotal + '( ' +total +' Total)'
             );
         }
    

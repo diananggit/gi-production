@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportWipMoldingModel extends CI_Model{
-    var $table="v_wip_molding";
+    var $table="view_wip_molding_new";
     var $column_order = array('orc','style','color','input','output','wip');
     
     private function _get_datatables_query(){

@@ -145,7 +145,7 @@
 
         $.when(
           $.ajax({
-            url: '<?php echo site_url("linedaychart/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("LineDayChart/ajax_get_by_line_day"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -156,14 +156,14 @@
                     item.orc,
                     item.style,
                     item.color,
-                    item.sam,
-                    item.qty,
-                    item.eff_coba,
+                    item.total_sam,
+                    item.qty_ass,
+                    item.eff,
                 ]).draw();
             })
           }),
           $.ajax({
-            url: '<?php echo site_url("linedaychart/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("LineDayChart/ajax_get_by_line_day"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -173,59 +173,54 @@
             var chartSewingLineBackWingsValues = [];
             var chartSewingLineCupsValues = [];
             var chartSewingLineAssemblyValues = [];
-            var chartSewingLineEff = [];
+            // var chartSewingLineEff = [];
             $.each(data, function(i, item){
-                chartSewingLineCenterPanelValues.push(parseInt(item.qt_cp));
-                chartSewingLineBackWingsValues.push(parseInt(item.qt_bw));
-                chartSewingLineCupsValues.push(parseInt(item.qt_cups));
-                chartSewingLineAssemblyValues.push(parseInt(item.qt_ass));
-                chartSewingLineEff.push(parseInt(item.eff_coba));
+              chartSewingLineCenterPanelValues.push(parseInt(item.qty_cp));
+              chartSewingLineBackWingsValues.push(parseInt(item.qty_bw));
+              chartSewingLineCupsValues.push(parseInt(item.qty_cup));
+              chartSewingLineAssemblyValues.push(parseInt(item.qty_ass));
             });
             if(chartSewingChart != undefined){
                 chartSewingChart.destroy();
             }
-            chartSewingChart = new Chart(chartSewingLineCanvas,{
+            new Chart(chartSewingLineCanvas,{
               type:'bar',
               data: {
-                labels: ['Center Panel', 'Back Wings', 'Cup', 'Assembly'],
+                // labels: ["CenterPanel",z "BackWings", "Cup", "Assembly"],
+                
                 datasets: [
-                    {
-                        type: 'line',
-                        borderColor: "red",
-                        label: 'Efficiency',
-                        yAxisId: 'axisBarLine',
-                        data: chartSewingLineEff,
-                        fill: false
-                    },
                  {
-                  label: 'qty',
-                  yAxisId:'axisBarchart',
-                  data:[chartSewingLineCenterPanelValues, chartSewingLineBackWingsValues, chartSewingLineCupsValues, chartSewingLineAssemblyValues],
-                  backgroundColor: ["#007bff","#007bff","#007bff","#007bff","#007bff","#007bff"],
-                }
+                  label: 'Cp',
+                  labels: "Center Panel",
+                  data:chartSewingLineCenterPanelValues,
+                  backgroundColor: "#99ccff",
+                },
+                {
+                  label: 'Bw',
+                  data:chartSewingLineBackWingsValues,
+                  backgroundColor: "#6699ff",
+                },
+                {
+                  label: 'Cup',
+                  data:chartSewingLineBackWingsValues,
+                  backgroundColor: "#3366ff",
+                },
+                {
+                  label: 'Assembly',
+                  data:chartSewingLineAssemblyValues,
+                  backgroundColor: "#3333ff",
+                },
+              
                 ]
               },
               option: {
-                  responsive: true,
-                  tooltips:{
-                      mode:'label'
-                  },
-                  element:{
-                      line:{
-                          fill:false
-                      }
-                  },
-                scales: {
+                scsales: {
                   yAxes: [{
-                      id:"axisBarChart",
-                      type: "linear",
-                      position:"left",
-                      ticks: {
-                      beginAtZero: true
+                    tickss: {
+                      beginAtZero: true,
+                     
                     },
-                    gridLines:{
-                        display:false
-                    },
+                    min: 0
                   }]
                 }
               }

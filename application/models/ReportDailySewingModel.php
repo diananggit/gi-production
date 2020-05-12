@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportDailySewingModel extends CI_Model{
-    var $table="view_eff_line_sewing";
+    var $table="view_sewing_daily_assembly";
 
     public function get_all($hr){
 

@@ -7,6 +7,7 @@ class LineDailyChart extends CI_Controller{
 
         $this->load->model('LineDailyChartModel');
         $this->load->model('LineMonthlyChartModel');
+        $this->load->model('LineChartWeekModel');
     }
 
     public function index(){
@@ -75,9 +76,16 @@ class LineDailyChart extends CI_Controller{
 
         // echo json_encode($data);
     }
+    
 
     public function ajax_get_by_line_week(){
         $r = $this->LineDailyChartModel->get_by_line_week();
+
+        echo json_encode($r);
+    }  
+
+     public function ajax_get_by_line_week2(){
+        $r = $this->LineChartWeekModel->get_by_line_week();
 
         echo json_encode($r);
     }  

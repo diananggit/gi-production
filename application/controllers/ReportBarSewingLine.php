@@ -15,4 +15,8 @@ class ReportBarSewingLine extends CI_Controller{
         $data=$this->ReportBarSewingLineModel->get_all();
         echo json_encode($data);
     }
+    // public function ajax_get_qty_sewing_line($hr){
+    //     $data=$this->ReportBarSewingLineModel->get_all($hr);
+    //     echo json_encode($data);
+    // }
 }

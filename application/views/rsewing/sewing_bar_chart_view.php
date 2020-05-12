@@ -39,17 +39,17 @@
     <section class="content">
       <div class="container-fluid">
         <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report</h2>
-        <div class="col-md-12">
+        <div class="col-md-15" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="barSewing" style="height:25%; width:30%" height:"25%" width:"30%"></canvas>
+                    <canvas id="barSewing" style="height:5; width:100"></canvas>
                 </div>
             </div>
         </div>
-        <div class="card-tools">
+        <!-- <div class="card-tools">
           <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>BACK</a>
         </div>
-        
+         -->
         
 
         <!-- Small boxes (Stat box) -->
@@ -79,55 +79,147 @@
 <script type="text/javascript">
 
 showReportSewing();
+function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
   
   function showReportSewing() {
     $.ajax({
       url: '<?php echo site_url('reportbarchartsewing/ajax_get_qty_sewing') ; ?>',
       type: 'GET',
       dataType: 'json',
-      success: function(data){
+    }).done(function(data){
         console.log(data);
         var chartReportSewingCanvas = $('#barSewing').get(0).getContext('2d');
         var chartReportSewingLabels = [];
         var chartReportSewingValues = [];
-        $.each(data, function(i, item) {
-           chartReportSewingLabels.push(item.tgl);
-           chartReportSewingValues.push(parseInt(item.qty));
+        var  chartReportSewingEff =[];
+        var arrChartDataEff = [];
+        var arrChartDataVal = [];
+        var arrChartLabel = [];
+        console.log('data',data);
+        // get date for system
+        let dateSystem = Date(); 
+        let compare = formatDate(dateSystem);
+
+          console.log('compare', compare);
+          console.log(data.tgl);
+
+        // filtering array
+        const resultFilter =  data.filter( hero => {
+        return hero.tgl < compare;
+        });
+
+            // get last index off array
+            // let lastIndex = data.map( datas => { return datas.tgl; }).indexOf('2020-01-29');
+
+            // slicing array get data view 6 array from last data array.
+        let endLength = data.length;
+        let startLength = endLength - 30 ;
+
+        resultDatas = resultFilter.slice(startLength, endLength);
+
+        console.log('resultDatas', resultDatas);
+
         
+        $.each(resultDatas, function(i, item) {
+          
+          arrChartDataEff.push(JSON.parse(item.eff));
+          arrChartDataVal.push(JSON.parse(item.qty_sewing));
+          arrChartLabel.push(item.tgl);           
+                            
          });
-         var chartReportSewingChart = new Chart(chartReportSewingCanvas,{
+         var outputMax = Math.max.apply(null, arrChartDataVal);
+         var effMax = Math.max.apply(null,arrChartDataEff);
+         
+         var arrColor = [];
+         for (x= 0; x <= arrChartDataVal.length; x++) {
+           arrColor.push(
+             randomColor()
+           );
+         }
+
+         new Chart(chartReportSewingCanvas,{
             type: 'bar',
             data: {
-              labels: chartReportSewingLabels,
-              datasets: [{
+              labels: 
+                arrChartLabel,
+              datasets: [
+                {
+                  type: 'line',
+                  borderColor: "#3377ff",
+                  backgroundColor : "#3377ff",
+                  label: 'Efficiency',
+                  yAxisID: 'axisBarLine',
+                  data: arrChartDataEff,
+                  fill: false
+                },
+                { 
                 label: 'Quantity output',
-                data: chartReportSewingValues,
-                backgroundColor : [
-                  "#28a745", "#28a745", "#28a745",
-                  "#28a745", "#28a745", "#28a745",
-                  "#28a745"
-                ], 
-            
-              }]
+                yAxisID:'axisBarChart',
+                data: arrChartDataVal,
+                backgroundColor : arrColor, 
+              }
+              ]
               
             },
             options: {
-              title: { 
-                display: true
+              responsive: true,
+              tooltips:{
+                mode: 'label'
+              },
+              element:{
+                line: {
+                  fill: false
+                }
               },
               scales: {
                 yAxes: [{
+                  id:'axisBarLine',
+                  type:"linear",
+                  position:"right",
                   ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: parseInt(effMax) + 10,
+                    callback: function(value){
+                      return value + "%";
+                    }
+                    // min: 0,
                   }
-                }]
-              }
-            },
+                },
+                {
+                  id: 'axisBarChart',
+                  type: "linear",
+                  position: "left",
+                  ticks:{
+                    beginAtZero:true,
+                    max: parseInt(outputMax) + 5000,
+                  }
+               
+                }
+              ]
+              },
+            }
 
          });
 
-      }
-    }); 
+      // }
+    });
+    function randomColor() {
+        return "hsl(" + 360 * Math.random() + ',' +
+          (20 + 70 * Math.random()) + '%,' +
+          (65 + 10 * Math.random()) + '%)'
+      } 
   }
     
 </script>

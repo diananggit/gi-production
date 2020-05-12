@@ -9,14 +9,14 @@ class ReportMoldingBalancing extends CI_Controller{
     }
 
     public function index(){
-        $data['moldingorc']=$this->ReportMoldingBalancingModel->get_all();
+        $data=$this->ReportMoldingBalancingModel->get_all();
 
         $this->load->view('r_molding/moldingcoba',$data);
     }
 
   
     public function ajax_get_all_orc(){
-        $data = $this->ReportMoldingBalancingModel->get_all();
+        $data=$this->ReportMoldingBalancingModel->get_all();
 
         echo json_encode($data);
     }

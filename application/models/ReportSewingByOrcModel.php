@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportSewingByOrcModel extends CI_Model{
-    var $table="view_orc_sewing";
-    var $column_order = array('tgl','orc','order','qty','balance1');
+    var $table="view_orc_sewing2";
+    var $column_order = array('tgl','orc','order','qty_out');
     
     
     private function _get_datatables_query(){
@@ -82,7 +82,7 @@ class ReportSewingByOrcModel extends CI_Model{
             // $this->db->where("tgl BETWEEN CAST($from_date AS DATE) AND CAST($to_date AS DATE)");
             $this->db->where("tgl >=", $from_date);
             $this->db->where("tgl <=", $to_date);
-            $rst = $this->db->get('view_orc_sewing');
+            $rst = $this->db->get('view_orc_sewing2');
             return $rst->result();
         }
     }

@@ -69,10 +69,10 @@
                   <label>QTY ORDER:</label>
                   <input type="text" id="qty_order" name="qty_order" class="form-control" disabled>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label>DDD:</label>
                   <input type="date" id="etd" name="etd" class="form-control" disabled>
-                </div>
+                </div> -->
               </div>
 
             </div>
@@ -80,7 +80,7 @@
             <!-- <h2 style="color: #007bff">Packing Detail Status</h2> -->
             <div class="card card-primary" style="height:50%; width:60%" height:"50%" width:"60%">
               <div class="card-header">
-                <h3 class="card-title">Cutting Detail Status</h3>
+                <h3 class="card-title">Packing Detail Status</h3>
               </div>
               <div class="card-body">
             <!-- <div class="row"> -->
@@ -135,15 +135,15 @@
 
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
-  <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
+  <!-- <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
 
   <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
+  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script> -->
   
 
   <script type="text/javascript">
     var table;
-    $(document).ready(function() {
+    // $(document).ready(function() {
       $(".select2").select2();
 
       table = $('#tableOrcPacking').DataTable({
@@ -189,17 +189,16 @@
           url: "<?php echo site_url('reportpackingsingleorc/ajax_get_all_orc'); ?>",
           type: 'get',
           dataType: 'json',
-          success: function(data) {
+          }).done(function(data){
             $.each(data, function(i, item) {
               $('#orc').append($('<option>', {
                 value: item.orc,
                 text: item.orc
-              // }));
-              })).trigger('change');
+              }));
             });
-          }
-        })
-      }
+          });
+        }
+      // }
 
        $('#orc').change(function() {
         orc = $(this).val()
@@ -210,8 +209,8 @@
           success: function(data) {
             $('#style').val(data[0].style);
             $('#color').val(data[0].color);
-            $('#order').val(data[0].order);
-            $('#etd').val(data[0].etd);
+            $('#qty_order').val(data[0].total_qty);
+            // $('#etd').val(data[0].etd);
             table.clear();
 
 
@@ -220,7 +219,7 @@
               table.row.add([
               item.day,
               item.tgl,
-              item.qty,
+              item.actual_qt,
             ]).draw();
                                     
             })
@@ -233,7 +232,7 @@
 
     });
 
-    });
+    // });
 
    
 

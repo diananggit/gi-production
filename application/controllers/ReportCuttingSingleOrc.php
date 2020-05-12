@@ -5,6 +5,8 @@ class ReportCuttingSingleOrc extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('ReportCuttingSingleOrcModel');
+        $this->load->model('ReportSewingBalancingModel');
+        $this->load->model('ReportSewingAllQtyModel');
 
     }
 
@@ -15,7 +17,6 @@ class ReportCuttingSingleOrc extends CI_Controller{
     }
 
     public function ajax_get_all_orc(){
-    
         $data = $this->ReportCuttingSingleOrcModel->get_all();
 
         echo json_encode($data);
@@ -26,4 +27,17 @@ class ReportCuttingSingleOrc extends CI_Controller{
         
         echo json_encode($result);
     }
+
+    public function ajax_get_by_orc2($orc){
+        $result=$this->ReportSewingBalancingModel->get_by_orc($orc);
+        
+        echo json_encode($result);
+ 
+           }
+
+    public function ajax_get_by_orc3($orc){
+    $result=$this->ReportSewingAllQtyModel->get_by_orc3($orc);
+    
+    echo json_encode($result);
+}
 }

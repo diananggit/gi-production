@@ -57,48 +57,53 @@
             </div>
           </div>
           </br>
+          <div class="card" id="orcTableList" style="display:none;">
           <table id="tableOrcSewing" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
-                <!-- <th>Tanggal</th> -->
+                <th>Tanggal</th>
                 <th>ORC</th>
-                <th>Qty_Order</th>
+                <th>Style</th>
+                <th>Color</th>
                 <th>Qty_Sewing</th>
-                <th>Qty_Balance</th>
+                <th>SAM</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach($sewingorc as $orc): ?>
                 <tr>
-                <!-- <td>
+                <td>
                   <?php echo date('d-m-Y', strtotime($orc->tgl)) ?>
-                  </td> -->
+                  </td>
                   <td>
                     <?php echo $orc->orc ?>
                   </td>
                   <td>
-                  <?php echo $orc->order ?>
+                    <?php echo $orc->style ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty ?>
+                    <?php echo $orc->color ?>
                   </td>
-                 <td>
-                   <?php echo $orc->balance ?>
-                 </td>
+                  <td>
+                    <?php echo $orc->qty_out ?>
+                  </td>
+                  <td>
+                    <?php echo $orc->sam ?>
+                  </td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
-            <tfoot align="right">
-              <tr><th></th><th></th><th></th><th></th></tr>
-            </tfoot>
-            <!-- <tfoot>
+            <!-- <tfoot align="right">
+              <tr><th></th><th></th><th></th><th></th><th></th></tr>
+            </tfoot> -->
+            <tfoot>
               <tr>
-              <th colspan="4" style="text-align:right">Total:</th> -->
+              <th colspan="6" style="text-align:right">Total:</th>
                 <!-- <th></th> -->
                 
-              <!-- </tr>
+              </tr>
               
-            </tfoot> -->
+            </tfoot>
           </table>
         
 
@@ -147,38 +152,44 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 4 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-
-                 // Total over all pages
-                 totalb = api
-                .column( 3 )
+ 
+            // Total over this page
+            pageTotal = api
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
             // Update footer
-            $( api.column( 0).footer() ).html('Total');
-            $( api.column( 2).footer() ).html(total);
-            $( api.column( 3).footer() ).html(totalb);
+            // $( api.column( 0).footer() ).html('Total');
+            // $( api.column( 3).footer() ).html(total);
+            // $( api.column( 4).footer() ).html(totalb);
              // Update footer
-           
+            $( api.column( 4 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
+            );
+          
         }
     });
     
 
   $('.datepicker').datepicker({
-   format: 'yyyy-mm-dd',
+  format: 'yyyy-mm-dd',
   
-   
+
   });
   });
- 
+
   $('#filter').click(function(){
+
+    $('#orcTableList').css('display','');
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -204,10 +215,12 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.orc,
-                    item.order,
-                    item.qty,
-                    item.balance,
+                    item.style,
+                    item.color,
+                    item.qty_out,
+                    item.sam,
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

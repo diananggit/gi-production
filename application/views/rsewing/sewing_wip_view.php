@@ -56,17 +56,19 @@
                                     <td>QTY Order</td>
                                     <td>Balance To Cut</td>
                                     <td>QTY to Sewing</td>
+                                    <td>QTY WIP Cutting</td>
                                     <td>QTY Sewn</td>
                                     <td>Sewing WIP</td>
-                                    <td>Packed</td>
-                                    <td>WIP Packing</td>
+                                    <!-- <td>Packed</td>
+                                    <td>WIP Packing</td> -->
                                 </tr>
                             </thead>
                             <tbody>
                             <?php foreach($sewingwip as $wip): ?>
                                 <tr>
                                 <td>
-                                    <?php echo $wip->orc ?>
+                                  
+                                    <a href="<?php echo site_url('UnscanSewing/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
                                 </td>
                                 <td>
                                     <?php echo $wip->style ?>
@@ -78,29 +80,26 @@
                                     <?php echo $wip->order ?>
                                 </td>
                                 <td>
-                                  <?php echo $wip->balance_cut ?>
+                                  <?php echo $wip->balance_order_ex ?>
                                 </td>
                                 <td>
-                                    <?php echo $wip->qty_cutting ?>
+                                    <?php echo $wip->in_sewing ?>
                                 </td>
                                 <td>
-                                    <?php echo $wip->qty ?>
+                                  <?php echo $wip->balance_cutting_ex ?>
+                            </td>
+                                <td>
+                                    <?php echo $wip->qty_sewing_out ?>
                                 </td>
                                 <td>
-                                  <?php echo $wip->wip_sew ?>
-                                </td>
-                                <td>
-                                    <?php echo $wip->qt_packing ?>
-                                </td>
-                                <td>
-                                    <?php echo $wip->balance ?>
+                                  <?php echo $wip->wip_sewing ?>
                                 </td>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                <th colspan="10" style="text-align:right">Total:</th>
+                                <th colspan="9" style="text-align:right">Total:</th>
                                     <!-- <th></th> -->
                                 </tr>
                             </tfoot>
@@ -143,10 +142,7 @@
   <script type="text/javascript">
   $(document).ready(function(){
     var table = $('#wipTable').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy','csv','excel','pdf','print'
-      ],
+     
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
@@ -160,7 +156,7 @@
  
             // Total over all pages
             total = api
-                .column( 7 )
+                .column( 8 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -168,14 +164,14 @@
  
             // Total over this page
             pageTotal = api
-                .column( 7, { page: 'current'} )
+                .column( 8, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 7 ).footer() ).html(
+            $( api.column( 8 ).footer() ).html(
                 'Total WIP Sewing :' + total
             );
         }

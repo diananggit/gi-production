@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportDailyModelMolding extends CI_Model{
-    var $table="daili_molding";
+    var $table="daily_mold";
 
     public function get_all($hr){
 

@@ -42,6 +42,11 @@ class LineMonthlyChart extends CI_Controller{
 
         echo json_encode($r);
     }  
+    public function ajax_get_by_line_month2(){
+        $r = $this->LineMonthlyChartModel2->get_by_line_month();
+
+        echo json_encode($r);
+    } 
 
     public function ajax_get_by_month($month){
         // $line = $_GET['lines'];

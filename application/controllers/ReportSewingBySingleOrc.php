@@ -5,6 +5,8 @@ class ReportSewingBySingleOrc extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('ReportSewingBySingleOrcModel');
+        $this->load->model('ReportSewingBalancingModel');
+        $this->load->model('ReportSewingAllQtyModel');
 
     }
 
@@ -25,4 +27,18 @@ class ReportSewingBySingleOrc extends CI_Controller{
         
         echo json_encode($result);
     }
+
+    public function ajax_get_by_orc2($orc){
+        $result=$this->ReportSewingBalancingModel->get_by_orc($orc);
+        
+        echo json_encode($result);
+ 
+           }
+
+           public function ajax_get_by_orc3($orc){
+            $result=$this->ReportSewingAllQtyModel->get_by_orc3($orc);
+            
+            echo json_encode($result);
+        }
+        //   
 }

@@ -9,7 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <?php $this->load->view('_partials/css'); ?>
-
+  <link href="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('plugins/datatables.net-buttons/css/buttons.dataTables.min.css'); ?>" rel="stylesheet">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -57,42 +58,49 @@
             </div>
           </div>
           </br>
-          <table id="tableOrcMolding" class="table table-bordered table-striped" cellspacing="0" width="70%">
+          <div class="card" id="orcTableList" style="display: none;">
+          <table id="tableOrc" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
-                <!-- <th>Tanggal</th> -->
-                <th>ORC</th>
-                <th>Qty_Order</th>
-                <th>Qty_Molding</th>
-                <th>Qty_Balance</th>
+              <th>Tanggal</th>
+              <th>ORC</th>
+              <th>Style</th>
+              <th>Color</th>
+              <th>Size</th>
+              <th>Qty_Molding</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach($moldingorc as $orc): ?>
+              <?php foreach($moldingorc as $mc): ?>
                 <tr>
-                  <td>
-                    <?php echo $orc->orc ?>
-                  </td>
-                  <td>
-                  <?php echo $orc->qty_in ?>
-                  </td>
-                  <td>
-                  <?php echo $orc->qty_out ?>
-                  </td>
-                 <td>
-                   <?php echo $orc->balance_to_mold ?>
-                 </td>
-                </tr>
+												<td>
+													<?php echo date('d-m-Y', strtotime($mc->tgl)) ?>
+												</td>
+												<td>
+													<?php echo $mc->orc ?>
+												</td>
+												<td>
+													<?php echo $mc->style ?>
+												</td>
+												<td>
+													<?php echo $mc->color ?>
+												</td>
+												<td>
+													<?php echo $mc->size ?>
+												</td>
+												<td>
+													<?php echo $mc->qty_mold ?>
+												</td>
+											</tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="4" style="text-align:right">Total:</th>
-                <!-- <th></th> -->
-                
+              <th colspan="6" style="text-align:right">Total:</th>
               </tr>
             </tfoot>
           </table>
+          </div>
         
 
         <!-- Small boxes (Stat box) -->
@@ -117,17 +125,12 @@
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
 
-
-
 <script type="text/javascript">
   //date range
   var table;
   $(document).ready(function(){  
-    table = $('#tableOrcMolding').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy','csv','excel','pdf','print'
-      ],
+    table = $('#tableOrc').DataTable({
+     
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
@@ -141,24 +144,30 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 5 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
+
+            
  
             // Total over this page
             pageTotal = api
-                .column( 2, { page: 'current'} )
+                .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 2 ).footer() ).html(
-                'Total Molding :' + pageTotal
+            $( api.column( 5 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
             );
+
+            // $( api.column( 2 ).footer() ).html(
+            //     'Total Balance:' + total2
+            // );
         }
     });
     
@@ -171,6 +180,10 @@
   });
  
   $('#filter').click(function(){
+
+    $('#orcTableList').css('display','');
+    // e.preventDefault();
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -194,12 +207,19 @@
               {  
                 // console.log('data: ', data);
                 table.clear();
+
+                // var output = [];
+                // for (var 1=0; i<data.lenght; i++) {
+                //   output.push('<option value="' + data[i].orc +  data[i].qty_order) + data[i].qty_cutting +'">' + '</option>');
+                // }
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.orc,
-                    item.qty_in,
-                    item.qty_out,
-                    item.balance_to_mold,
+                    item.style,
+                    item.color,
+                    item.size,
+                    item.qty_mold,
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class LineMonthlyChartModel extends CI_Model{
-    var $table="eff_line_month";
+    var $table="eff_line_month2";
     var $column_order= array('orc','style','color','sam','qty','eff_coba','op');
 
     public function get_all(){
@@ -18,11 +18,15 @@ class LineMonthlyChartModel extends CI_Model{
         return $rst->result();
     }
 
-    public function get_by_line($l){
-        $rst = $this->db->get_where($this->table, array('line' => $l));
+    public function get_by_line($line){
+        $this->db->select('DISTINCT(month)');
+        $resultReplace=str_replace("%20"," ",$line);
+        $rst = $this->db->get_where($this->table, array('line' =>  $resultReplace));
 
         return $rst->result();
     }
+
+   
 
     public function get_by_line_month(){
         if(isset($_POST['dataStr'])){

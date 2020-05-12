@@ -40,7 +40,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Cutting Report by ORC</h2>
+        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Packing Report by ORC</h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -58,33 +58,35 @@
             </div>
           </div>
           </br>
+          <div class="card" id="tableOrcList" style="display:none;">
           <table id="tableOrc" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
+                <th>Tanggal</th>
                 <th>ORC</th>
                 <th>Qty_Order</th>
                 <th>Qty_Packing</th>
-                <th>Qty_Balance</th>
+                <!-- <th>Qty_Balance</th> -->
               </tr>
             </thead>
             <tbody>
               <?php foreach($packingorc as $orc): ?>
                 <tr>
-                <!-- <td>
+                <td>
                   <?php echo date('d-m-Y', strtotime($orc->tgl)) ?>
-                  </td> -->
+                  </td>
                   <td>
                     <?php echo $orc->orc ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty ?>
+                  <?php echo $orc->order ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty_packing ?>
+                  <?php echo $orc->qty ?>
                   </td>
-                 <td>
+                 <!-- <td>
                    <?php echo $orc->balance ?>
-                 </td>
+                 </td> -->
                 </tr>
                 <?php endforeach ?>
             </tbody>
@@ -96,6 +98,7 @@
               </tr>
             </tfoot>
           </table>
+          </div>
         
 
         <!-- Small boxes (Stat box) -->
@@ -143,7 +146,7 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 3 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -151,15 +154,15 @@
  
             // Total over this page
             pageTotal = api
-                .column( 2, { page: 'current'} )
+                .column( 3, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 2 ).footer() ).html(
-                'Total Packing :' + pageTotal
+            $( api.column( 3 ).footer() ).html(
+                'Total Packing :' + total
             );
         }
     });
@@ -173,6 +176,9 @@
   });
  
   $('#filter').click(function(){
+
+ $('#tableOrcList').css('display','');
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -198,10 +204,11 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.orc,
                     item.order,
-                    item.qty_packing,
-                    item.balance,
+                    item.qty,
+                    // item.balance,
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

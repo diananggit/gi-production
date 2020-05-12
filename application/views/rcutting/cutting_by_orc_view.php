@@ -64,9 +64,10 @@
               <tr>
                 <th>Tanggal</th>
                 <th>ORC</th>
-                <th>Qty_Order</th>
+                <th>Style</th>
+                <th>Color</th>
                 <th>Qty_Cut</th>
-                <!-- <th>Qty_Balance</th> -->
+                <th>SAM</th>
               </tr>
             </thead>
             <tbody>
@@ -79,22 +80,25 @@
                     <?php echo $orc->orc ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty_order ?>
+                    <?php echo $orc->style ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty_cutting ?>
+                    <?php echo $orc->color ?>
                   </td>
-              
+                  <td>
+                    <?php echo $orc->qty_cutting ?>
+                  </td>
+                  <td>
+                    <?php echo $orc->cutting_sam ?>
+                  </td>
+                 
                 </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="4" style="text-align:right">Total:</th>
+              <th colspan="6" style="text-align:right">Total:</th>
               </tr>
-              <!-- <tr>
-              <th colspan="4" style="text-align:right">Balance:</th>
-              </tr> -->
             </tfoot>
           </table>
           </div>
@@ -122,8 +126,6 @@
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
 
-
-
 <script type="text/javascript">
   //date range
   var table;
@@ -146,30 +148,24 @@
  
             // Total over all pages
             total = api
-                .column( 3 )
+                .column( 4 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-            // total over all pages balance
-            // total2 = api
-            // .column( 3 )
-            // .data()
-            // .reduce( function (a, b) {
-            //     return intVal(a) + intVal(b);
-            // }, 0 );
+            
  
             // Total over this page
             pageTotal = api
-                .column( 3, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 3 ).footer() ).html(
+            $( api.column( 4 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
 
@@ -223,9 +219,10 @@
                   table.row.add([
                     item.tgl,
                     item.orc,
-                    item.qty_order,
+                    item.style,
+                    item.color,
                     item.qty_cutting,
-                    // item.balance,
+                    item.cutting_sam,
                   ]).draw();
                 });
                     // $('#tableStyle').DataTable().destroy();

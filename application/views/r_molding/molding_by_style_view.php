@@ -57,10 +57,11 @@
             </div>
           </div>
           </br>
+          <div class="card" id="styleTableList" style="display:none;">
           <table id="tableStyleMolding" class="table table-bordered table-striped" cellspacing="0" width="70%">
             <thead>
               <tr>
-                <!-- <th>Tanggal</th> -->
+                <th>Tanggal</th>
                 <th>Style</th>
                 <!-- <th>Tanggal</th> -->
                 <th>Qty (Pcs)</th>
@@ -70,25 +71,26 @@
             <tbody>
             <?php foreach($moldingstyle as $ms): ?>
                 <tr>
+                <td>
+                  <?php echo date('d-m-Y', strtotime($ms->tgl)) ?>
+                  </td>
                   <td>
                     <?php echo $ms->style ?>
                   </td>
-                  <!-- <td>
-                  <?php echo date('d-m-Y', strtotime($ms->tgl)) ?>
-                  </td> -->
                   <td>
-                  <?php echo $ms->total ?>
+                  <?php echo $ms->qt ?>
                   </td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="2" style="text-align:right"></th>
+              <th colspan="3" style="text-align:right"></th>
                 <!-- <th></th> -->
               </tr>
             </tfoot>
           </table>
+          </td>
         
 
         <!-- Small boxes (Stat box) -->
@@ -136,7 +138,7 @@
  
             // Total over all pages
             total = api
-                .column( 1 )
+                .column( 2 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -144,15 +146,15 @@
  
             // Total over this page
             pageTotal = api
-                .column( 1, { page: 'current'} )
+                .column( 2, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 1 ).footer() ).html(
-                'Total Cutting :' + total
+            $( api.column( 2 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
             );
         }
     });
@@ -166,6 +168,9 @@
   });
  
   $('#filter').click(function(){
+
+    $('#styleTableList').css('display','');
+
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
 
@@ -191,8 +196,9 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.style,
-                    item.total,
+                    item.qt,
                   ]).draw();
                 });
                     

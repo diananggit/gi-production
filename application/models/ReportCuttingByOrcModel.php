@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportCuttingByOrcModel extends CI_Model{
     var $table="v_orc_cutting";
-    var $column_order = array('tgl','qty_order','qty_cutting');
+    var $column_order = array('tgl','qty_order','qty_cutting','cutting_sam');
     
     
     private function _get_datatables_query(){

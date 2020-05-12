@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportWipCuttingModel extends CI_Model{
-    var $table="view_cutting_wip";
+    // var $table = "v_wip_trimstore";
+    // var $column_order = array('orc','style','color','size','qty_in','qty_out','wip');
+
+    var $table="view_wip_cutting_orc";
     var $column_order = array('orc','style','color','qty_cutting','qty_sewing','balance');
     
     private function _get_datatables_query(){
@@ -65,8 +68,8 @@ class ReportWipCuttingModel extends CI_Model{
     }    
 
     public function get_all(){
-        $query = $this->db->query(" SELECT * FROM view_cutting_wip WHERE
-balance != '0' ");
+        $query = $this->db->query(" SELECT * FROM view_wip_cutting_orc WHERE
+balance_cutting_ex != '0' ");
         return $query->result();
     }
 

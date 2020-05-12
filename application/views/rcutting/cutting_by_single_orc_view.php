@@ -41,7 +41,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Cutting Report by Single ORC</h2>
+          <h2 style="text-align: center; color: #ffc107">Globalindo Intimates - Cutting Report by Single ORC</h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Orc Number</label>
             </br>
@@ -50,11 +50,10 @@
           <div class="card-body mt-1">
             <div class="row">
               <div class="col-md-4">
-
-                <!-- <div class="form-group">
-                              <label>ORC:</label>
-                              <select id="orc" name="orc" class="form-control select2" data-placeholder="Select an ORC"></select>
-                            </div> -->
+                <div class="form-group">
+                  <label>BUYER:</label>
+                  <input type="text" id="buyer" name="buyer" class="form-control" disabled>
+                </div>
                 <div class="form-group">
                   <label>STYLE:</label>
                   <input type="text" id="style" name="style" class="form-control" disabled>
@@ -62,10 +61,6 @@
                 <div class="form-group">
                   <label>COLOR:</label>
                   <input type="text" id="color" name="color" class="form-control" disabled>
-                </div>
-                <div class="form-group">
-                  <label>BALANCE TO CUT:</label>
-                  <input type="text" id="balance_to_cut" name="balance_to_cut" class="form-control" disabled>
                 </div>
               </div>
               <div class="col-md-4">
@@ -78,59 +73,85 @@
                   <input type="date" id="etd" name="etd" class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                  <label>BALANCE TO SEWING:</label>
-                  <input type="text" id="balance_to_sewing" name="balance_to_sewing" class="form-control" disabled>
+                  <label>PLAN SHIPMENT DATE:</label>
+                  <input type="date" id="exdate" name="exdate" class="form-control" disabled>
                 </div>
               </div>
 
             </div>
             <hr />
-            <!-- <h2 style="color: #007bff">Cutting Detail Status</h2> -->
-            <div class="card card-primary" style="height:50%; width:70%" height:"50%" width:"70%">
-              <div class="card-header">
-                <h3 class="card-title">Cutting Detail Status</h3>
+            <div class="row">
+            <div class="col-md-12">
+                <div class="card card-warning">
+                  <div class="card-header">
+                    <h3 class="card-title">Detail Status Qty</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableDepartment" class="table table-border table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Cutting</th>
+                          <th>Sewing</th>
+                          <th>Packing</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="4" style="text-align:right">Total:</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-            <!-- <div class="row"> -->
-                <table id="tableOrc" class="table table-border table-striped" width="100%">
-                  <thead>
-                    <tr>
-                      <th>DAY</th>
-                      <th>DATE</th>
-                      <th>CUTTING QTY</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                  <th colspan="3" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
-                  </tr>
-                  </tfoot>
-                </table>
+              <div class="col-md-6">
+                <div class="card card-warning" >
+                  <div class="card-header">
+                    <h3 class="card-title">Cutting Detail Status</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableOrc" class="table table-border table-striped" width="100%">
+                      <thead>
+                        <tr>
+                          <th>DAY</th>
+                          <th>DATE</th>
+                          <th>SIZE</TH>
+                          <th>CUTTING QTY</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="4" style="text-align:right">Total:</th>
+                            <!-- <th></th> -->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
               </div>
-            </div>
-             
+              <div class="col-md-6">
+                <div class="card card-warning" >
+                  <div class="card-header">
+                    <h3 class="card-title">Sewing Balacing</h3>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="barBalancingSewing"></canvas>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- <div class="card-tools">0
-          <a href="#" type="button" id="singleOrc" class="btn btn-primary" class="fa fa-upload"><i ></i> OK</a>
-        </div> -->
-
-
-          <!-- Small boxes (Stat box) -->
-
-          <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <?php $this->load->view('_partials/footer.php'); ?>
-
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -142,15 +163,10 @@
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
   <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
-
   <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
   <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-  
-
   <script type="text/javascript">
     var table;
-    
-    
     // $(document).ready(function() {
       $(".select2").select2();
 
@@ -169,7 +185,7 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 3 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -184,11 +200,12 @@
             //     }, 0 );
  
             // Update footer
-            $( api.column( 2 ).footer() ).html(
+            $( api.column( 3 ).footer() ).html(
                 'Total Cutting :' + total
             );
         }
       });
+      table2 = $("#tableDepartment").DataTable();
 
       load_orc();
    
@@ -212,65 +229,129 @@
 
        $('#orc').change(function() {
         orc = $(this).val()
+        $.when(
+
+          $.ajax({
+            url: '<?php echo site_url("reportcuttingsingleorc/ajax_get_by_orc3"); ?>/' + orc,
+            type: 'GET',
+            dataType: 'json',
+          }).done(function(data) {
+
+              table2.clear();
+              $.each(data, function(i, item) {
+              table2.row.add([
+                "Input",
+                item.in_cutting,
+                item.in_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Output",
+                item.in_sewing,
+                item.qty_sewing_out,
+                item.actual_qt,
+              ]).draw();
+              table2.row.add([
+                "Balance",
+                item.balance_order_ex,
+                item.balance_order_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Wip",
+                item.actual_qt,
+                item.wip_sewing,
+                "0",
+              ]).draw();
+            })
+          }),
         $.ajax({
-          // commit
           url: '<?php echo site_url("reportcuttingsingleorc/ajax_get_by_orc"); ?>/' + orc,
           type: 'GET',
           dataType: 'json',
           success: function(data) {
+            $('#buyer').val(data[0].buyer);
             $('#style').val(data[0].style);
             $('#color').val(data[0].color);
             $('#qty_order').val(data[0].qty_order);
             $('#etd').val(data[0].etd);
-            $('#balance_to_cut').val(data[0].balance);
+            $('#exdate').val(data[0].plan_export);
             table.clear();
-            // var output = [];
-            // for (var i=0; i<data.lenght; i++) {
-            //   output.push('<option value="' + data[i].day + '">' + data[i].cut_date + data[i].cut_qty + '</option>';)
-            // }
-
             $.each(data, function(i, item){
               console.log('item.day', item.day);
               table.row.add([
               item.day,
               item.cut_date,
+              item.size,
               item.cut_qty
             ]).draw();
-                                    
             })
-
-
           }
+        })
+        )
+        $.ajax({
+          url: '<?php echo site_url("reportcuttingsingleorc/ajax_get_by_orc2"); ?>/' + orc,
+          type: 'GET',
+          dataType: 'json',
+        }).done(function(data) {
+          var chartSewingLineCanvas = $('#barBalancingSewing').get(0).getContext('2d');
+          var chartSewingLineCenterPanelValues = [];
+          var chartSewingLineBackWingsValues = [];
+          var chartSewingLineCupValues = [];
+          var chartSewingLineAssemblyValues = [];
+          $.each(data, function(i, item) {
+            chartSewingLineCenterPanelValues.push(parseInt(item.qt_cp));
+            chartSewingLineBackWingsValues.push(parseInt(item.qt_bw));
+            chartSewingLineCupValues.push(parseInt(item.qt_cu));
+            chartSewingLineAssemblyValues.push(parseInt(item.qt_ass));
+          });
+          if (window.bar != undefined)
+            window.bar.destroy();
+          window.bar = new Chart(chartSewingLineCanvas, {
+            type: 'bar',
+            data: {
+              // labels: ['Cp','Bw','Cu','As'],
+              datasets: [{
+                  label: 'Cp',
+                  data: chartSewingLineCenterPanelValues,
+                  backgroundColor: "#99ccff",
+                },
+                {
+                  label: 'Bw',
+                  data: chartSewingLineBackWingsValues,
+                  backgroundColor: "#6699ff",
+                },
+                {
+                  label: 'Cup',
+                  data: chartSewingLineCupValues,
+                  backgroundColor: "#3366ff",
+                },
+                {
+                  label: 'Assembly',
+                  data: chartSewingLineAssemblyValues,
+                  backgroundColor: "#3333ff",
+                },
 
-        });
-      //  var table;
-      //  $('#orc').change(function(){
-      //   table = $('#tableOrc').DataTable() 
+              ]
+            },
+            option: {
+              scsales: {
+                yAxes: [{
+                  tickss: {
+                    beginAtZero: true,
+
+                  },
+                  min: 0
+                }]
+              }
+            }
+          });
+        })
       
-      //  }); 
 
     });
 
-    // });
-
    
-
-    // function showDataTable() {
-
-    // }
-    // });
-    // var table;
-    //    $('#orc').change(function(){
-    //     table = $('#tableOrc').DataTable().destroy();
-    //     $ajax({
-    //       url:'',
-    //       type: 'GET',
-    //       dataType: 'json',
-    //       success: function(){
-
-    //       }
-    //     });
-    //    }); 
   </script>
 </body>
 

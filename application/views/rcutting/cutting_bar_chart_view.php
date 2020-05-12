@@ -38,8 +38,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Cutting Report</h2>
-        <div class="col-md-10" style="height:5; width:100;">
+        <h2 style="text-align: center; color: #ffc107"" >Globalindo Intimates - Cutting Report</h2>
+        <div class="col-md-12" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">
                     <canvas id="barCutting" style="height:5; width:100"></canvas>
@@ -106,7 +106,10 @@ function formatDate(date) {
         var chartReportCuttingLabels = [];
         var chartReportCuttingValues = [];
         var chartReportCuttingEff = [];
-
+        var arrChartDataEff = [];
+        var arrChartDataVal = [];
+        var arrChartLabel =[];
+    
         console.log('data',data);
         // get date for system
         let dateSystem = Date(); 
@@ -125,40 +128,47 @@ function formatDate(date) {
 
             // slicing array get data view 6 array from last data array.
         let endLength = data.length;
-        let startLength = endLength - 7 ;
+        let startLength = endLength - 30 ;
 
         resultDatas = resultFilter.slice(startLength, endLength);
 
             console.log('resultDatas', resultDatas);
-
+        
         $.each(resultDatas, function(i, item) {
-           chartReportCuttingLabels.push(item.tgl);
-           chartReportCuttingValues.push(parseInt(item.qty));
-           chartReportCuttingEff.push(item.eff);
-         });
-         new Chart(chartReportCuttingCanvas,{
+
+          arrChartDataEff.push(JSON.parse(item.eff));
+          arrChartDataVal.push(JSON.parse(item.qty));
+          arrChartLabel.push(item.tgl);           
+        });
+        var outputMax = Math.max.apply(null, arrChartDataVal);
+        var effMax = Math.max.apply(null,arrChartDataEff);
+
+        var arrColor = [];
+        for (x= 0; x <= arrChartDataVal.length; x++) {
+          arrColor.push(
+          randomColor()
+          );
+        }
+
+        new Chart(chartReportCuttingCanvas,{
             type: 'bar',
             data: {
-              labels: chartReportCuttingLabels,
-              datasets: [
+              labels: arrChartLabel,
+                datasets: [
                 {
                   type: 'line',
-                  borderColor: "#000000",
-                  backgroundColor : "#000000",
+                  borderColor: "#3377ff",
+                  backgroundColor : "#3377ff",
                   label: 'Efficiency',
-                  yAxisId: 'axisBarLine',
-                  data: chartReportCuttingEff,
+                  yAxisID: 'axisBarLine',
+                  data: arrChartDataEff,
                   fill: false
                 },
                 {
                 label: 'Quantity output',
-                yAxisId: 'axisBarChart',
-                data: chartReportCuttingValues,
-                backgroundColor : [
-                  "#ff8080", "#ff8080", "#ff8080",
-                  "#ff8080", "#ff8080", "#ff8080",
-                  "#ff8080"
-                ]
+                yAxisID: 'axisBarChart',
+                data: arrChartDataVal,
+                backgroundColor : arrColor,
               }
               ]
             },
@@ -174,36 +184,41 @@ function formatDate(date) {
               },
               scales: {
                 yAxes: [{
-                  
-                  id:'axisBarChart',
+                  id:'axisBarLine',
                   type:"linear",
-                  position:"left",
+                  position:"right",
                   ticks: {
                     beginAtZero: true,
-                    min: 0,
-                  }
-                },
-                {
-                  id: 'axisBarLine',
-                  type: "linear",
-                  position: "right",
-                  ticks:{
-                    beginAtZero:true,
-                    min: 0,
-                    max: 100 + 50,
+                    max: parseInt(effMax) + 30,
                     callback: function(value){
                       return value + "%";
                     }
                   }
-               
+                },
+                {
+                  id: 'axisBarChart',
+                  type: "linear",
+                  position: "left",
+                  ticks:{
+                    beginAtZero:true,
+                    max: parseInt(outputMax) + 8000,
+                  }
                 }
               ]
               },
             }
-         });
-      })
-    } 
-  // }
+        });
+
+      // }
+    }); 
+    function randomColor() {
+        return "hsl(" + 360 * Math.random() + ',' +
+          (20 + 70 * Math.random()) + '%,' +
+          (65 + 10 * Math.random()) + '%)'
+      }
+
+  }
+    
     
 </script>
 </body>

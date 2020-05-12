@@ -41,16 +41,13 @@
             <div class="card">
                 <div class="card-body">
                     <input type="text" id="line">
-                    <!-- <input type="text" id="label"> -->
                     <canvas id="barSewingLine"></canvas>
                 </div>
             </div>
-            <div class="card-tools">
-                <button type="button" id="linkDaily" class="btn btn-danger"><i class="fa fa-bar-chart"></i>Daily</button>
-                <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-bar-chart"></i>Per Week</button>                
-                <button type="button" id="linkMonthly" class="btn btn-success"><i class="fa fa-bar-chart"></i>Per Month</button>
-            </div>
-        </div>
+          </div>
+          <div class="card-tools">
+            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-bar-chart"></i>Per Week</button>                
+          </div>
        
  
         <!-- Small boxes (Stat box) -->
@@ -76,11 +73,13 @@
 <?php $this->load->view('_partials/js.php'); ?>
 
 <script>
-$(document).ready(function(){
-var lineArr = localStorage.getItem('lineChart');
-console.log('lineArr: ', lineArr);
-var lineSplit = lineArr.split(",");
-var line = lineSplit[0];
+ var line;
+
+    $(document).ready(function() {
+      var lineArr = localStorage.getItem('lineChart');
+      console.log('lineArr: ', lineArr);
+      var lineSplit = lineArr.split(",");
+      line = lineSplit[0];
 // var label = lineSplit[1];
 LineDailyChart();
 
@@ -104,11 +103,11 @@ LineDailyChart();
 function LineDailyChart() {
     $.ajax({
       url: '<?php echo site_url('lineweekchart/ajax_get_daily_sewing_line'); ?>'  ,
-      type: 'GET',
+      type: 'POST',
       dataType: 'json',
       data: {
-        lines: line
-      }
+              'line': line
+            },
     }).done(function(data){
       var chartSewingLineCanvas = $('#barSewingLine').get(0).getContext('2d');
       var chartSewingLineLabels = [];
@@ -145,8 +144,8 @@ function LineDailyChart() {
       $.each(resultDatas,function(i, data){ 
     
         chartSewingLineLabels.push(data.tgl);
-        chartSewingLineValues.push(parseInt(data.qty));
-        chartSewingLineEff.push(data.effisiensi);
+        chartSewingLineValues.push(parseInt(data.qty_sewing));
+        chartSewingLineEff.push(data.eff);
   
       });
       new Chart(chartSewingLineCanvas,{
@@ -156,8 +155,8 @@ function LineDailyChart() {
           datasets: [
             {
               type: 'line',
-              borderColor: "#ffff00",
-              backgroundColor: "#ffff00",
+              borderColor: "blue",
+              backgroundColor: "blue",
               label: 'Efficiency',
               data: chartSewingLineEff,
               fill: false
@@ -167,9 +166,9 @@ function LineDailyChart() {
               yAxisId: 'axisBarChart',
               data: chartSewingLineValues,
               backgroundColor : [
-                "#dc3545", "#dc3545", "#dc3545", 
-                "#dc3545", "#dc3545", "#dc3545",
-                "#dc3545"
+                "#ff8080", "#ff8080", "#ff8080", 
+                "#ff8080", "#ff8080", "#ff8080",
+                "#ff8080"
               ]
             }
           ]
@@ -205,33 +204,16 @@ function LineDailyChart() {
       });
     })
     }
-  // }
-
-// console.log('line: ', line);
-// console.log('label: ', label);
-
-$('#linkDaily').click(function(){
- 
- localStorage.setItem('dayChart', line);
-
- window.open('<?php echo site_url("linedaychart/ajax_get_by_line"); ?>/' + line, "_self");
-
-})
 
 $('#linkWeekly').click(function(){
- 
-  localStorage.setItem('weekChart', line);
+    
+    localStorage.setItem('weekChart', line);
 
-  window.open('<?php echo site_url("linedailychart/ajax_get_by_line"); ?>/' + line, "_self");
+    window.open('<?php echo site_url("linedailychart/ajax_get_by_line"); ?>/' + line, "_self");
 
-})
 
-$('#linkMonthly').click(function(){
+  })
 
-  localStorage.setItem('monthChart', line);
-
-  window.open('<?php echo site_url("linemonthlychart/ajax_get_by_line"); ?>/' + line, "_self");
-})
 
 $('#line').val(line);
 // $('#label').val(label);

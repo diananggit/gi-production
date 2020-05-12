@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class LineDayChartModel extends CI_Model{
     var $table="eff_day_line";
-    var $column_order= array('orc','style','color','sam','qty','eff_coba','op','eff_cp','eff_bw','eff_cups','eff_ass');
+    var $column_order= array('orc','style','color','total_sam','qty','op','eff_cp','eff_bw','eff_cup','eff_ass','tgl');
 
     public function get_all(){
         $this->db->from($this->table);
@@ -18,8 +18,11 @@ class LineDayChartModel extends CI_Model{
         return $rst->result();
     }
 
-    public function get_by_line($l){
-        $rst = $this->db->get_where($this->table, array('line' => $l));
+    public function get_by_line($line){
+      $resultReplace=str_replace("%20"," ",$line);
+   //   print_r($resultReplace);die();
+        $rst = $this->db->get_where($this->table, array('line' => $resultReplace));
+    
         return $rst->result();
     }
 

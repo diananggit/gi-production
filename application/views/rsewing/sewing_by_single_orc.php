@@ -49,67 +49,111 @@
           </div>
           <div class="card-body mt-1">
             <div class="row">
-              <div class="col-md-4">
-
+              <div class="col-md-3">
+                <div class="form-group ">
+                  <label>BUYER :</label>
+                  <input type="text" id="buyer" name="buyer" class="form-control" disabled>
+                </div>
                 <div class="form-group">
-                  <label>ORDER QTY:</label>
+                  <label>STYLE:</label>
+                  <input type="text" id="style" name="style" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>COLOR:</label>
+                  <input type="text" id="color" name="color" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                  <label>QTY ORDER:</label>
                   <input type="text" id="order" name="order" class="form-control" disabled>
                 </div>
+              </div>
+              <div class="col-md-3">
                 <div class="form-group">
-                  <label>CUTTING  QTY:</label>
-                  <input type="text" id="qty_cutting" name="qty_cutting" class="form-control" disabled>
+                  <label>DDD:</label>
+                  <input type="date" id="ddd" name="ddd" class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                  <label>BALANCE TO CUT:</label>
-                  <input type="text" id="balance" name="balance" class="form-control" disabled>
+                  <label>PLAN SHIPMENT DATE:</label>
+                  <input type="date" id="plan" name="plan" class="form-control" disabled>
                 </div>
               </div>
-              <div class="col-md-4">
-              <div class="form-group">
-                <label>COLOR:</label>
-                <input type="text" id="color" name="color" class="form-control" disabled>
-              </div>
-              <div class="form-group">
-                <label>STYLE:</label>
-                <input type="text" id="style" name="style" class="form-control" disabled>
-              </div>
-              <div class="form-group">
-                <label>BALANCE SEWING:</label>
-                <input type="text" id="balance2" name="balance2" class="form-control" disabled>
-              </div>
-              </div>
+
 
             </div>
             <hr />
             <!-- <h2 style="color: #007bff">Sewing Detail Status</h2> -->
-            <!-- <div class="row"> -->
-            <div class="card card-primary" style="height:50%; width:50%" >
-              <div class="card-header">
-                <h3 class="card-title">Sewing Detail Status</h3>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Detail Status Qty</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableDepartment" class="table table-border table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Cutting</th>
+                          <th>Sewing</th>
+                          <th>Packing</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                        <!-- <tr>
+                          <th colspan="4" style="text-align:right">Total:</th>
+                           <th></th> -->
+                        <!-- </tr>  -->
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <table id="tableOrc" class="table table-border table-striped" width="100%">
-                  <thead>
-                    <tr>
-                      <th>DAY</th>
-                      <th>DATE</th>
-                      <th>SEWING QTY</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <div class="col-md-6">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Sewing Detail Status</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableOrc" class="table table-border table-striped">
+                      <thead>
+                        <tr>
+                          <th>DAY</th>
+                          <th>DATE</th>
+                          <th>LINE</th>
+                          <th>SIZE</th>
+                          <th>SEWING QTY</th>
+                        </tr>
+                      </thead>
+                      <tbody>
 
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                  <th colspan="3" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
-                  </tr>
-                  </tfoot>
-                </table>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="5" style="text-align:right">Total:</th>
+                          <!-- <th></th> -->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Sewing Balacing</h3>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="barBalancingSewing"></canvas>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="card-tools">
-              <a href="<?php echo site_url('reportdetailsewing'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>NEXT</a>
+              <a href="<?php echo site_url('reportdetailsewing'); ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i>NEXT</a>
             </div>
             <!-- </div> -->
           </div>
@@ -139,51 +183,55 @@
 
   <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
   <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-  
-  
+
+
 
   <script type="text/javascript">
     var table;
     $(document).ready(function() {
       $(".select2").select2();
-
       table = $('#tableOrc').DataTable({
         order: false,
-        searching: false ,
-        
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            total = api
-                .column( 2 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
- 
-            // Total over this page
-            pageTotal = api
-                .column( 2, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
- 
-            // Update footer
-            $( api.column( 2 ).footer() ).html(
-                'Total Sewing :' + pageTotal
-            );
+        searching: false,
+
+        "footerCallback": function(row, data, start, end, display) {
+          var api = this.api(),
+            data;
+
+          // Remove the formatting to get integer data for summation
+          var intVal = function(i) {
+            return typeof i === 'string' ?
+              i.replace(/[\$,]/g, '') * 1 :
+              typeof i === 'number' ?
+              i : 0;
+          };
+
+          // Total over all pages
+          total = api
+            .column(4)
+            .data()
+            .reduce(function(a, b) {
+              return intVal(a) + intVal(b);
+            }, 0);
+
+          // Total over this page
+          pageTotal = api
+            .column(4, {
+              page: 'current'
+            })
+            .data()
+            .reduce(function(a, b) {
+              return intVal(a) + intVal(b);
+            }, 0);
+
+          // Update footer
+          $(api.column(4).footer()).html(
+            'Total Sewing :' + total
+          );
         }
       });
+      table2 = $("#tableDepartment").DataTable();
+
 
       load_orc();
 
@@ -205,44 +253,151 @@
         })
       }
 
-       $('#orc').change(function() {
+      $('#orc').change(function() {
         orc = $(this).val()
-        $.ajax({
-          url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc"); ?>/' + orc,
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            $('#style').val(data[0].style);
-            $('#color').val(data[0].color);
-            $('#order').val(data[0].order);
-            $('#qty_cutting').val(data[0].qty_cutting);
-            $('#balance').val(data[0].balance_cut);
-            $('#balance2').val(data[0].balance);
-            table.clear();
+        $.when(
 
+          $.ajax({
+            url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc3"); ?>/' + orc,
+            type: 'GET',
+            dataType: 'json',
+          }).done(function(data) {
 
-            $.each(data, function(i, item){
-              // console.log('item.day', item.day);
-              table.row.add([
-              item.day,
-              item.tgl,
-              item.qty,
-            ]).draw();
-                                    
+              table2.clear();
+              $.each(data, function(i, item) {
+                table2.row.add([
+                "Input",
+                item.in_cutting,
+                item.in_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Output",
+                item.in_sewing,
+                item.qty_sewing_out,
+                item.actual_qt,
+              ]).draw();
+              table2.row.add([
+                "Qty Balance",
+                item.balance_order_ex,
+                item.balance_order_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Wip",
+                item.actual_qt,
+                item.wip_sewing,
+                "0",
+              ]).draw();
+           
             })
 
 
-          }
+            
 
-        });
-     
+          }),
+
+          $.ajax({
+            url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc"); ?>/' + orc,
+            type: 'GET',
+            dataType: 'json',
+          }).done(function(data) {
+            $('#buyer').val(data[0].buyer);
+            $('#style').val(data[0].style);
+            $('#color').val(data[0].color);
+            $('#order').val(data[0].order);
+            $('#ddd').val(data[0].etd);
+            $('#plan').val(data[0].plan_export);
+            table.clear();
+
+            $.each(data, function(i, item) {
+
+              table.row.add([
+                item.day,
+                item.tgl_ass,
+                item.line,
+                item.size,
+                item.out_sewing,
+              ]).draw();
+            })
+            
+
+          })
+        )
+
+        $.ajax({
+          url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc2"); ?>/' + orc,
+          type: 'GET',
+          dataType: 'json',
+        }).done(function(data) {
+          var chartSewingLineCanvas = $('#barBalancingSewing').get(0).getContext('2d');
+          var chartSewingLineCenterPanelValues = [];
+          var chartSewingLineBackWingsValues = [];
+          var chartSewingLineCupValues = [];
+          var chartSewingLineAssemblyValues = [];
+
+          // var chartSewingLineEff = [];
+          $.each(data, function(i, item) {
+            chartSewingLineCenterPanelValues.push(parseInt(item.qt_cp));
+            chartSewingLineBackWingsValues.push(parseInt(item.qt_bw));
+            chartSewingLineCupValues.push(parseInt(item.qt_cu));
+            chartSewingLineAssemblyValues.push(parseInt(item.qt_ass));
+
+          });
+          // if (chartSewingChart != undefined) {
+          //   chartSewingChart.destroy();
+          // }
+          if (window.bar != undefined)
+            window.bar.destroy();
+          window.bar = new Chart(chartSewingLineCanvas, {
+            type: 'bar',
+            data: {
+              // labels: ['Cp','Bw','Cu','As'],
+
+              datasets: [{
+                  label: 'Cp',
+                  data: chartSewingLineCenterPanelValues,
+                  backgroundColor: "#99ccff",
+                },
+                {
+                  label: 'Bw',
+                  data: chartSewingLineBackWingsValues,
+                  backgroundColor: "#6699ff",
+                },
+                {
+                  label: 'Cup',
+                  data: chartSewingLineCupValues,
+                  backgroundColor: "#3366ff",
+                },
+                {
+                  label: 'Assembly',
+                  data: chartSewingLineAssemblyValues,
+                  backgroundColor: "#3333ff",
+                },
+
+              ]
+            },
+            option: {
+              scsales: {
+                yAxes: [{
+                  tickss: {
+                    beginAtZero: true,
+
+                  },
+                  min: 0
+                }]
+              }
+            }
+          });
+        })
+        // ),
+
+
+
+
+      });
 
     });
-
-    });
-
-   
-
   </script>
 </body>
 

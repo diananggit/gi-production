@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportMoldingSingleOrcModel extends CI_Model{
-    var $table="v_molding_single_orc";
-    var $column_order = array('day','orc','style','color','tgl','qty_in','qty_out','balance_to_mold');
+    var $table="v_molding_orc";
+    // var $column_order = array('day','orc','style','color','tgl','qty_in','qty_out','balance_to_mold');
     
     
     private function _get_datatables_query(){
@@ -66,8 +66,8 @@ class ReportMoldingSingleOrcModel extends CI_Model{
     }    
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
+        $this->db->select('DISTINCT(orc)');
+        $query = $this->db->get('v_molding_orc');
 
         return $query->result();
     }

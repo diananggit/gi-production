@@ -50,8 +50,6 @@
           <div class="card-body mt-1">
             <div class="row">
               <div class="col-md-4">
-
-                
                 <div class="form-group">
                   <label>QTY ORDER:</label>
                   <input type="text" id="qty_in" name="qty_in" class="form-control" disabled>
@@ -62,45 +60,85 @@
                 </div>
               </div>
               <div class="col-md-4">
-              <div class="form-group">
+                <div class="form-group">
                   <label>COLOR:</label>
                   <input type="text" id="color" name="color" class="form-control" disabled>
                 </div>
+                <div class="form-group">
+                  <label>PLAN SHIP DAtE:</label>
+                  <input type="text" id="plan" name="plan" class="form-control" disabled>
+                </div>
               </div>
-
+                <div class="col-md-4">
+                <div class="form-group">
+                  <label>DDD:</label>
+                  <input type="text" id="ddd" name="ddd" class="form-control" disabled>
+                </div>
+                
+              </div>
             </div>
             <hr />
-            <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
-            <!-- <div class="row"> -->
-            <div class="card card-primary" style="height:50%; width:60%" height:"50%" width:"60%">
-              <div class="card-header">
-                <h3 class="card-title">Molding Detail Status</h3>
+            <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Detail Status Qty</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableDepartment" class="table table-border table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Cutting</th>
+                          <th>Molding</th>
+                          <th>Sewing</th>
+                          <th>Packing</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <table id="tableOrcMolding" class="table table-border table-striped" width="100%">
-                <thead>
-                    <tr>
-                    <th>DAY</th>
-                    <th>DATE</th>
-                    <th>MOLDING QTY (pcs)</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-                <tfoot>
-                <tr>
-                <th colspan="3" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
-                </tr>
-                </tfoot>
-                </table>
+              <div class="col-md-6">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Molding Detail Status</h3>
+                  </div>
+                  <div class="card-body">
+                    <table id="tableOrcMolding" class="table table-border table-striped" width="100%">
+                      <thead>
+                        <tr>
+                          <th>DAY</th>
+                          <th>DATE</th>
+                          <th>SIZE</th>
+                          <th>MOLDING QTY (pcs)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="4" style="text-align:right">Total:</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Molding Balancing Chart</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="barMoldingBalancing" ></canvas>
+                </div>
               </div>
             </div>
-            <div class="card-tools">
-              <a href="<?php echo site_url('reportmoldingdetail'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>NEXT</a>
-            </div>
-            <!-- </div> -->
           </div>
           
 
@@ -149,7 +187,7 @@
  
             // Total over all pages
             total = api
-                .column( 2 )
+                .column( 3 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -157,18 +195,19 @@
  
             // Total over this page
             pageTotal = api
-                .column( 2, { page: 'current'} )
+                .column( 3, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 2 ).footer() ).html(
-                'Total Molding :' + pageTotal
+            $( api.column( 3 ).footer() ).html(
+                +pageTotal + '( ' +total +' Total)'
             );
         }
       });
+      table2 = $("#tableDepartment").DataTable();
 
       load_orc();
 
@@ -192,6 +231,48 @@
 
        $('#orc').change(function() {
         orc = $(this).val()
+        $.when(
+          $.ajax({
+            url: '<?php echo site_url("reportmoldingsingleorc/ajax_get_by_orc3"); ?>/' + orc,
+            type: 'GET',
+            dataType: 'json',
+          }).done(function(data) {
+
+              table2.clear();
+              $.each(data, function(i, item) {
+              table2.row.add([
+                "Input",
+                item.in_cutting,
+                item.in_molding,
+                item.in_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Output",
+                item.in_sewing,
+                item.qty_mold,
+                item.qty_sewing_out,
+                item.actual_qt,
+              ]).draw();
+              table2.row.add([
+                "Qty Balance",
+                item.balance_order_ex,
+                item.balance_mold,
+                item.balance_order_sewing,
+                "0",
+              ]).draw();
+              table2.row.add([
+                "Wip",
+                item.actual_qt,
+                item.wip_molding,
+                item.wip_sewing,
+                "0",
+              ]).draw();
+           
+            })
+ 
+
+          }),
         $.ajax({
           url: '<?php echo site_url("reportmoldingsingleorc/ajax_get_by_orc"); ?>/' + orc,
           type: 'GET',
@@ -199,15 +280,17 @@
           success: function(data) {
             $('#style').val(data[0].style);
             $('#color').val(data[0].color);
-            $('#qty_in').val(data[0].qty_in);
+            $('#qty_in').val(data[0].qty);
+            $('#ddd').val(data[0].etd);
+            $('#plan').val(data[0].plan_export);
             table.clear();
-
 
             $.each(data, function(i, item){
               table.row.add([
               item.day,
               item.tgl,
-              item.qty_out,
+              item.size,
+              item.qty_mold,
             ]).draw();
                                     
             })
@@ -215,12 +298,74 @@
 
           }
 
-        });
-      //  var table;
-      //  $('#orc').change(function(){
-      //   table = $('#tableOrc').DataTable() 
+        }),
+        $.ajax({
+            url: '<?php echo site_url("reportmoldingsingleorc/ajax_get_by_orc2"); ?>/' + orc,
+            type: 'GET',
+            dataType: 'json',
+          }).done(function(data){
+            var chartMoldingBalancingCanvas = $('#barMoldingBalancing').get(0).getContext('2d');
+            var chartMoldingBalancingIncomingOuterValues = [];
+            var chartMoldingBalancingIncomingMidmoldValues = [];
+            var chartMoldingBalancingIncomingLinningValues = [];
+            var chartMoldingBalancingFinishOuterValues = [];
+            var chartMoldingBalancingFinishMidmoldValues = [];
+            var chartMoldingBalancingFinishLinningValues = [];
+            var chartMoldingBalancingWipMoldOuterValues = [];
+            var chartMoldingBalancingWipMoldMidmoldValues = [];
+            var chartMoldingBalancingWipLinningValues = [];
+            // chart.destroy();
+            $.each(data, function(i, item){
+              chartMoldingBalancingIncomingOuterValues.push(parseInt(item.in_outer));
+              chartMoldingBalancingIncomingMidmoldValues.push(parseInt(item.in_mid));
+              chartMoldingBalancingIncomingLinningValues.push(parseInt(item.in_lin));
+              chartMoldingBalancingFinishOuterValues.push(parseInt(item.qty_outermold));
+              chartMoldingBalancingFinishMidmoldValues.push(parseInt(item.qty_midmold));
+              chartMoldingBalancingFinishLinningValues.push(parseInt(item.qty_linning));
+              chartMoldingBalancingWipMoldOuterValues.push(parseInt(item.wip_outer));
+              chartMoldingBalancingWipMoldMidmoldValues.push(parseInt(item.wip_midmold));
+              chartMoldingBalancingWipLinningValues.push(parseInt(item.wip_linning));
+            });
+            // if(chartMoldingBalancingChart != undefined){
+            //   chartMoldingBalancingChart.destroy();
+            // }
+            if(window.bar != undefined)
+            window.bar.destroy();
+           window.bar = new Chart(chartMoldingBalancingCanvas,{
+              type:'bar',
+              data: {
+                labels: ["Incoming", "FinishMold", "WIPMold"],
+                datasets: [
+                 {
+                  label: 'OuterMold',
+                  data: [chartMoldingBalancingIncomingOuterValues,chartMoldingBalancingFinishOuterValues,chartMoldingBalancingWipMoldOuterValues],
+                  backgroundColor: ["#00bfff","#00bfff","#00bfff"],
+                },
+                  {
+                  label: 'MidMold',
+                  data: [chartMoldingBalancingIncomingMidmoldValues,chartMoldingBalancingFinishMidmoldValues,chartMoldingBalancingWipMoldMidmoldValues],
+                  backgroundColor: ["#ff8080","#ff8080","#ff8080"],
+                  },
+                  {
+                    label: 'Linning',
+                    data: [chartMoldingBalancingIncomingLinningValues,chartMoldingBalancingFinishLinningValues,chartMoldingBalancingWipLinningValues],
+                    backgroundColor: ["#00ff00","#00ff00","#00ff00"],
+                  },
+                ]
+              },
+              option: {
+                scsales: {
+                  yAxes: [{
+                    tickss: {
+                      beginAtZero: true
+                    }
+                  }]
+                }
+              }
+            });
+          })  
+        )
       
-      //  }); 
 
     });
 

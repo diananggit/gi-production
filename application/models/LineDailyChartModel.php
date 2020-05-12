@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class LineDailyChartModel extends CI_Model{
     var $table="eff_line_sementara";
-    var $column_order= array('orc','style','color','sam','qty','eff_coba','op');
+    var $column_order= array('line','orc','style','color','sam','qty_sewing','eff','op');
 
     public function get_all(){
         $this->db->from($this->table);
@@ -11,21 +11,16 @@ class LineDailyChartModel extends CI_Model{
         return $query->result();
     }
 
-    public function get_by_week($w){
-        // $this->db->where('week', $w);
-        // $this->db->where('line', $l);
-        $rst = $this->db->get_where($this->table, array('week' => $w));
-        // $rst = $this->db->get($this->table);
-
-        // return $this->db->last_query();
-
+    public function get_by_week($week){
+        $rst = $this->db->get_where($this->table, array('week' => $week));
         return $rst->result();
     }
 
-    public function get_by_line($l){
-            $this->db->distinct();
+    public function get_by_line($line){
+        $this->db->select('DISTINCT(week)');
+        $resutReplace=str_replace("%20"," ",$line);
 
-        $rst = $this->db->get_where($this->table, array('line' => $l));
+        $rst = $this->db->get_where($this->table, array('line' => $resutReplace));
 
         return $rst->result();
     }
@@ -46,6 +41,7 @@ class LineDailyChartModel extends CI_Model{
             return $rst->result();
 
         }
+        
     }
    
 

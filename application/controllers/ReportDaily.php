@@ -26,8 +26,8 @@ class ReportDaily extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function ajax_get_packing(){
-		$data=$this->ReportDailyPackingModel->get_all();
+	public function ajax_get_packing($hr){
+		$data=$this->ReportDailyPackingModel->get_all($hr);
 		echo json_encode($data);
 	}
 

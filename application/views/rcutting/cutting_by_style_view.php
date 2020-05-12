@@ -39,7 +39,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Cutting Report by Style</h2>
+        <h2 style="text-align: center; color: #ffc107"" >Globalindo Intimates - Cutting Report by Style</h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -65,6 +65,7 @@
                 <th>Style</th>
                 <!-- <th>Tanggal</th> -->
                 <th>Qty (Pcs)</th>
+                <th>SAM </th>
                 
               </tr>
             </thead>
@@ -77,16 +78,18 @@
                   <td>
                     <?php echo $cs->style ?>
                   </td>
-                
                   <td>
                   <?php echo $cs->qty ?>
+                  </td>
+                  <td>
+                  <?php echo $cs->cutting_sam ?>
                   </td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="3" style="text-align:right">Total:</th>
+              <th colspan="4" style="text-align:right">Total:</th>
                 <!-- <th></th> -->
               </tr>
               
@@ -203,7 +206,8 @@
                   table.row.add([
                     item.tgl,
                     item.style,
-                    item.qty
+                    item.qty,
+                    item.cutting_sam
                  
                   ]).draw();
                 });

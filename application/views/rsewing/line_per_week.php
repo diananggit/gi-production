@@ -60,7 +60,7 @@
                  <hr/>
             <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-11">
                          <div class="card card-info" >
                             <div class="card-header">
                     <!-- <h3 class="card-title"></h3> -->
@@ -76,7 +76,7 @@
                                                 <th>Color</th>
                                                 <th>Sam</th>
                                                 <th>Output</th>
-                                                <th>Efficiency</th>
+                                                <!-- <th>Efficiency</th> -->
                                                 <th>Man Power</th>
                                             </tr>
                                         </tr>
@@ -99,6 +99,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-tools">
+                  <button type="button" id="linkMonthly" class="btn btn-success"><i class="fa fa-bar-chart"></i>Per Month</button>
                 </div>
           <!-- Small boxes (Stat box) -->
 
@@ -136,33 +139,24 @@
         paging: false,
         searching: false
       });
-
-    //   load_week();
-
-    //   function load_week() {
-    //       var line = localStorage.getItem('weekChart');
-
-    //     //   console.log('weekChart: ', weekChart);
-    //     $('#week').empty();
-    //     $.ajax({
-    //       url: "<//?php echo site_url('linedailychart/ajax_get_by_line_week'); ?>/" + line,
-    //       type: 'GET',
-    //       dataType: 'json'
-    //     }).done(function(data){
-    //         console.log('data: ', data);
-    //         $.each(data, function(i, item){
-    //             $('#week').append($('<option>', {
-    //             value: item.week,
-    //             text: item.week                    
-    //             }));
-    //         });
-    //     });
-    //   }
-      
        $('#week').change(function() {
         var week = $(this).val()
         var line = localStorage.getItem('weekChart');
         var dataStr = {'week' : week, 'line' : line};
+
+        function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }  
 
         $.when(
           $.ajax({
@@ -180,15 +174,15 @@
                     item.style,
                     item.color,
                     item.sam,
-                    item.qty,
-                    item.eff_coba,
+                    item.qty_sewing,
+                    // item.effisiensi,
                     item.op,
                 ]).draw();
             })
           }),
 
           $.ajax({
-            url: '<?php echo site_url("linedailychart/ajax_get_by_line_week"); ?>',
+            url: '<?php echo site_url("linedailychart/ajax_get_by_line_week2"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -196,11 +190,34 @@
             var chartSewingLineCanvas = $('#barSewingWeekChart').get(0).getContext('2d');
             var chartSewingLineValues = [];
             var chartSewingLineLabels = [];
-            var chartSewingLineEff = [];
-            $.each(data, function(i, item){
+            // var chartSewingLineEff = [];
+
+            console.log('data', data);
+
+// get date for system
+  let dateSystem = Date(); 
+  let compare = formatDate(dateSystem);
+
+  console.log('compare', compare);
+  console.log(data.tgl);
+
+// filtering array
+    const resultFilter =  data.filter( hero => {
+      return hero.tgl < compare;
+    });
+
+    
+    let endLength = data.length;
+    let startLength = endLength - 6 ;
+
+    resultDatas = resultFilter.slice(startLength, endLength);
+
+    console.log('resultDatas', resultDatas);
+
+            $.each(resultDatas, function(i, item){
                 chartSewingLineValues.push(parseInt(item.qty));
-                chartSewingLineLabels.push(item.dayname);
-                chartSewingLineEff.push(parseInt(item.eff_coba));
+                chartSewingLineLabels.push(item.tgl);
+                // chartSewingLineEff.push(parseInt(item.effisiensi));
             });
             if(chartSewingChart != undefined){
                 chartSewingChart.destroy();
@@ -213,7 +230,7 @@
                  {
                   label: 'qty',
                   data: chartSewingLineValues,
-                  backgroundColor: ["#191970","#191970","#191970","#191970","#191970","#191970"],
+                  backgroundColor: ["#4d88ff","#4d88ff","#4d88ff","#4d88ff","#4d88ff","#4d88ff","#4d88ff"],
                 },
                 ]
               },
@@ -230,6 +247,14 @@
           })  
         )              
     });
+
+    $('#linkMonthly').click(function(){
+
+    localStorage.setItem('monthChart', line);
+
+    window.open('<?php echo site_url("linemonthlychart/ajax_get_by_line"); ?>/' + line, "_self");
+    })
+
     $('#line').val(line);
     });
   </script>
