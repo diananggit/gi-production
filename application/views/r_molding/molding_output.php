@@ -257,7 +257,7 @@
 
 							});
 
-						} else {
+						} else {   
 							alert("Please Select Date");
 						}
 					});
