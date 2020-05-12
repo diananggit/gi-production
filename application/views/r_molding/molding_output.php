@@ -255,7 +255,7 @@
 									// item.balance,
 								]).draw();
 
-							});
+							});   
 
 						} else {   
 							alert("Please Select Date");
