@@ -218,9 +218,15 @@
                 </a>
               </li> -->
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportbarsewingline'); ?>" class="nav-link">
+							<a href="<?php echo site_url('reportBarSewingLine'); ?>" class="nav-link">
 								<i class="fa fa-bar-chart text-danger nav-icon"></i>
 								<p> Daily Sewing Output</p>
+							</a>
+						</li>
+            <li class="nav-item">
+							<a href="<?php echo site_url('production_planning/ProductionPlanning'); ?>" class="nav-link">
+								<i class="fa fa-calendar-o text-danger nav-icon"></i>
+								<p> Production Planning</p>
 							</a>
 						</li>
 					</ul>
