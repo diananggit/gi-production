@@ -1412,7 +1412,7 @@
 
                     if (!element.loader) {
                         element.loader = $('<div class="fn-gantt-loader">' +
-                        '<div class="fn-gantt-loader-spinner"><span>' + settings.waitText + '</span></div></div>');
+                        '<div class="fn-gantt-loader-spinner"><span style="color:red">' + settings.waitText + '</span></div></div>');
                     }
                     $elt.append(element.loader);
                     setTimeout(showCallback, 500);
