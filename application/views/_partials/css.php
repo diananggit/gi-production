@@ -9,4 +9,11 @@
 <link href="<?php echo base_url('plugins/datatables.net-buttons/css/buttons.dataTables.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('plugins/jquery.dataTables.min.css'); ?> rel="stylesheet">
 
-  <link href="<?php echo base_url('plugins/select2/select2.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('plugins/select2/select2.min.css'); ?>" rel="stylesheet">
+
+<!-- Start Load Gantt Chart -->
+
+<link href="<?php echo base_url('plugins/gantt-chart/style.css'); ?>" rel="stylesheet">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+
+<!-- End Load Gantt Chart -->

@@ -24,8 +24,6 @@ class ProductionPlanning extends CI_Controller{
     }
 
 
-
-
     /*
      * Screen C
      */

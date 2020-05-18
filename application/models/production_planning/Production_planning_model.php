@@ -19,7 +19,7 @@ class Production_planning_model extends CI_Model
         // $query = $this->db->query($sql);
 
         // return $query->result_array();
-        print_r('model');
+       // print_r('model');
     }
 
     // slide second
