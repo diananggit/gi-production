@@ -305,7 +305,7 @@
             leftPanel: function (element) {
                 /* Left panel */
                 var ganttLeftPanel = $('<div class="leftPanel"/>')
-                    .append($('<div class="row spacer"><br><h5>&nbsp;&nbsp;Line Names</h5></div>')
+                    .append($('<div class="row spacer"> <h5>&nbsp;&nbsp;<span class="fn-label"><br>Line Names</span> </h5></div>')
                     .css("height", tools.getCellSize() * element.headerRows));
 
                 var entries = [];
@@ -453,7 +453,7 @@
                         var rfy = rday.getFullYear();
                         if (rfy !== year) {
                             yearArr.push(
-                                '<div class="row year" style="width: ' +
+                                '<div class="rows year" style="width: ' +
                                 tools.getCellSize() * scaleUnitsThisYear +
                                 'px;"><div class="fn-label">' +
                                 year +
@@ -469,7 +469,7 @@
                         var rm = rday.getMonth();
                         if (rm !== month) {
                             monthArr.push(
-                                '<div class="row month" style="width: ' +
+                                '<div class="rows month" style="width: ' +
                                 tools.getCellSize() * scaleUnitsThisMonth + 'px"><div class="fn-label">' +
                                 settings.months[month] +
                                 '</div></div>');
@@ -488,11 +488,11 @@
                                 "holiday" : dowClass[getDay];
 
                             dayArr.push(
-                                '<div class="row date ' + dayClass + '" ' +
+                                '<div class="rows date ' + dayClass + '" ' +
                                 'style="width: ' + tools.getCellSize() * hoursInDay + 'px;">' +
                                 '<div class="fn-label">' + day.getDate() + '</div></div>');
                             dowArr.push(
-                                '<div class="row day ' + dayClass + '" ' +
+                                '<div class="rows day ' + dayClass + '" ' +
                                 'style="width: ' + tools.getCellSize() * hoursInDay + 'px;">' +
                                 '<div class="fn-label">' + settings.dow[getDay] + '</div></div>');
 
@@ -506,7 +506,7 @@
                             dayClass = "holiday";
                         }
                         horArr.push(
-                            '<div class="row day ' +
+                            '<div class="rows day ' +
                             dayClass +
                             '" id="dh-' +
                             rday.getTime() +
@@ -519,14 +519,14 @@
 
                     // Last year
                     yearArr.push(
-                        '<div class="row year" style="width: ' +
+                        '<div class="rows year" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisYear + 'px;"><div class="fn-label">' +
                         year +
                         '</div></div>');
 
                     // Last month
                     monthArr.push(
-                        '<div class="row month" style="width: ' +
+                        '<div class="rows month" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisMonth + 'px"><div class="fn-label">' +
                         settings.months[month] +
                         '</div></div>');
@@ -538,12 +538,12 @@
                     }
 
                     dayArr.push(
-                        '<div class="row date ' + dayClass + '" ' +
+                        '<div class="rows date ' + dayClass + '" ' +
                         'style="width: ' + tools.getCellSize() * hoursInDay + 'px;">' +
                         '<div class="fn-label">' + day.getDate() + '</div></div>');
 
                     dowArr.push(
-                        '<div class="row day ' + dayClass + '" ' +
+                        '<div class="rows day ' + dayClass + '" ' +
                         'style="width: ' + tools.getCellSize() * hoursInDay + 'px;">' +
                         '<div class="fn-label">' + settings.dow[day.getDay()] + '</div></div>');
 
@@ -580,7 +580,7 @@
                             diff -= !rday.getMonth() ? 0 : 31;
                             diff /= 7;
                             yearArr.push(
-                                '<div class="row year" style="width: ' +
+                                '<div class="rows year" style="width: ' +
                                 tools.getCellSize() * (scaleUnitsThisYear - diff) +
                                 'px;"><div class="fn-label">' +
                                 year +
@@ -598,7 +598,7 @@
                             //diff -= (diff <= 6) ? 0 : 7;
                             diff /= 7;
                             monthArr.push(
-                                '<div class="row month" style="width:' +
+                                '<div class="rows month" style="width:' +
                                 tools.getCellSize() * (scaleUnitsThisMonth - diff) +
                                 'px;"><div class="fn-label">' +
                                 settings.months[month] +
@@ -610,7 +610,7 @@
 
                         // Fill weeks
                         dayArr.push(
-                            '<div class="row day wd"' +
+                            '<div class="rows day wd"' +
                             ' id="' + rday.getWeekId() +
                             '" data-offset="' + i * tools.getCellSize() +
                             '" data-repdate="' + rday.getRepDate(settings.scale) + '">' +
@@ -619,14 +619,14 @@
 
                     // Last year
                     yearArr.push(
-                        '<div class="row year" style="width: ' +
+                        '<div class="rows year" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisYear + 'px;"><div class="fn-label">' +
                         year +
                         '</div></div>');
 
                     // Last month
                     monthArr.push(
-                        '<div class="row month" style="width: ' +
+                        '<div class="rows month" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisMonth + 'px"><div class="fn-label">' +
                         settings.months[month] +
                         '</div></div>');
@@ -655,7 +655,7 @@
                         // Fill years
                         if (rday.getFullYear() !== year) {
                             yearArr.push(
-                                '<div class="row year" style="width: ' +
+                                '<div class="rows year" style="width: ' +
                                 tools.getCellSize() * scaleUnitsThisYear +
                                 'px;"><div class="fn-label">' +
                                 year +
@@ -665,7 +665,7 @@
                         }
                         scaleUnitsThisYear++;
                         monthArr.push(
-                            '<div class="row day wd" id="dh-' + tools.genId(rday) +
+                            '<div class="rows day wd" id="dh-' + tools.genId(rday) +
                             '" data-offset="' + i * tools.getCellSize() +
                             '" data-repdate="' + rday.getRepDate(settings.scale) + '">' +
                             (1 + rday.getMonth()) + '</div>');
@@ -673,7 +673,7 @@
 
                     // Last year
                     yearArr.push(
-                        '<div class="row year" style="width: ' +
+                        '<div class="rows year" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisYear + 'px;"><div class="fn-label">' +
                         year +
                         '</div></div>');
@@ -701,7 +701,7 @@
                         // Fill years
                         if (rday.getFullYear() !== year) {
                             yearArr.push(
-                                '<div class="row year" style="width:' +
+                                '<div class="rows year" style="width:' +
                                 tools.getCellSize() * scaleUnitsThisYear +
                                 'px;"><div class="fn-label">' +
                                 year +
@@ -714,7 +714,7 @@
                         // Fill months
                         if (rday.getMonth() !== month) {
                             monthArr.push(
-                                '<div class="row month" style="width:' +
+                                '<div class="rows month" style="width:' +
                                 tools.getCellSize() * scaleUnitsThisMonth +
                                 'px;"><div class="fn-label">' +
                                 settings.months[month] +
@@ -731,13 +731,13 @@
                         }
 
                         dayArr.push(
-                            '<div class="row date ' + dayClass + '"' +
+                            '<div class="rows date ' + dayClass + '"' +
                             ' id="dh-' + tools.genId(rday) +
                             '" data-offset="' + i * tools.getCellSize() +
                             '" data-repdate="' + rday.getRepDate(settings.scale) + '">' +
                             '<div class="fn-label">' + rday.getDate() + '</div></div>');
                         dowArr.push(
-                            '<div class="row day ' + dayClass + '"' +
+                            '<div class="rows day ' + dayClass + '"' +
                             ' id="dw-' + tools.genId(rday) +
                             '" data-repdate="' + rday.getRepDate(settings.scale) + '">' +
                             '<div class="fn-label">' + settings.dow[day] + '</div></div>');
@@ -745,14 +745,14 @@
 
                     // Last year
                     yearArr.push(
-                        '<div class="row year" style="width: ' +
+                        '<div class="rows year" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisYear + 'px;"><div class="fn-label">' +
                         year +
                         '</div></div>');
 
                     // Last month
                     monthArr.push(
-                        '<div class="row month" style="width: ' +
+                        '<div class="rows month" style="width: ' +
                         tools.getCellSize() * scaleUnitsThisMonth + 'px"><div class="fn-label">' +
                         settings.months[month] +
                         '</div></div>');
