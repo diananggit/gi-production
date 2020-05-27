@@ -18,8 +18,9 @@ class ProductionPlanning extends CI_Controller{
     } 
 
     function index(){
-        $data['moldingstyle']=$this->Production_planning_model->get_all();
+        
         // $data = array();
+        $data['moldingstyle']=$this->Production_planning_model->get_all();
         $this->load->view('production_planning/index',$data);
     }
 

@@ -7,8 +7,10 @@
   <title>Production Report</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
+  
+  <!-- CSS LINE -->
   <?php $this->load->view('_partials/css'); ?>
+  <?php $this->load->view('production_planning/css'); ?>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -45,7 +47,22 @@
                 </h3>
 
                 <div class="gantt"></div>
-
+                <span>Keterangan:</span>
+                <table>
+                    <tr>
+                        <td><div class="square color-weekend"></div></td>
+                        <td> : </td>
+                        <td>Sunday</td>
+    
+                        <td><div class="square color-holiday"></div></td>
+                        <td> : </td>
+                        <td>Holiday</td>
+                 
+                        <td><div class="square color-today"></div></td>
+                        <td> : </td>
+                        <td>To day</td>
+                    </tr>
+                </table>
         <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
@@ -207,7 +224,7 @@
                 maxScale: "months",
                 minScale: "hours",
                 itemsPerPage: 10,
-                holidays: ['2020-05-05'] ,
+                holidays: ['2020-05-05','2020-05-23','2020-05-25','2020-05-26'] ,
                 scrollToToday: false,
                 useCookie: true,
                 onItemClick: function(data) {
