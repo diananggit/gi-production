@@ -47,7 +47,7 @@
                 </h3>
 
                 <div class="gantt"></div>
-                <span>Keterangan:</span>
+                <span>Information:</span>
                 <table>
                     <tr>
                         <td><div class="square color-weekend"></div></td>
