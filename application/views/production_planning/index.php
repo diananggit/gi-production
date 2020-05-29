@@ -86,9 +86,75 @@
 
 
 <script type="text/javascript">
-  $(function() {
-            "use strict";
 
+    $(document).ready(async function() {
+        //  await getDatas();
+    });
+    
+
+   /*  async function getDatas() {
+            const tanggal     = [];
+            const target      = [];
+            const achievement = [];
+            const eff         = [];
+
+            const sam         = [];
+
+            $.ajax({
+            url: "<?php echo site_url('/production_planning/ProductionPlanning/getDataPlannigs')?>",
+            method: 'GET',
+            async: false,
+            dataType: 'json',
+            success : function(data) {
+                        $.each(data, function(index, val) {
+                            tanggal.push(val);
+                            target.push(val.ENDSEW);
+                            achievement.push(val.label);
+                            eff.push(val.eff);
+
+                            sam.push(val.sam);
+
+                        }); 
+                     }, error : function(req, err) {
+                        console.log(err);
+                     }
+            });
+            return tanggal;
+    };
+
+    var resultSlideOne = getDatas();
+
+    console.log(resultSlideOne); */
+    
+
+   
+    // 
+    $(function() {
+        "use strict";
+
+        const tanggal     = [];
+        $.ajax({
+            url: "<?php echo site_url('/production_planning/ProductionPlanning/getDataPlannigs')?>",
+            method: 'GET',
+            async: false,
+            dataType: 'json',
+            success : function(data) {
+                        $.each(data, function(index, val) {
+                            tanggal.push(val);
+                            // target.push(val.ENDSEW);
+                            // achievement.push(val.label);
+                            // eff.push(val.eff);
+
+                            // sam.push(val.sam);
+
+                        }); 
+                     }, error : function(req, err) {
+                        console.log(err);
+                     }
+            });
+
+            console.log('datasGET ',JSON.stringify(tanggal));
+            
             var demoSource = [{
                 name: "Sprint 0",
                 desc: "Analysis",
@@ -208,6 +274,96 @@
                 }]
             }];
 
+
+            const datas = [
+            {
+                name: "BESAKIH",
+                desc: "",
+                values: [{
+                    from: '2020-05-01 10:34:50',
+                    to: '2020-05-29 10:34:50',
+                    label: "#ORC CI, STYLE",
+                    customClass: "ganttRed"
+                },{
+                    from: '2020-05-30',
+                    to: '2020-06-07',
+                    label: "#ORC SI, STYLE",
+                    customClass: "ganttOrange"
+                }]
+            },{
+                name: "TANAH TORAJA",
+                desc: "",
+                values: [{
+                    from: '2020-05-29',
+                    to: '2020-10-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "TANAH LOT",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-12-11',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "BUNAKEN",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-11-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "RAJA AMPAT",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-10-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "TANAH TORAJA",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-09-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "MALIOBORO",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-08-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "WAKATOBI",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-07-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            },{
+                name: "PRAMBANAN",
+                desc: "",
+                values: [{
+                    from: '2020-06-07',
+                    to: '2020-12-10',
+                    label: "#ORC, STYLE",
+                    customClass: "ganttGreen"
+                }]
+            }];
+
             // shifts dates closer to Date.now()
             var offset = new Date().setHours(0, 0, 0, 0) -
                 new Date(demoSource[0].values[0].from).setDate(35);
@@ -218,7 +374,7 @@
             }
 
             $(".gantt").gantt({
-                source: demoSource1,
+                source: datas,
                 navigate: "scroll",
                 scale: "days",
                 maxScale: "months",
@@ -228,10 +384,10 @@
                 scrollToToday: false,
                 useCookie: true,
                 onItemClick: function(data) {
-                    alert("Item clicked - show some details");
+                    // alert("Item clicked - show some details");
                 },
                 onAddClick: function(dt, rowId) {
-                    alert("Empty space clicked - add an item!");
+                    // alert("Empty space clicked - add an item!");
                 },
                 onRender: function() {
                     if (window.console && typeof console.log === "function") {
@@ -253,7 +409,7 @@
 
             // prettyPrint();
 
-        });
+    });
     
 </script>
 
