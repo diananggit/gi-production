@@ -354,7 +354,7 @@ function showMoldingDepartment(){
 
       console.log('tanggal: ', tanggal);
   return $.ajax({
-    url:'<?php echo site_url('reportdaily/ajax_get_molding'); ?>/' + tanggal,
+    url:'<?php echo site_url('ReportDaily/ajax_get_molding'); ?>/' + tanggal,
     dataType: 'json',
     success: function(rst){
       var output4 = parseInt(rst.qty_mold);

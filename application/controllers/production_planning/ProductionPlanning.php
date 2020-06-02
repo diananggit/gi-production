@@ -18,9 +18,9 @@ class ProductionPlanning extends CI_Controller{
     } 
 
     function index(){
-        
+
         // $data = array();
-        $data['moldingstyle']=$this->Production_planning_model->get_all();
+        $data['datasPlaning']=$this->Production_planning_model->get_all();
         $this->load->view('production_planning/index',$data);
     }
 
@@ -41,8 +41,9 @@ class ProductionPlanning extends CI_Controller{
      */
 
     // first slide
-    function viewFirstSlide(){
-        $data = $this->Admin_sewing_screen_3_model->getDataSlideFirst();
+    function getDataPlannigs(){
+      
+        $data = $this->Production_planning_model->getDataLinePlannings();
         $datas = json_encode($data);
         echo $datas;
     }   
