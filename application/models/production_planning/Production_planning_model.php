@@ -76,7 +76,8 @@ class Production_planning_model extends CI_Model
         NOW() + INTERVAL (ROUND(((BAL_SEW * SAM)/32)/343,0)) DAY + INTERVAL (ROUND(((BAL_SEW * SAM)/32)/343,0)) DAY AS ENDSEW
         FROM `v_plan`
         -- WHERE line_allocation1 ='MALIOBORO'
-        ORDER BY NOW() + INTERVAL (ROUND(((BAL_SEW * SAM)/32)/343,0)) DAY ";
+        WHERE line_allocation1 is not null
+        ORDER BY line, NOW() + INTERVAL (ROUND(((BAL_SEW * SAM)/32)/343,0)) DAY ";
         $query = $this->db->query($sql);
 
         return $query->result_array();
