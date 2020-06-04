@@ -233,6 +233,12 @@
     color: #714715 !important;
 }
 
+.fn-gantt .ganttYellow {
+    background-color: #FCD29A;
+}
+.fn-gantt .ganttYellow .fn-label {
+    color: #fffb06 !important;
+}
 
 /* === BOTTOM NAVIGATION === */
 
