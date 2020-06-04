@@ -440,7 +440,7 @@
                 scale: "days",
                 maxScale: "months",
                 minScale: "hours",
-                itemsPerPage: 10,
+                itemsPerPage: 20,
                 holidays: ['2020-05-05','2020-05-23','2020-05-25','2020-05-26'] ,
                 scrollToToday: false,
                 useCookie: true,
