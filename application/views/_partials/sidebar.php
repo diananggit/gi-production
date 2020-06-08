@@ -65,7 +65,7 @@
 
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-scissors text-warning"></i>
 						<p>
 							Cutting Report
@@ -74,19 +74,19 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-                <a href="<?php echo site_url('reportbarchartcutting'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('reportbarchartcutting'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily Chart</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php echo site_url('reportcutting'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportcutting'); ?>" class="nav-link">
 								<i class="fa fa-tags text-warning nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -119,7 +119,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-square-o text-primary"></i>
 						<p>
 							Molding Report
@@ -128,13 +128,13 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-               <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+               <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php echo site_url('reportmolding'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportmolding'); ?>" class="nav-link">
 								<i class="fa fa-tags text-primary nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -173,7 +173,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-circle-o text-danger"></i>
 						<p>
 							Sewing Report
@@ -182,13 +182,13 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-              <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+              <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php echo site_url('reportsewing'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportsewing'); ?>" class="nav-link">
 								<i class="fa fa-tags text-danger nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -206,7 +206,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportsewingwip'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportSewingWip'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-danger nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
@@ -233,7 +233,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-cubes text-success"></i>
 						<p>
 							Packing Report
@@ -242,7 +242,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
