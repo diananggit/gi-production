@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-secondary elevation-4 bg-default-gradient">
 	<!-- Brand Logo -->
-	<a href="<?php echo site_url('reportdaily'); ?>" class="brand-link">
+	<a href="<?php echo site_url('ReportDaily'); ?>" class="brand-link">
 		<!-- <img src="#" alt="App Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8"> -->
 		<span class="brand-text font-weight-light"><strong class="text-danger">Production</strong><small class="text-success">Report</small></span>
@@ -65,7 +65,7 @@
 
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
 						<i class="nav-icon fa fa-scissors text-warning"></i>
 						<p>
 							Cutting Report
@@ -74,7 +74,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+                <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
@@ -92,25 +92,25 @@
 							</a>
 						</li> -->
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportcuttingbyorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportCuttingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-warning nav-icon"></i>
 								<p>By Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportcuttingsingleorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportCuttingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-warning nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportwipcutting'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportWipCutting'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-warning nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportcuttingtosewing'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportCuttingToSewing'); ?>" class="nav-link">
 								<i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
 								<p>Cutting To Sewing</p>
 							</a>
@@ -119,7 +119,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
 						<i class="nav-icon fa fa-square-o text-primary"></i>
 						<p>
 							Molding Report
@@ -128,7 +128,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-               <a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+               <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
@@ -140,19 +140,19 @@
 							</a>
 						</li> -->
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportmoldingbyorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportMoldingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-primary nav-icon"></i>
 								<p>By Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportmoldingsingleorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportMoldingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-primary nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportwipmolding'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportWipMolding'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-primary nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
@@ -173,7 +173,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
 						<i class="nav-icon fa fa-circle-o text-danger"></i>
 						<p>
 							Sewing Report
@@ -182,7 +182,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-              <a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+              <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
@@ -194,13 +194,13 @@
 							</a>
 						</li> -->
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportsewingbyorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportSewingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-danger nav-icon"></i>
 								<p>By Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportsewingbysingleorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportSewingBySingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-danger nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
@@ -233,7 +233,7 @@
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+					<a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
 						<i class="nav-icon fa fa-cubes text-success"></i>
 						<p>
 							Packing Report
@@ -242,31 +242,31 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php echo site_url('reportdaily'); ?>" class="nav-link">
+                <a href="<?php echo site_url('ReportDaily'); ?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportpackingbystyle'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportPackingByStyle'); ?>" class="nav-link">
 								<i class="fa fa-tags text-success nav-icon"></i>
 								<p>By Style</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportpackingbyorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportPackingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-success nav-icon"></i>
 								<p>By Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportpackingsingleorc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportPackingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-success nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportwippacking'); ?>" class="nav-link">
+							<a href="<?php echo site_url('ReportWipPacking'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-success nav-icon"></i>
 								<p>By WIP</p>
 							</a>

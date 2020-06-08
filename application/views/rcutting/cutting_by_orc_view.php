@@ -201,7 +201,7 @@
         alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
       }else{
         $.ajax({  
-              url:"<?php echo site_url('reportcuttingbyorc/filter');?>",  
+              url:"<?php echo site_url('ReportCuttingByOrc/filter');?>",  
               method:"POST",  
               // data:{from_date:from_date, to_date:to_date},  
               data: {'dataStr': dataStr},

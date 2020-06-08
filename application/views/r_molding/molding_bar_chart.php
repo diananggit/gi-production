@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="card-tools">
-          <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
+          <a href="<?php echo site_url('ReportDaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
           <a href="<?php echo site_url('reportmoldingshift'); ?>" class="btn btn-danger" ><i class="fa fa-pencil"></i>SHIFT</a>
         </div>
         

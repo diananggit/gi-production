@@ -374,7 +374,7 @@
 
     console.log('lineI: ', line);
 
-    window.open('<?php echo site_url("linedaychart/ajax_get_by_line"); ?>/' + line, "_self");
+    window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
 
     })
 

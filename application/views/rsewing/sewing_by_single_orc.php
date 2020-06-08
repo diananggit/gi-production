@@ -153,7 +153,7 @@
               </div>
             </div>
             <div class="card-tools">
-              <a href="<?php echo site_url('reportdetailsewing'); ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i>NEXT</a>
+              <a href="<?php echo site_url('ReportDetailSewing'); ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i>NEXT</a>
             </div>
             <!-- </div> -->
           </div>
@@ -238,7 +238,7 @@
       function load_orc() {
         $('#orc').empty();
         $.ajax({
-          url: "<?php echo site_url('reportsewingbysingleorc/ajax_get_all_orc'); ?>",
+          url: "<?php echo site_url('ReportSewingBySingleOrc/ajax_get_all_orc'); ?>",
           type: 'get',
           dataType: 'json',
           success: function(data) {
@@ -258,7 +258,7 @@
         $.when(
 
           $.ajax({
-            url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc3"); ?>/' + orc,
+            url: '<?php echo site_url("ReportSewingBySingleOrc/ajax_get_by_orc3"); ?>/' + orc,
             type: 'GET',
             dataType: 'json',
           }).done(function(data) {
@@ -298,7 +298,7 @@
           }),
 
           $.ajax({
-            url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc"); ?>/' + orc,
+            url: '<?php echo site_url("ReportSewingBySingleOrc/ajax_get_by_orc"); ?>/' + orc,
             type: 'GET',
             dataType: 'json',
           }).done(function(data) {
@@ -326,7 +326,7 @@
         )
 
         $.ajax({
-          url: '<?php echo site_url("reportsewingbysingleorc/ajax_get_by_orc2"); ?>/' + orc,
+          url: '<?php echo site_url("ReportSewingBySingleOrc/ajax_get_by_orc2"); ?>/' + orc,
           type: 'GET',
           dataType: 'json',
         }).done(function(data) {
