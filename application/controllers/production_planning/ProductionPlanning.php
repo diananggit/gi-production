@@ -18,44 +18,27 @@ class ProductionPlanning extends CI_Controller{
     } 
 
     function index(){
-
-        // $data = array();
-        $data['datasPlaning']=$this->Production_planning_model->get_all();
+        $data = array();
         $this->load->view('production_planning/index',$data);
-    }
-
-
-    /*
-     * Screen C
-     */
-    function viewScreenC()
-    {   
-      //  $data = array();
-        $data['js'] = $this->load->view('js','',true);
-        $data['content'] = $this->load->view('admin_sewing_screen_3/Screen_C', $data, true);
-        $this->parser->parse(TEMPLATE.'/content', $data);
     }
 
     /*
      * Global Function
      */
 
-    // first slide
+    // get datas Holidays
+    function getDataHolidays(){
+      
+        $dataHoliday  = $this->Production_planning_model->getDataHolidays();
+        $dataHolidays = json_encode($dataHoliday);
+        echo $dataHolidays;;
+    }   
+
+    // get datas Planning
     function getDataPlannigs(){
       
         $data = $this->Production_planning_model->getDataLinePlannings();
         $datas = json_encode($data);
         echo $datas;
     }   
-
-    // second slide
-    function viewSecondSlide(){
-        # code...
-        $lineName = $_GET['lineName'];
-        $tgl      = $_GET['tgl'];
-
-        $data  = $this->Admin_sewing_screen_3_model->getDataSlideSecond($lineName, $tgl);
-        $datas = json_encode($data);
-        echo $datas;
-    }
 }
