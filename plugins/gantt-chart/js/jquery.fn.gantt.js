@@ -314,14 +314,17 @@
                         i < (element.pageNum * settings.itemsPerPage + settings.itemsPerPage)) {
                         var dataId = ('id' in entry) ? '" data-id="' + entry.id : '';
                         entries.push(
-                            '<div class="row name row' + i +
+                            '<div  class="row name row ' + i +
                             (entry.desc ? '' : (' fn-wide '+dataId)) +
                             '" id="rowheader' + i +
                             '" data-offset="' + i % settings.itemsPerPage * tools.getCellSize() + '">' +
                             '<span class="fn-label' +
-                            (entry.cssClass ? ' ' + entry.cssClass : '') + '">' +
-                            (entry.name || '') +
-                            '</span>' +
+                            (entry.cssClass ? ' ' + entry.cssClass : '') + '">'
+                                +'<button style="border: none; padding: 0; background: none;" name="subject" type="submit" value="'+entry.name+'" >'
+                                +   '<i class="nav-icon fa fa-eye text-primary"></i>'
+                                +'</button>'
+                                +(entry.name || '') +
+                            '</span>"' +
                             '</div>');
 
                         if (entry.desc) {

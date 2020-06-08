@@ -8,7 +8,7 @@ class Production_planning_model extends CI_Model {
 
     // get datas Holidays
     function getDataHolidays(){
-        $data =   $this->session->all_userdata();   
+        $data  =   $this->session->all_userdata();   
 
         $sql   = " SELECT * FROM dt_holidays ORDER BY date ASC ";
 

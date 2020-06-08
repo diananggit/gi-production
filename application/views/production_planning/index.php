@@ -45,8 +45,9 @@
                     &nbsp;<i class="fa fa-calendar-o text-succes nav-icon"></i>
                         Production Planning
                 </h3>
-
+               
                 <div class="gantt"></div>
+                
                 <span>Information:</span>
                 <table>
                     <tr>
@@ -282,6 +283,10 @@
 
     });
     
+    function enableTxt(elem) {
+    var id = $(elem).attr("id");
+    alert(id);
+}
 </script>
 
 </body>
