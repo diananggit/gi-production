@@ -11,6 +11,7 @@
   <!-- CSS LINE -->
   <?php $this->load->view('_partials/css'); ?>
   <?php $this->load->view('production_planning/css'); ?>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -45,7 +46,7 @@
                     &nbsp;<i class="fa fa-calendar-o text-succes nav-icon"></i>
                         Production Planning
                 </h3>
-               
+            
                 <div class="gantt"></div>
                 
                 <span>Information:</span>
@@ -270,13 +271,13 @@
         // ToolTips function
         $(".gantt").popover({
             selector: ".bar",
-            title: function _getItemText() {
+            title: "Details",
+            // container: '.gantt',
+            content: function _getItemText() {
                 return this.textContent;
             },
-            container: '.gantt',
-            content: "Here's some useful information.",
             trigger: "hover",
-            placement: "auto right"
+            // placement: "auto right"
         });
 
         // prettyPrint();
@@ -284,10 +285,13 @@
     });
     
     function enableTxt(elem) {
-    var id = $(elem).attr("id");
-    alert(id);
-}
+        var id = $(elem).attr("id");
+        alert(id);
+    }
+
+    
 </script>
 
 </body>
 </html>
+
