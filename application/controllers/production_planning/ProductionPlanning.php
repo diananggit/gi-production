@@ -15,11 +15,21 @@ class ProductionPlanning extends CI_Controller{
         $this->sess_id = $this->session->userdata('userid');
         $this->load->helper(array('url'));
         $this->load->model($models,'Production_planning_model');
+
+        // load base_url
+        $this->load->helper('url');
     } 
 
     function index(){
         $data = array();
         $this->load->view('production_planning/index',$data);
+    }
+    
+    function planingLine($dataS){
+        echo 'get Data URL: ',$dataS;
+
+        $data = array();
+        //$this->load->view('production_planning/PlaningLine',$data);
     }
 
     /*

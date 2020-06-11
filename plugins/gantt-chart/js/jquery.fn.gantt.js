@@ -307,8 +307,11 @@
                 var ganttLeftPanel = $('<div class="leftPanel"/>')
                     .append($('<div class="row spacer"> <h5>&nbsp;&nbsp;<span class="fn-label"><br>Line Names</span> </h5></div>')
                     .css("height", tools.getCellSize() * element.headerRows));
-
+                    
+                var baseUrl = window.location.origin;
+                var Url     = '/Report-GI/index.php/production_planning/ProductionPlanning/planingLine/';
                 var entries = [];
+
                 $.each(element.data, function (i, entry) {
                     if (i >= element.pageNum * settings.itemsPerPage &&
                         i < (element.pageNum * settings.itemsPerPage + settings.itemsPerPage)) {
@@ -320,9 +323,11 @@
                             '" data-offset="' + i % settings.itemsPerPage * tools.getCellSize() + '">' +
                             '<span class="fn-label' +
                             (entry.cssClass ? ' ' + entry.cssClass : '') + '">'
-                                +'<button style="border: none; padding: 0; background: none;" name="subject" type="submit" value="'+entry.name+'" >'
-                                +   '<i class="nav-icon fa fa-eye text-primary"></i>'
-                                +'</button>'
+                                +'<a href=" '+baseUrl+Url+entry.name+' ">'
+                                +' <button style="border: none; padding: 0; background: none;" name="subject" type="submit" value="'+entry.name+'" >'
+                                +    '<i class="nav-icon fa fa-eye text-primary"></i>'
+                                +' </button>'
+                                +'</a>&nbsp;'
                                 +(entry.name || '') +
                             '</span>"' +
                             '</div>');

@@ -44,7 +44,7 @@
             <div class="container-fluid">
                 <h3 style="text-align: left; color: #007bff" >
                     &nbsp;<i class="fa fa-calendar-o text-succes nav-icon"></i>
-                        Production Planning
+                        Production Planning Line
                 </h3>
             
                 <div class="gantt"></div>
