@@ -192,14 +192,14 @@
                         <div class="form-group row">
                           <label class="col-sm-4 col-form-label text-right">Remaks:</label>
                           <div class="col-md-6">
-                            <input type="text" class="form-control" id="remaks" name="remaks" />
+                            <input type="text" class="form-control" id="inputRemaks" name="inputRemaks" />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="card-footer">
-                    <button type="button" id="btnUpdateOrder" name="btnUpdateOrder" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
+                    <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
                     <!-- <button type="button" id="btnBack" name="btnBack" class="btn btn-default btn-lg float-right"><i class="fa fa-arrow-left"></i> Back</button> -->
                     <a href="#" class="btn btn-default btn-lg float-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i> Close</a>
                   </div>
@@ -207,6 +207,7 @@
               </div>
             </div>
           </div>
+             
           <!--end edit order modal-->
 
             <!-- /.row (main row) -->
@@ -431,9 +432,6 @@
 
     $('#line').val(line);
      $('#form-show-remaks').modal('hide');
-    //  $('#modal_change_remaks').modal('hide');
-
-
 
     })
   </script>
