@@ -189,7 +189,7 @@
       function load_orc() {
         $('#orc').empty();
         $.ajax({
-          url: "<?php echo site_url('reportmoldingsingleorc/ajax_get_all_orc'); ?>",
+          url: "<?php echo site_url('ReportMoldingSingleOrc/ajax_get_all_orc'); ?>",
           type: 'get',
           dataType: 'json',
           success: function(data) {
@@ -206,7 +206,7 @@
        $('#orc').change(function() {
         orc = $(this).val()
         $.ajax({
-          url: '<?php echo site_url("reportmoldingsingleorc/ajax_get_by_orc"); ?>/' + orc,
+          url: '<?php echo site_url("ReportMoldingSingleOrc/ajax_get_by_orc"); ?>/' + orc,
           type: 'GET',
           dataType: 'json',
           success: function(data) {

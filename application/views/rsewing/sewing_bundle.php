@@ -92,7 +92,7 @@
                       </div>
                   </div>
                   <!-- <div class="card-tools">
-                    <a href="<?php echo site_url('reportsewingbysingleorc'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="<?php echo site_url('ReportSewingBySingleOrc'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
                   </div> -->
               </div>
           </div>

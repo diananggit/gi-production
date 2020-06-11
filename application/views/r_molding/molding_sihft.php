@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="card-tools">
-          <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
+          <a href="<?php echo site_url('ReportDaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
         </div>
       </div><!-- /.container-fluid -->
     </section>

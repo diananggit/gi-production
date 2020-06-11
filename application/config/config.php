@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // $config['base_url'] = 'http://192.168.10.22/GI-ProductionReport1/';
 // $config['base_url'] = 'http://203.190.46.73:8899/Report-GI/';
 // $config['base_url'] = 'http://192.168.10.56/Report-GI/';
-$config['base_url'] = 'http://192.168.10.171/Report-GI/';
+$config['base_url'] = 'http://127.0.0.1/Report-GI/';
 
 /*
 |--------------------------------------------------------------------------

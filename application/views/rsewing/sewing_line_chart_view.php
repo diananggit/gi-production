@@ -91,7 +91,7 @@
     function showReportSewingLine() {
    
       $.ajax({
-        url: '<?php echo site_url('reportbarsewingline/ajax_get_qty_sewing_line'); ?>',
+        url: '<?php echo site_url('reportBarSewingLine/ajax_get_qty_sewing_line'); ?>',
         type: 'GET',
         dataType: 'json',
         success: function(data) {

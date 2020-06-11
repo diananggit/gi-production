@@ -105,7 +105,7 @@
               </div>
             </div>
               <div class="card-tools">
-                <a href="<?php echo site_url('reportwippacking'); ?>" class="btn btn-primary" ><i class="fa fa-arrow-right"></i>NEXT</a>
+                <a href="<?php echo site_url('ReportWipPacking'); ?>" class="btn btn-primary" ><i class="fa fa-arrow-right"></i>NEXT</a>
               </div>
             </div>
           </div>
@@ -186,7 +186,7 @@
       function load_orc() {
         $('#orc').empty();
         $.ajax({
-          url: "<?php echo site_url('reportpackingsingleorc/ajax_get_all_orc'); ?>",
+          url: "<?php echo site_url('ReportPackingSingleOrc/ajax_get_all_orc'); ?>",
           type: 'get',
           dataType: 'json',
           }).done(function(data){
@@ -203,7 +203,7 @@
        $('#orc').change(function() {
         orc = $(this).val()
         $.ajax({
-          url: '<?php echo site_url("reportpackingsingleorc/ajax_get_by_orc"); ?>/' + orc,
+          url: '<?php echo site_url("ReportPackingSingleOrc/ajax_get_by_orc"); ?>/' + orc,
           type: 'GET',
           dataType: 'json',
           success: function(data) {
