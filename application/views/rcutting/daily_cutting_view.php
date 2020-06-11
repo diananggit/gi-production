@@ -37,7 +37,7 @@
             <ol class="breadcrumb float-sm-right">
               <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Summary</li> -->
-              <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('SummaryProduction') ?>"></i>SUMMARY</button>
+              <a href="<?php echo site_url('SummaryProduction') ?>"> <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"></i>SUMMARY</button></a>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
