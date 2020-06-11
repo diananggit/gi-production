@@ -44,6 +44,14 @@
             <label><input type="text" id="line" style="text-align: center;" class="form-control" disabled></label>
           </div>
           <div class="card-body mt-1">
+          <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Remaks:</label>
+                  <input type="text" id="remaks" name="remaks" class="form-control" disabled>
+                </div>
+              </div>
+          </div>
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group ">
@@ -79,6 +87,12 @@
                 <div class="form-group">
                   <label>ORC:</label>
                   <input type="text" id="orc" name="orc" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                  <b>
+                  <button type="button" id="linkRemak" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#form-show-remaks">
+                    <i class="fa fa-exclamation-triangle text-danger ">&nbsp;</i>Add Remaks</button>
+                  </b>
                 </div>
               </div>
 
@@ -134,7 +148,6 @@
                       <tfoot>
                         <tr>
                           <th colspan="6" style="text-align:right">Total:</th>
-                          <!-- <th></th> -->
                         </tr>
                       </tfoot>
                     </table>
@@ -156,6 +169,45 @@
               </div>
               </div>
             <!-- Small boxes (Stat box) -->
+            <!--modal edit remaks-->
+          <div class="modal fade" id="form-show-remaks" role="dialog">
+            <div class="modal-dialog ">
+              <div class="modal-content">
+                <div class="modal-header bg-success">
+                  <h4 class="modal-title">Add Remaks</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times</span>
+                  </button>
+                </div>
+                <form method="post" id="form-edit-remaks" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-4 col-form-label text-right">Line:</label>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" id="lineName" name="lineName" />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-4 col-form-label text-right">Remaks:</label>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" id="remaks" name="remaks" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button type="button" id="btnUpdateOrder" name="btnUpdateOrder" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
+                    <!-- <button type="button" id="btnBack" name="btnBack" class="btn btn-default btn-lg float-right"><i class="fa fa-arrow-left"></i> Back</button> -->
+                    <a href="#" class="btn btn-default btn-lg float-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i> Close</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--end edit order modal-->
 
             <!-- /.row (main row) -->
           </div><!-- /.container-fluid -->
@@ -242,12 +294,7 @@
 
               table2.clear();
               $.each(data, function(i, item) {
-              table2.row.add([
-                "Input",
-                item.in_cutting,
-                item.in_sewing,
-                "0",
-              ]).draw();
+              
               table2.row.add([
                 "Input",
                 item.in_cutting,
@@ -268,7 +315,7 @@
               ]).draw();
               table2.row.add([
                 "Wip",
-                item.actual_qt,
+                item.balance_cutting_ex,
                 item.wip_sewing,
                 "0",
               ]).draw();
@@ -383,6 +430,9 @@
    
 
     $('#line').val(line);
+     $('#form-show-remaks').modal('hide');
+    //  $('#modal_change_remaks').modal('hide');
+
 
 
     })

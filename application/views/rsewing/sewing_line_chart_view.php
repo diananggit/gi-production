@@ -28,76 +28,26 @@
       <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
-            <div class="col-sm-15">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
+            <div class="col-sm-6">
+              <!-- <h2 style="text-align: center; color: #dc3545">Globalindo Intimates - Sewing Report</h2> -->
             </div><!-- /.col -->
+            <!-- <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right"> -->
+              <!-- <button type="button" id="linkWeekly" class="btn btn-danger" style="color: white;"><i class="fa fa-table"><a href="<?php echo site_url('summaryproduction') ?>"></i>REMARK</button> -->
+            <!-- </ol>
+          </div> -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
+      
       <!-- /.content-header -->
 
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <!--INPUT REMAKS-->
-          <div class="modal fade" id="modal_show_remaks" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Please Input Remaks</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times</span>
-                  </button>
-                </div>
-                <form method="post" id="form-show-remaks">
-                  <div class="modal-body">
-                    <div class="form-group row">
-                      <label class="col-md-2 col-form-label">Remaks</label>
-                      <div class="col-md-10">
-                        <input type="text" id="inremaks" class="form-control" tabindex="0" maxlength="20">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer" justify-content-between">
-                    <button type="submit" class="btn btn-success" onclick="save()"><i class="fa fa-save"></i>&nbsp;save</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;close</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!--end INPUT REMAKS-->
+          
           <!--modal pilihan-->
-          <div class="modal fade" id="modal_change_remaks" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Please select one</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times</span>
-                  </button>
-                </div>
-                <form method="post" id="form-change-remaks">
-                  <div class="modal-body">
-                    <div class="form-group row">
-                      <!-- <label class="col-md-2 col-form-label">Remaks</label> -->
-                      <!-- <div class="row"> -->
-                      <div class="col-md-10">
-                        <!-- <input type="text" id="remaks" class="form-control" tabindex="0" maxlength="20"> -->
-                        <button type="button" class="btn btn-block btn-warning btn-sm" id="sixdays" data-dismiss="modal">6 Days Output</button>
-                        <button type="button" id="remaks" class="btn btn-block btn-danger btn-sm" data-toggle="modal" data-target="#form-show-remaks">Remaks</button>
-                      </div>
-                      <!-- </div> -->
-                    </div>
-                  </div>
-                  <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                          </div> -->
-                </form>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <h2 style="text-align: center; color: #dc3545">Globalindo Intimates - Sewing Report</h2>
         <div class="col-md-12">
