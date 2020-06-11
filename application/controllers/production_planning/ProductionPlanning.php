@@ -7,17 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
  
 class ProductionPlanning extends CI_Controller{
-    function __construct()
-    {
+    function __construct(){
         $models = 'production_planning/Production_planning_model';
 
         parent::__construct();
         $this->sess_id = $this->session->userdata('userid');
         $this->load->helper(array('url'));
         $this->load->model($models,'Production_planning_model');
-
-        // load base_url
-        $this->load->helper('url');
     } 
 
     function index(){
@@ -25,17 +21,28 @@ class ProductionPlanning extends CI_Controller{
         $this->load->view('production_planning/index',$data);
     }
     
-    function planingLine($dataS){
-        echo 'get Data URL: ',$dataS;
+    // get data planning by line
 
-        $data = array();
-        //$this->load->view('production_planning/PlaningLine',$data);
+    function planingLine($line){        
+        $data['line'] = $line;
+
+        $this->load->view('production_planning/PlaningLine',$data);
     }
-
+        
     /*
      * Global Function
      */
 
+    // get data planing line
+    function getDataPlanningByLine(){
+        # code...
+        $line = $_GET['lineName'];
+            
+        $resultLine  = $this->Production_planning_model->getDataPlanningByLine($line);
+        $resultLineData = json_encode($resultLine);
+        echo $resultLineData;
+    }
+ 
     // get datas Holidays
     function getDataHolidays(){
       

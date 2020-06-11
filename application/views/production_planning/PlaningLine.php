@@ -42,13 +42,16 @@
     <section class="content">
         <div class="box box-primary">
             <div class="container-fluid">
-                <h3 style="text-align: left; color: #007bff" >
+           
+                <h4 style="text-align: left; color: #007bff" >
+                    <a href="<?php echo site_url('production_planning/ProductionPlanning'); ?>">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
                     &nbsp;<i class="fa fa-calendar-o text-succes nav-icon"></i>
-                        Production Planning Line
-                </h3>
+                    Production Planning Line <?php echo str_replace('%20', ' ',$line) ; ?>
+                </h4>
             
                 <div class="gantt"></div>
-                
                 <span>Information:</span>
                 <table>
                     <tr>
@@ -88,17 +91,24 @@
 
 
 <script type="text/javascript">
-    
+     
+
     $(function() {
         "use strict";
 
+        const getLineName ='<?php echo $line; ?> ';
+        const lineName    = unescape(getLineName);
+        
         // get data planing
         const planningDatas = [];
         $.ajax({
-            url: "<?php echo site_url('/production_planning/ProductionPlanning/getDataPlannigs')?>",
+            url: "<?php echo site_url('/production_planning/ProductionPlanning/getDataPlanningByLine')?>",
             method: 'GET',
             async: false,
             dataType: 'json',
+            data : {
+               lineName : lineName
+           },
             success : function(data) {
                         $.each(data, function(index, val) {
                             planningDatas.push(val);
@@ -107,7 +117,7 @@
                         console.log(err);
                      }
         });
-
+    
         // get data date holidays 
         const dateHolidays = [];
         $.ajax({
@@ -205,7 +215,7 @@
                 }]
             }];
 
-        console.log(planningDatas[0]);
+        console.log(planningDatas);
         console.log(demoSource[0].values[0]);
     
         // data color bar Line planing
@@ -283,11 +293,6 @@
         // prettyPrint();
 
     });
-    
-    function enableTxt(elem) {
-        var id = $(elem).attr("id");
-        alert(id);
-    }
 
     
 </script>

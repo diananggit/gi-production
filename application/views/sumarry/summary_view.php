@@ -51,29 +51,29 @@
                           <table id="sumaryTable" class="table table-bordered table-striped" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <td>LINE</td>
-                                    <td>ORC</td>
-                                    <td>BUYER</td>
-                                    <td>PO</td>
-                                    <td>DDD</td>
-                                    <td>PLAN SHIP DATE</td>
-                                    <td>STYLE</td>
-                                    <td>COLOR</td>
-                                    <td>ORDER</td>
-                                    <td>CUT H-1</td>
-                                    <td>CUM CUT QTY</td>
-                                    <td>BAL TO CUT</td>
-                                    <td>WIP CUT</td> 
-                                    <td>MOLD H-1</td>
-                                    <td>MOLD In</td>
-                                    <td>CUM MOLD QTY</td>
-                                    <td>WIP MOLDING</td>
-                                    <td>BAL TO MOLD</td>
-                                    <td>SEWING IN</td>
-                                    <td>SEWING H-1</td>
-                                    <td>CUM SEWN QTY</td>
-                                    <td>WIP SEWING</td>
-                                    <td>BAL TO SEW</td>
+                                    <td class='bg-warning'>LINE</td>
+                                    <td class='bg-warning'>ORC</td>
+                                    <td class='bg-warning'>BUYER</td>
+                                    <td class='bg-warning'>PO</td>
+                                    <td class='bg-warning'>DDD</td>
+                                    <td class='bg-warning'>PLAN SHIP DATE</td>
+                                    <td class='bg-warning'>STYLE</td>
+                                    <td class='bg-warning'>COLOR</td>
+                                    <td class='bg-warning'>QTY ORDER</td>
+                                    <td class='bg-success'>CUT H-1</td>
+                                    <td class='bg-success'>CUM CUT QTY</td>
+                                    <td class='bg-success'>BAL TO CUT</td>
+                                    <td class='bg-success'>WIP CUT</td> 
+                                    <td class='bg-primary'>MOLD H-1</td>
+                                    <td class='bg-primary'>MOLD In</td>
+                                    <td class='bg-primary'>CUM MOLD QTY</td>
+                                    <td class='bg-primary'>WIP MOLDING</td>
+                                    <td class='bg-primary' >BAL TO MOLD</td>
+                                    <td class='bg-danger' >SEWING IN</td>
+                                    <td class='bg-danger'>SEWING H-1</td>
+                                    <td class='bg-danger'>CUM SEWN QTY</td>
+                                    <td class='bg-danger'>WIP SEWING</td>
+                                    <td class='bg-danger'>BAL TO SEW</td>
                                     <!-- <td>PACK H-1</td>
                                     <td>CUM PACKED QTY</td>
                                     <td>WIP PACKING</td>                                     -->
@@ -174,7 +174,7 @@
                       </div>
                   </div>
                   <div class="card-tools">
-                    <a href="<?php echo site_url('ReportDaily'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="<?php echo site_url('reportdaily'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
                   </div>
               <!-- </div> -->
           </div>
@@ -208,9 +208,6 @@
   
 
   <script type="text/javascript">
-     var day = new Date();
-    var hr = day.getDay();
-    
   $(document).ready(function(){
     var table = $('#sumaryTable').DataTable({
         "scrollY":200,

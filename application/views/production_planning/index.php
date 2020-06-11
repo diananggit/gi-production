@@ -100,7 +100,7 @@
             async: false,
             dataType: 'json',
             success : function(data) {
-                        $.each(data, function(index, val) {
+                        $.each(data, function(index, val) { 
                             planningDatas.push(val);
                         }); 
                      }, error : function(req, err) {
