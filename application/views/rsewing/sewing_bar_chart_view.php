@@ -95,7 +95,7 @@ function formatDate(date) {
   
   function showReportSewing() {
     $.ajax({
-      url: '<?php echo site_url('reportbarchartsewing/ajax_get_qty_sewing') ; ?>',
+      url: '<?php echo site_url('ReportBarChartSewing/ajax_get_qty_sewing') ; ?>',
       type: 'GET',
       dataType: 'json',
     }).done(function(data){

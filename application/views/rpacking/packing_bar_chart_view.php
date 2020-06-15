@@ -97,7 +97,7 @@ function formatDate(date) {
   
   function showReportPacking() {
     $.ajax({
-      url: '<?php echo site_url('reportbarchartpacking/ajax_get_qty_packing') ; ?>',
+      url: '<?php echo site_url('ReportBarChartPacking/ajax_get_qty_packing') ; ?>',
       type: 'GET',
       dataType: 'json',
       success: function(data){

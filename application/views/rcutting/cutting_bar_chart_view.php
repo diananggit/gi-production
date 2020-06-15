@@ -97,7 +97,7 @@ function formatDate(date) {
   
   function showReportCutting() {
     $.ajax({
-      url: '<?php echo site_url('reportbarchartcutting/ajax_get_qty_cutting') ; ?>',
+      url: '<?php echo site_url('ReportBarChartCutting/ajax_get_qty_cutting') ; ?>',
       type: 'GET',
       dataType: 'json',
       }).done(function(data){

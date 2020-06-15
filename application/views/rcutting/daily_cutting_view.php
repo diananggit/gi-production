@@ -64,7 +64,7 @@
           <div class="col-md-4">
             <div class="card card-danger">
               <div class="card-header text-center">
-                <a href="<?php echo site_url('reportbarchartcutting'); ?>" class="card-title">Cutting Department</a>
+                <a href="<?php echo site_url('ReportBarChartCutting'); ?>" class="card-title">Cutting Department</a>
               </div>
               <div class="card-body">
                 <div class="media">
@@ -81,7 +81,7 @@
           <div class="col-md-4">
             <div class="card card-warning">
               <div class="card-header">
-                <a href="<?php echo site_url('reportbarchartmolding' ); ?>" class="card-title">Molding Department</a>
+                <a href="<?php echo site_url('ReportBarChartMolding' ); ?>" class="card-title">Molding Department</a>
               </div>
               <div class="card-body">
               <div class="media">
@@ -100,7 +100,7 @@
         <div class="col-md-4">
           <div class="card card-success">
             <div class="card-header">
-              <a href="<?php echo site_url('reportbarchartsewing'); ?>" class="card-title">Sewing Department</a>
+              <a href="<?php echo site_url('ReportBarChartSewing'); ?>" class="card-title">Sewing Department</a>
             </div>
             <div class="card-body">
             <div class="media">
@@ -117,7 +117,7 @@
         <div class="col-md-4">
           <div class="card card-primary">
             <div class="card-header">
-              <a href="<?php echo site_url('reportbarchartpacking'); ?>" class="card-title">Packing Department</a>
+              <a href="<?php echo site_url('ReportBarChartPacking'); ?>" class="card-title">Packing Department</a>
             </div>
             <div class="card-body">
               <div class="media">
