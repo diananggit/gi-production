@@ -183,24 +183,30 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
+                                    <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label text-right">Tanggal:</label>
+                                            <div class="col-md-8">
+                                                <input type="date" class="form-control" id="tglInput" name="tglInput" style="text-align: center;" />
+                                            </div>
+                                        </div>
                                          <div class="form-group row">
                                             <!-- <input type="hidden" id="idLine"> -->
                                             <label class="col-sm-4 col-form-label text-right">Line:</label>
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <input type="text" id="lineInput" name="lineInput" style="text-align: center;" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label text-right">Remaks:</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" id="remaksInput" name="remaksInput" />
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="remaksInput" name="remaksInput" style="text-align: center;" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
+                                <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Add</button>
                                 <a href="#" class="btn btn-default btn-lg float-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i> Close</a>
                             </div>
                         </form>
@@ -403,19 +409,13 @@
       }
 
       $('#btnUpdate').click(function() {
-            var dataEdit = {
-              'line':$('#line').val(),
-            'remarks': $('#remaks').val(),
-            
-          }
+            var url;
 
           $.ajax({
             type: 'POST',
             url: '<?php echo site_url("SewingByLine/ajax_update"); ?>/' + line,
             dataType: 'json',
-            data: {
-              'dataEdit': dataEdit
-            },
+            data: $('#form-edit-remaks').serialize(),
           }).done(function(rst) {
             console.log('rst update: ', rst);
             if (rst > 0) {
@@ -441,7 +441,7 @@
 
     //  var lineConvert = line.replace(/%20/g, " ");
 
-    window.open('<?php echo site_url("linedaychart/ajax_get_by_line"); ?>/' + line, "_self");
+    window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
 
     })
 
@@ -449,7 +449,7 @@
     
       localStorage.setItem('weekChart', line);
 
-      window.open('<?php echo site_url("linedailychart/ajax_get_by_line"); ?>/' + line, "_self");
+      window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
 
 
     })
@@ -458,7 +458,7 @@
 
       localStorage.setItem('monthChart', line);
 
-      window.open('<?php echo site_url("linemonthlychart/ajax_get_by_line"); ?>/' + line, "_self");
+      window.open('<?php echo site_url("LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
     })
 
     $('linkRemak').click(function(){
