@@ -51,7 +51,7 @@
                   <input type="text" id="remaks" name="remaks" class="form-control" disabled>
                 </div>
               </div>
-          </div>
+            </div>
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group ">
@@ -89,16 +89,13 @@
                   <input type="text" id="orc" name="orc" class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                  <b>
-                  <button type="button" id="linkRemak" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#form-show-remaks">
-                    <i class="fa fa-exclamation-triangle text-danger ">&nbsp;</i>Add Remaks</button>
-                  </b>
+                <button type="button" id="linkRemak" data-toggle="modal" data-target="#form-show-remaks" class="btn btn-block btn-secondary btn-sm">
+                      <i class="fa fa-exclamation-triangle text-danger ">&nbsp;</i>Add Remaks</button>
                 </div>
               </div>
 
             </div>
             <hr />
-            <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
             <div class="row">
               <div class="col-md-12">
                 <div class="card card-primary">
@@ -166,51 +163,51 @@
               </div>
               <div class="card-tools">
                 <button type="button" id="linkWeekChart" class="btn btn-danger"><i class="fa fa-bar-chart"></i>Daily</button>
-              </div>
-              </div>
-            <!-- Small boxes (Stat box) -->
-            <!--modal edit remaks-->
-          <div class="modal fade" id="form-show-remaks" role="dialog">
-            <div class="modal-dialog ">
-              <div class="modal-content">
-                <div class="modal-header bg-success">
-                  <h4 class="modal-title">Add Remaks</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times</span>
-                  </button>
-                </div>
-                <form method="post" id="form-edit-remaks" >
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-4 col-form-label text-right">Line:</label>
-                          <div class="col-md-6">
-                            <input type="text" class="form-control" id="lineName" name="lineName" />
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-4 col-form-label text-right">Remaks:</label>
-                          <div class="col-md-6">
-                            <input type="text" class="form-control" id="inputRemaks" name="inputRemaks" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
-                    <!-- <button type="button" id="btnBack" name="btnBack" class="btn btn-default btn-lg float-right"><i class="fa fa-arrow-left"></i> Back</button> -->
-                    <a href="#" class="btn btn-default btn-lg float-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i> Close</a>
-                  </div>
-                </form>
-              </div>
+                <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-bar-chart"></i>Per Week</button>                
+                <button type="button" id="linkMonthly" class="btn btn-success"><i class="fa fa-bar-chart"></i>Per Month</button>
             </div>
-          </div>
-             
-          <!--end edit order modal-->
+            </div>
+            <!-- Small boxes (Stat box) -->
 
-            <!-- /.row (main row) -->
+            <!-- star input Modal -->
+            <div class="modal fade" role="dialog" id="form-show-remaks">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title">Add Remaks</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times</span>
+                            </button>
+                        </div>
+                        <form method="post" id="form-edit-remaks" name="form-edit-remaks">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                         <div class="form-group row">
+                                            <!-- <input type="hidden" id="idLine"> -->
+                                            <label class="col-sm-4 col-form-label text-right">Line:</label>
+                                            <div class="col-md-6">
+                                                <input type="text" id="lineInput" name="lineInput" style="text-align: center;" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label text-right">Remaks:</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="remaksInput" name="remaksInput" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success btn-lg"><i class="fa fa-upload"></i> Update</button>
+                                <a href="#" class="btn btn-default btn-lg float-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i> Close</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+            <!--end Input Modal--> 
           </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
@@ -253,7 +250,6 @@
                     typeof i === 'number' ?
                         i : 0;
             };
- 
             // Total over all pages
             total = api
                 .column( 5 )
@@ -261,16 +257,7 @@
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
- 
-            // Total over this page
-            // pageTotal = api
-            //     .column( 2, { page: 'current'} )
-            //     .data()
-            //     .reduce( function (a, b) {
-            //         return intVal(a) + intVal(b);
-            //     }, 0 );
- 
-            // Update footer
+
             $( api.column( 5 ).footer() ).html(
                 'Total Sewing :' + total
             );
@@ -295,7 +282,7 @@
 
               table2.clear();
               $.each(data, function(i, item) {
-              
+             
               table2.row.add([
                 "Input",
                 item.in_cutting,
@@ -334,6 +321,7 @@
             },
             dataType: 'json',
           }).done(function(data) {
+        // $("#form-show-remaks").modal("show");
 
             console.log(data);
 
@@ -344,9 +332,9 @@
             $('#color').val(data[0].color);
             $('#plan').val(data[0].plan_export);
             $('#orc').val(data[0].orc);
+            $('#line').val(data[0].line);
+            $('#remaks').val(data[0].remarks);
             
-
-
             table.clear();
             $.each(data, function(i, item) {
               table.row.add([
@@ -359,6 +347,7 @@
               ]).draw();
              
             })
+
           }),
           $.ajax({
             url: '<?php echo site_url("SewingByLine/ajax_get_by_line_day"); ?>',
@@ -413,7 +402,35 @@
         )
       }
 
+      $('#btnUpdate').click(function() {
+            var dataEdit = {
+              'line':$('#line').val(),
+            'remarks': $('#remaks').val(),
+            
+          }
 
+          $.ajax({
+            type: 'POST',
+            url: '<?php echo site_url("SewingByLine/ajax_update"); ?>/' + line,
+            dataType: 'json',
+            data: {
+              'dataEdit': dataEdit
+            },
+          }).done(function(rst) {
+            console.log('rst update: ', rst);
+            if (rst > 0) {
+              Swal.fire({
+                type: 'success',
+                title: 'Berhasil',
+                text: 'Data Order berhasil di-update',
+                showConfirmButton: false,
+                timer: 2000
+              });
+              $('#form-edit-remaks')[0].reset();
+              $('#form-show-remaks').modal('hide');
+            }
+          })
+            })
 
       // $('#line').val(line);
       $('#linkWeekChart').click(function(){
@@ -422,16 +439,48 @@
 
     console.log('lineI: ', line);
 
-    window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
+    //  var lineConvert = line.replace(/%20/g, " ");
+
+    window.open('<?php echo site_url("linedaychart/ajax_get_by_line"); ?>/' + line, "_self");
 
     })
 
+    $('#linkWeekly').click(function(){
     
+      localStorage.setItem('weekChart', line);
 
-   
+      window.open('<?php echo site_url("linedailychart/ajax_get_by_line"); ?>/' + line, "_self");
+
+
+    })
+
+    $('#linkMonthly').click(function(){
+
+      localStorage.setItem('monthChart', line);
+
+      window.open('<?php echo site_url("linemonthlychart/ajax_get_by_line"); ?>/' + line, "_self");
+    })
+
+    $('linkRemak').click(function(){
+      localStorage.setItem('remaks', line);
+      
+      $.ajax({
+        type: 'GET',
+        url: '<?php echo site_url("SewingByLine/ajax_get_remaks_by_line"); ?>',
+        dataType: 'json',
+      }).done(function(rst) {
+        console.log('rst: ', rst);
+        if (rst != null) {
+          $('#remaksInput').val(rst.remarks);
+          
+        }
+      })
+
+    })
 
     $('#line').val(line);
-     $('#form-show-remaks').modal('hide');
+    $('#lineInput').val(line);
+
 
     })
   </script>

@@ -35,12 +35,12 @@
 <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
 
-@section('js')
+<!-- @section('js') -->
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/dataTables.buttons.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/jszip.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.print.min.js'); ?>"></script>
-@stop
+<!-- @stop -->
 
 <!-- Start Load Gantt Chart -->
   

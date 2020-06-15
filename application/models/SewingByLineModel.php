@@ -23,5 +23,27 @@ class SewingByLineModel extends CI_Model{
 
     }
 
+    public function update(){
+        
+        if(isset($_POST['dataEdit'])){
+            $dataEdit = $_POST['dataEdit'];
+            $data = array(
+                "lineName" => $dataEdit['line'],
+                "remarks" => $dataEdit['remarks'],
+                // "idLine" => $dataEdit['id_output_sewing'],
+            );
+            // $sql= " SELECT * FROM output_sewing ";  
+            $this->db->where("lineName", $dataEdit['line']);
+            $this->db->update($this-> $data);
+
+            return $this->db->affected_rows();
+            // return $this->db->last_query();
+        }
+    }    
+
+    // public function update(){
+
+    // }
+
 
 }

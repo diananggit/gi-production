@@ -8,6 +8,7 @@ class SewingByLine extends CI_Controller{
         $this->load->model('SewingByLineModel2');
         $this->load->model('ReportSewingBySingleOrcModel');
         $this->load->model('ReportSewingBalancingModel');
+        $this->load->model('RemakByLineModel');
 
     }
     public function index(){
@@ -32,5 +33,17 @@ class SewingByLine extends CI_Controller{
 
         echo json_encode($rst);
     }  
+
+    public function ajax_update($line){
+        $rst = $this->RemakByLineModel->update($line);
+
+        echo json_encode($rst);
+    }
+
+    public function ajax_get_remaks_by_line($line){
+        $rst = $this->RemakByLineModel->get_by_line_day($line);
+
+        echo json_encode($rst);
+    }
 
 }
