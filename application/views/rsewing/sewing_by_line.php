@@ -44,11 +44,11 @@
             <label><input type="text" id="line" style="text-align: center;" class="form-control" disabled></label>
           </div>
           <div class="card-body mt-1">
-          <div class="row">
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group ">
                   <label>Remaks:</label>
-                  <input type="text" id="remaks" name="remaks" class="form-control" disabled>
+                  <input type="text" id="remaksLine" name="remaksLine" class="form-control" disabled>
                 </div>
               </div>
             </div>
@@ -327,8 +327,9 @@
             },
             dataType: 'json',
           }).done(function(data) {
-            console.log(data);
+            console.log('data', data);
 
+            $('#remaksLine').val(data[0].name_remarks);
             $('#buyer').val(data[0].buyer);
             $('#order').val(data[0].order);
             $('#style').val(data[0].style);
@@ -336,8 +337,6 @@
             $('#color').val(data[0].color);
             $('#plan').val(data[0].plan_export);
             $('#orc').val(data[0].orc);
-            $('#line').val(data[0].line);
-            $('#remaks').val(data[0].remarks);
             
             table.clear();
             $.each(data, function(i, item) {
