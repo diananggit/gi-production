@@ -8,11 +8,13 @@ class RemakByLineModel extends CI_Model{
 
         return $rst->row();
     }
+   
     public function save($data)
     {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
+    
 
    
     

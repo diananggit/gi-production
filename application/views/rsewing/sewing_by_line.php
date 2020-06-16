@@ -193,7 +193,8 @@
                                             <!-- <input type="hidden" id="idLine"> -->
                                             <label class="col-sm-4 col-form-label text-right">Line:</label>
                                             <div class="col-md-8">
-                                                <input type="text" id="lineInput" name="lineInput" style="text-align: center;" class="form-control" disabled>
+                                                <input type="text" class="lineInput" name="lineName" style="text-align: center;" class="form-control" disabled>
+                                                <input type="hidden"  class="lineInput" name="lineName" style="text-align: center;" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -315,7 +316,6 @@
               ]).draw();
            
             })
- 
 
           }),
 
@@ -327,8 +327,6 @@
             },
             dataType: 'json',
           }).done(function(data) {
-        // $("#form-show-remaks").modal("show");
-
             console.log(data);
 
             $('#buyer').val(data[0].buyer);
@@ -412,74 +410,45 @@
             var url;
 
           $.ajax({
-            type: 'POST',
-            url: '<?php echo site_url("SewingByLine/ajax_update"); ?>/' + line,
+            url: '<?php echo site_url("SewingByLine/ajax_update"); ?>' ,
+            method: 'POST',
             dataType: 'json',
             data: $('#form-edit-remaks').serialize(),
           }).done(function(rst) {
             console.log('rst update: ', rst);
             if (rst > 0) {
-              Swal.fire({
-                type: 'success',
-                title: 'Berhasil',
-                text: 'Data Order berhasil di-update',
-                showConfirmButton: false,
-                timer: 2000
-              });
+              alert('data sudah tersimpan');
               $('#form-edit-remaks')[0].reset();
               $('#form-show-remaks').modal('hide');
             }
           })
             })
 
-      // $('#line').val(line);
       $('#linkWeekChart').click(function(){
- 
-    localStorage.setItem('dayChart', line);
+      localStorage.setItem('dayChart', line);
+      console.log('lineI: ', line);
+      window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
 
-    console.log('lineI: ', line);
-
-    //  var lineConvert = line.replace(/%20/g, " ");
-
-    window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
-
-    })
-
-    $('#linkWeekly').click(function(){
-    
-      localStorage.setItem('weekChart', line);
-
-      window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
-
-
-    })
-
-    $('#linkMonthly').click(function(){
-
-      localStorage.setItem('monthChart', line);
-
-      window.open('<?php echo site_url("LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
-    })
-
-    $('linkRemak').click(function(){
-      localStorage.setItem('remaks', line);
-      
-      $.ajax({
-        type: 'GET',
-        url: '<?php echo site_url("SewingByLine/ajax_get_remaks_by_line"); ?>',
-        dataType: 'json',
-      }).done(function(rst) {
-        console.log('rst: ', rst);
-        if (rst != null) {
-          $('#remaksInput').val(rst.remarks);
-          
-        }
       })
 
-    })
+      $('#linkWeekly').click(function(){
+        localStorage.setItem('weekChart', line);
+        window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
 
-    $('#line').val(line);
-    $('#lineInput').val(line);
+      })
+
+      $('#linkMonthly').click(function(){
+        localStorage.setItem('monthChart', line);
+        window.open('<?php echo site_url("LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
+      })
+
+      $('linkRemak').click(function(){
+        localStorage.setItem('remaks', line);
+        
+      })
+
+      $('#line').val(line);
+      $('.lineInput').val(line);
 
 
     })

@@ -36,12 +36,13 @@ class SewingByLine extends CI_Controller{
 
     public function ajax_update(){
         $data=array(
-            'tanggal'=>date('Y-m-d', strtotime($this->input->post('tanggal'))),
-            'name_remarks'=>$this->input->post('name_remarks'),
-            'line'=>$this->input->post('line'),
+            'tanggal'=>date('Y-m-d', strtotime($this->input->post('tglInput'))),
+            'name_remarks'=>$this->input->post('remaksInput'),
+            'line'=>$this->input->post('lineName'),
         );
         $rst = $this->RemakByLineModel->save($data);
-
+        // print_r($data);
+        // die();
         echo json_encode($rst);
     }
 
@@ -50,18 +51,6 @@ class SewingByLine extends CI_Controller{
 
         echo json_encode($rst);
     }
-    // public function ajax_add(){
-	// 	$data=array(
-	// 		'tanggal'=>date('Y-m-d', strtotime($this->input->post('tanggal'))),
-	// 		'id_line'=>$this->input->post('line'),
-	// 		'id_style'=>$this->input->post('style'),
-	// 		'qty_plan'=>$this->input->post('qty_plan'),
-			
-
-	// 	);
-
-	// 	$insert=$this->TrimstoreModel->save($data);
-	// 	echo json_encode($insert);
-	// }
+    
 
 }
