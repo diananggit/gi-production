@@ -65,7 +65,7 @@
                  
                         <td><div class="square color-today"></div></td>
                         <td> : </td>
-                        <td>To day</td>
+                        <td>Todate</td>
                     </tr>
                 </table>
         <!-- Small boxes (Stat box) -->

@@ -12,7 +12,47 @@
   <?php $this->load->view('_partials/css'); ?>
   <?php $this->load->view('production_planning/css'); ?>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
-
+<style>
+#button{
+	display:block;
+	margin:20px auto;
+	padding:10px 30px;
+	background-color:#eee;
+	border:solid #ccc 1px;
+  cursor: pointer;
+}
+#overlay{	
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	display: none;
+	background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;  
+}
+.spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px #ddd solid;
+	border-top: 4px #2e93e6 solid;
+	border-radius: 50%;
+	animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+	100% { 
+		transform: rotate(360deg); 
+	}
+}
+.is-hide{
+	display:none;
+}
+</style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -37,7 +77,11 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+    <div id="overlay">
+	<div class="cv-spinner">
+		<span class="spinner"></span>
+	</div>
+</div>
     <!-- Main content -->
     <section class="content">
         <div class="box box-primary">
@@ -62,7 +106,7 @@
                  
                         <td><div class="square color-today"></div></td>
                         <td> : </td>
-                        <td>To day</td>
+                        <td>Todate</td>
                     </tr>
                 </table>
         <!-- Small boxes (Stat box) -->
@@ -88,6 +132,8 @@
 
 
 <script type="text/javascript">
+
+    
     
     $(function() {
         "use strict";
@@ -107,6 +153,14 @@
                         console.log(err);
                      }
         });
+
+        if ( planningDatas.length === 0 ) {
+           console.log('disni');
+            
+           $("#overlay").fadeIn(300);
+        }else{
+            console.log('disini');
+        }
 
         // get data date holidays 
         const dateHolidays = [];
@@ -207,7 +261,8 @@
 
         console.log(planningDatas[0]);
         console.log(demoSource[0].values[0]);
-    
+        
+
         // data color bar Line planing
         const items = ["ganttRed", "ganttGreen", "ganttOrange", "ganttYellow"]; 
  
