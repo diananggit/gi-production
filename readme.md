@@ -1,4 +1,4 @@
-## MEDAN - Media Analytics
+## Report GI - Report Globalindo Intimates
 
 1- Acces  <br>
    USERNAME dan PASSWORD : MANAGER : MANAGERGI <br>
