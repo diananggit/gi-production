@@ -74,19 +74,22 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('ReportDaily'); 
+													?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-                <a href="<?php // echo site_url('reportbarchartcutting'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('reportbarchartcutting'); 
+													?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily Chart</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php // echo site_url('reportcutting'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportcutting'); 
+												?>" class="nav-link">
 								<i class="fa fa-tags text-warning nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -128,13 +131,15 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-               <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
+               <a href="<?php // echo site_url('ReportDaily'); 
+												?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php // echo site_url('reportmolding'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportmolding'); 
+												?>" class="nav-link">
 								<i class="fa fa-tags text-primary nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -156,11 +161,17 @@
 								<i class="fa fa-exclamation-triangle text-primary nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
-            </li>
-            <li class="nav-item">
+						</li>
+						<li class="nav-item">
 							<a href="<?php echo site_url('ReportOutputMolding'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-primary nav-icon"></i>
 								<p>By Machine</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('SummaryMolding'); ?>" class="nav-link">
+								<i class="fa fa-list-alt text-primary nav-icon"></i>
+								<p>Summary Molding</p>
 							</a>
 						</li>
 						<!-- <li class="nav-item">
@@ -182,13 +193,15 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-              <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
+              <a href="<?php // echo site_url('ReportDaily'); 
+												?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
               </li> -->
 						<!-- <li class="nav-item">
-							<a href="<?php // echo site_url('reportsewing'); ?>" class="nav-link">
+							<a href="<?php // echo site_url('reportsewing'); 
+												?>" class="nav-link">
 								<i class="fa fa-tags text-danger nav-icon"></i>
 								<p>By Style</p>
 							</a>
@@ -223,7 +236,7 @@
 								<p> Daily Sewing Output</p>
 							</a>
 						</li>
-            <li class="nav-item">
+						<li class="nav-item">
 							<a href="<?php echo site_url('production_planning/ProductionPlanning'); ?>" class="nav-link">
 								<i class="fa fa-calendar-o text-danger nav-icon"></i>
 								<p> Production Planning</p>
@@ -242,7 +255,8 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<!-- <li class="nav-item">
-                <a href="<?php // echo site_url('ReportDaily'); ?>" class="nav-link">
+                <a href="<?php // echo site_url('ReportDaily'); 
+													?>" class="nav-link">
                   <i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
                   <p>Daily</p>
                 </a>
