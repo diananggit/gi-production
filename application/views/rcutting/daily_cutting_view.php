@@ -30,14 +30,10 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark" >GLOBALINDO INTIMATES</h1>
-            
           </div><!-- /.col -->
-          
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Summary</li> -->
-              <a href="<?php echo site_url('SummaryProduction') ?>"> <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"></i>SUMMARY</button></a>
+            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('summaryproduction') ?>"></i>SUMMARY</button>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -105,7 +101,7 @@
             <div class="card-body">
             <div class="media">
                   <div class="media-left">
-                  <h5 id="result3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                  <h5 id="resultSewing" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="wip3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="send3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
@@ -120,17 +116,16 @@
               <a href="<?php echo site_url('ReportBarChartPacking'); ?>" class="card-title">Packing Department</a>
             </div>
             <div class="card-body">
-              <div class="media">
-                <div class="media-left">
+            <div class="media">
+                  <div class="media-left">
                   <h5 id="result4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
-       
-      </div>
+        </div>
 
         <!-- Small boxes (Stat box) -->
 
@@ -157,223 +152,184 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-var day = new Date();
-var hr = day.getDay();
-var tgl;
-var tgl1;
-console.log('hr: ', hr);
+    var day = new Date();
+    var hr = day.getDay();
+    var tgl;
+    var tgl1;
+    console.log('hr: ', hr);
 
-$('#waitModal').modal({
-  backdrop: 'static',
-  keyboard: false
-});
-
-$('#waitModal').modal('show');
-
-$.when(showCuttingDepartment(), showMoldingDepartment(), showPackingDepartment(), showSewingDepartement()).done(
-  function(){
-    // console.log('done');
-    // $('#waitModal').modal({
-    //   backdrop: 'dynamic',
-    //   keyboard: true
-    // });
-    $('#waitModal').modal('hide');
-    $('.modal-backdrop').remove();
-  }
-);
-// showCuttingDepartment();
+   
+    showCuttingDepartment();
 
 
   
- function showCuttingDepartment(){
-  var thn = day.getFullYear();
-   var bln = day.getMonth() + 1;
-   if(hr == 1){
-     var hari = day.getDate()-2;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }else{
-    var hari = day.getDate()-1;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }
-  //  console.log('tgl1: ', tgl);
-   console.log('hari',hari);
-   var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-      (hari < 10 ? "0" + hari.toString() : hari.toString());
+    function showCuttingDepartment(){
+      var thn = day.getFullYear();
+      var bln = day.getMonth() + 1;
+      if(hr == 1){
+        var hari = day.getDate()-2;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }else{
+        var hari = day.getDate()-1;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }
+      //  console.log('tgl1: ', tgl);
+      console.log('hari',hari);
+      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+          (hari < 10 ? "0" + hari.toString() : hari.toString());
 
-      console.log('tanggal: ', tanggal);
+          console.log('tanggal: ', tanggal);
 
-   return $.ajax({
-     url: '<?php echo site_url('ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
-    //  type: 'GET',
-     dataType: 'json',
+      return $.ajax({
+        url: '<?php echo site_url('ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
+        type: 'GET',
+        dataType: 'json',
+        
+        success: function(rst){
+          console.log('rst', rst)
+          var output = parseInt(rst.qty);
+          var efficiency = (rst.eff);
+          $('#result1').text('Result   :  ' + output);
+          $('#efficiency1').text('Efficiency  : ' + efficiency + " %");
+
+        }
+      });
     
-     success: function(rst){
-      console.log('rst', rst)
-       var output = parseInt(rst.qty);
-      //  var wipall = parseInt(rst.wip);
-      //  var send = parseInt(rst.qty_sew);
-       var efficiency = (rst.eff);
-      //  if(hr == 1){
-       
-       $('#result1').text('Result   :  ' + output);
-       $('#efficiency1').text('Efficiency  : ' + efficiency + " %");
-      //  $('#wip1').text('WIP :  ' + wipall);
-      //  $('#send1').text('Send To Sewing :  ' + send);
-      //  }
-
-     },
-   });
-  //  showSewingDepartement();
- }
-
- function showSewingDepartement(){
-  var thn = day.getFullYear();
-   var bln = day.getMonth() + 1;
-   if(hr == 1){
-     var hari = day.getDate()-2;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
     }
-   }else{
-    var hari = day.getDate()-1;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }
-  //  console.log('tgl1: ', tgl);
-   console.log('hari',hari);
-   var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-      (hari < 10 ? "0" + hari.toString() : hari.toString());
+      showSewingDepartement();
+
+    function showSewingDepartement(){
+      var thn = day.getFullYear();
+      var bln = day.getMonth() + 1;
+      if(hr == 1){
+        var hari = day.getDate()-2;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }else{
+        var hari = day.getDate()-1;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }
+      //  console.log('tgl1: ', tgl);
+      console.log('hari',hari);
+
+      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+          (hari < 10 ? "0" + hari.toString() : hari.toString());
 
       console.log('tanggal: ', tanggal);
-
-   return $.ajax({
-     url: '<?php echo site_url('ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
-     dataType: 'json',
-     success: function(rst){
-      var output2=parseInt(rst.qty_sewing);
-        //  var wip2=parseInt(rst.wip);
+    return $.ajax({
+      url:'<?php echo site_url('ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
+      dataType: 'json',
+      success: function(rst){
+        var output2 = parseInt(rst.qty_sewing);
+        
         var efficiency2 = (rst.eff);
-        $('#result3').text('Result   : ' + output2);
-        //  $('#wip3').text('WIP   : ' + wip2);
+        $('#resultSewing').text('Result  :' + output2);
         $('#efficiency3').text('Efficiency  : ' + efficiency2 + " %");
 
-     },
-    //  timeout: 5000,
-    //  error: function(request,status,err){
-    //    if(status=='timeout'){
-    //      $.ajax(this)
-    //    }
-    //  }
-      
-   });
-  //  showPackingDepartment();
- }
+      },
+        
+    });
+  }
 
- function showPackingDepartment(){
+  showPackingDepartment();
 
-  var thn = day.getFullYear();
-   var bln = day.getMonth() + 1;
-   if(hr == 1){
-     var hari = day.getDate()-2;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }else{
-    var hari = day.getDate()-1;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }
-  //  console.log('tgl1: ', tgl);
-   console.log('hari',hari);
-   var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-      (hari < 10 ? "0" + hari.toString() : hari.toString());
+   function showPackingDepartment(){
 
-      console.log('tanggal: ', tanggal);
+    var thn = day.getFullYear();
+    var bln = day.getMonth() + 1;
+     if(hr == 1){
+       var hari = day.getDate()-2;
+      if(hari <= 0){
+        bln -= 1;
+        tgl = new Date(thn, bln, 0);
+        hari = tgl.getDate();
+      }
+     }else{
+      var hari = day.getDate()-1;
+      if(hari <= 0){
+        bln -= 1;
+        tgl = new Date(thn, bln, 0);
+        hari = tgl.getDate();
+      }
+     }
+    //  console.log('tgl1: ', tgl);
+     console.log('',hari);
+     var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+        (hari < 10 ? "0" + hari.toString() : hari.toString());
+
+        console.log('tanggal: ', tanggal);
+
+    
+     return $.ajax({
+       url: '<?php echo site_url('ReportDaily/ajax_get_packing'); ?>/' + tanggal,
+       dataType: 'json',
+       success: function(rst){
+          var output3 = parseInt(rst.qty);
+          var efficiency3= (rst.eff);
+          
+            $('#result3').text('Result   : ' + output3);
+            $('#efficiency3').text('Efficiency   : ' + efficiency3+ "%");
+          
+         
+       },
+     });
   
-   return $.ajax({
-     url: '<?php echo site_url('ReportDaily/ajax_get_packing'); ?>/' + tanggal,
-     dataType: 'json',
-     success: function(rst){
-      var output3 = parseInt(rst.qty);
-      //  var sam3 = parseInt(rst.sam_result);
-       var efficiency3= (rst.eff);
-       $('#result4').text('Result   : ' + output3);
-       $('#efficiency4').text('Efficiency   : ' + efficiency3+ "%");
-     },
-    //  timeout: 5000,
-    //  error: function(request, status, err){
-    //    if(status == "timeout"){
-    //      $.ajax(this);
-    //    }
-    //  }     
-
-   });
-// showMoldingDepartment();
- }
-
-function showMoldingDepartment(){
-  var thn = day.getFullYear();
-   var bln = day.getMonth() + 1;
-   if(hr == 1){
-     var hari = day.getDate()-4;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
-   }else{
-    var hari = day.getDate()-1;
-    if(hari <= 0){
-      bln -= 1;
-      tgl = new Date(thn, bln, 0);
-      hari = tgl.getDate();
-    }
    }
-  //  console.log('tgl1: ', tgl);
-   console.log('hari',hari);
-   var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-      (hari < 10 ? "0" + hari.toString() : hari.toString());
+   showMoldingDepartment();
 
-      console.log('tanggal: ', tanggal);
-  return $.ajax({
-    url:'<?php echo site_url('ReportDaily/ajax_get_molding'); ?>/' + tanggal,
-    dataType: 'json',
-    success: function(rst){
-      var output4 = parseInt(rst.qty_mold);
-      // var wip4 = parseInt(rst.wip);
-      // var sam4 = parseInt(rst.sam);
-      var efficiency4 = (rst.eff);
-      $('#result2').text('Result  :' + output4);
-      // $('#wip2').text('WIP  : ' + wip4);
-      $('#efficiency2').text('Efficiency  : ' + efficiency4 + " %");
+  function showMoldingDepartment(){
+    var thn = day.getFullYear();
+    var bln = day.getMonth() + 1;
+    if(hr == 1){
+      var hari = day.getDate()-2;
+      if(hari <= 0){
+        bln -= 1;
+        tgl = new Date(thn, bln, 0);
+        hari = tgl.getDate();
+      }
+    }else{
+      var hari = day.getDate()-1;
+      if(hari <= 0){
+        bln -= 1;
+        tgl = new Date(thn, bln, 0);
+        hari = tgl.getDate();
+      }
+    }
+    //  console.log('tgl1: ', tgl);
+    console.log('hari',hari);
+    var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+        (hari < 10 ? "0" + hari.toString() : hari.toString());
 
-    },
-    // timeout: 5000,
-    //  error: function(request, status, err){
-    //    if(status == "timeout"){
-    //      $.ajax(this);
-    //    }
-    //  }    
-  });
-}
+        console.log('tanggal: ', tanggal);
+    return $.ajax({
+      url:'<?php echo site_url('ReportDaily/ajax_get_molding'); ?>/' + tanggal,
+      dataType: 'json',
+      success: function(rst){
+        var output4 = parseInt(rst.qty_mold);
+        
+        var efficiency4 = (rst.eff);
+        $('#result2').text('Result  :' + output4);
+        $('#efficiency2').text('Efficiency  : ' + efficiency4 + " %");
+
+      },
+        
+    });
+  }
   });
 </script>
 </body>

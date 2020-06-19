@@ -200,7 +200,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label text-right">Remaks:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="remaksInput" name="remaksInput" style="text-align: center;" />
+                                                <input type="text" class="form-control" id="remaksInput" name="remaksInput"  />
                                             </div>
                                         </div>
                                     </div>
@@ -406,6 +406,7 @@
       }
 
       $('#btnUpdate').click(function() {
+
             var url;
 
           $.ajax({
@@ -427,13 +428,11 @@
       localStorage.setItem('dayChart', line);
       console.log('lineI: ', line);
       window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
-
       })
 
       $('#linkWeekly').click(function(){
         localStorage.setItem('weekChart', line);
         window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
-
       })
 
       $('#linkMonthly').click(function(){
@@ -443,7 +442,6 @@
 
       $('linkRemak').click(function(){
         localStorage.setItem('remaks', line);
-        
       })
 
       $('#line').val(line);
