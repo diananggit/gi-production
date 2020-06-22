@@ -33,7 +33,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('summaryproduction') ?>"></i>SUMMARY</button>
+            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('SummaryProduction') ?>"></i>SUMMARY</button>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
