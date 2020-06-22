@@ -29,7 +29,6 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -53,20 +52,14 @@
                     <?php endforeach; ?>
                 </select>
                 </div>
-                <!-- <div class="from-group mx-sm-4 mb-3 mt-3">
-                    <label> Select Line </label>
-                    </br>
-                <select class="form-control select2" id="line" name="line" style="width: 30%" placeholder="please select line"></select>
-                </div> -->
+               
                 <div class="card-body mt-1">
             
                  <hr/>
-            <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
                 <div class="row">
                     <div class="col-md-8">
                          <div class="card card-info" >
                             <div class="card-header">
-                    <!-- <h3 class="card-title"></h3> -->
                             </div>
                             <div class="card-body">
                                 <table id="tableSewingDay" class="table table-border table-striped" >
@@ -93,7 +86,6 @@
                     <div class="col-md-8">
                         <div class="card card-info">
                             <div class="card-header">
-                    <!-- <h3 class="card-title"></h3> -->
                             </div>
                             <div class="card-body">
                                 <canvas id="barSewingDayChart" ></canvas>
@@ -173,7 +165,6 @@
             var chartSewingLineBackWingsValues = [];
             var chartSewingLineCupsValues = [];
             var chartSewingLineAssemblyValues = [];
-            // var chartSewingLineEff = [];
             $.each(data, function(i, item){
               chartSewingLineCenterPanelValues.push(parseInt(item.qty_cp));
               chartSewingLineBackWingsValues.push(parseInt(item.qty_bw));
@@ -186,7 +177,6 @@
             new Chart(chartSewingLineCanvas,{
               type:'bar',
               data: {
-                // labels: ["CenterPanel",z "BackWings", "Cup", "Assembly"],
                 
                 datasets: [
                  {

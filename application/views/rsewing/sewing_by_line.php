@@ -29,7 +29,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -190,7 +189,6 @@
                                             </div>
                                         </div>
                                          <div class="form-group row">
-                                            <!-- <input type="hidden" id="idLine"> -->
                                             <label class="col-sm-4 col-form-label text-right">Line:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="lineInput" name="lineName" style="text-align: center;" class="form-control" disabled>
