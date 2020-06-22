@@ -39,8 +39,6 @@ Server compiled with....
 
 ### Author
 
-**heriipurnama**
-
 * [github/diananggit](https://github.com/diananggit)
 * [github/andi](https://github.com/Andi131014)
 * [github/heriipurnama](https://github.com/heriipurnama)
