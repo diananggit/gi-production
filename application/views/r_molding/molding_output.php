@@ -110,9 +110,9 @@
 										<?php endforeach ?>
 									</tbody>
 									<tfoot>
-										<tr>
+										<!-- <tr>
 											<th colspan="8" style="text-align:right">Total:</th>
-										</tr>
+										</tr> -->
 									</tfoot>
 								</table>
 							</div>
@@ -142,50 +142,7 @@
 
 		// $(document).ready(function() {
 
-		table = $('#tableOrc').DataTable({
-
-			"footerCallback": function(row, data, start, end, display) {
-				var api = this.api(),
-					data;
-
-				// Remove the formatting to get integer data for summation
-				var intVal = function(i) {
-					return typeof i === 'string' ?
-						i.replace(/[\$,]/g, '') * 1 :
-						typeof i === 'number' ?
-						i : 0;
-				};
-
-				// Total over all pages
-				total = api
-					.column(7)
-					.data()
-					.reduce(function(a, b) {
-						return intVal(a) + intVal(b);
-					}, 0);
-
-
-
-				// Total over this page
-				pageTotal = api
-					.column(7, {
-						page: 'current'
-					})
-					.data()
-					.reduce(function(a, b) {
-						return intVal(a) + intVal(b);
-					}, 0);
-
-				// Update footer
-				$(api.column(7).footer()).html(
-					+pageTotal + '( ' + total + ' Total)'
-				);
-
-				// $( api.column( 2 ).footer() ).html(
-				//     'Total Balance:' + total2
-				// );
-			}
-		});
+		table = $('#tableOrc').DataTable();
 		$('.datepicker').datepicker({
 			format: 'yyyy-mm-dd',
 		});
