@@ -221,26 +221,10 @@
         url:'<?php echo site_url('ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
-          if(tanggal == 0){
-            var output2 = parseInt(rst.qty_sewing);
+          var output2 = parseInt(rst.qty_sewing);
           var efficiency2 = (rst.eff);
-              if(output2 == null){
-                document.write("data kosong");
-              }else{  
-                var output2 = parseInt(rst.qty_sewing);
-          var efficiency2 = (rst.eff);
-          if(output2 != null){
-            $('#resultSewing').text('Result  :' + output2);
+          $('#resultSewing').text('Result  :' + output2);
           $('#efficiency3').text('Efficiency  : ' + efficiency2 + " %");
-          }
-          
-              }
-            }
-
-          // var output2 = parseInt(rst.qty_sewing);
-          // var efficiency2 = (rst.eff);
-          // $('#resultSewing').text('Result  :' + output2);
-          // $('#efficiency3').text('Efficiency  : ' + efficiency2 + " %");
 
         },
           
@@ -270,33 +254,29 @@
       }
       // console.log('tgl1: ', tgl);
       console.log('',hari);
-      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+      let tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
           (hari < 10 ? "0" + hari.toString() : hari.toString());
-
-          console.log('tanggal: ', tanggal);
 
       return $.ajax({
         url: '<?php echo site_url('ReportDaily/ajax_get_packing'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
-          // var tgl= (rst.tgl);
-            // var output3 = (rst.qty);
-            // var efficiency3= (rst.eff);
-            // var output3 = $('#result4').val();
-            // var efficiency3= $('#efficiency4').val();
-
-            if(tanggal <= 0){
-              var output3 = (rst.qty);
-                var efficiency3= (rst.eff);
-              if(output3 != null){
-                document.write("data kosong");
-              }else{  
-                var output3 = (rst.qty);
-                var efficiency3= (rst.eff);
-              $('#result4').text('Result   : ' + output3);
-              $('#efficiency4').text('Efficiency   : ' + efficiency3+ "%");
-              }
-            }
+          // if(tanggal === undefined){
+          // var output3 = parseInt(rst.qty);
+          // var efficiency3 = (rst.eff);
+              // if(output3 === null){
+              //   document.write("data kosong");
+              // }else{  
+                var output3 = parseInt(rst.qty);
+                var efficiency3 = (rst.eff);
+          // if(output3 >= 0){
+            $('#result4').text('Result  :' + output3);
+          $('#efficiency4').text('Efficiency  : ' + efficiency3 + " %");
+          // }
+          
+              // }
+            // }
+          
         },
       });
     }
