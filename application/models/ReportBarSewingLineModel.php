@@ -10,7 +10,7 @@ class ReportBarSewingLineModel extends CI_Model{
         $dayOfWeek = date('w');
         if($dayOfWeek == 1){
 
-            $this->db->where('tgl', date('Y-m-d', strtotime("- 2 day")));
+            $this->db->where('tgl', date('Y-m-d', strtotime("- 3 day")));
         }else if($dayOfWeek > 1){
             $this->db->where('tgl', date('Y-m-d', strtotime("- 1 day")));
         }
