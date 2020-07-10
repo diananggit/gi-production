@@ -97,7 +97,7 @@
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportCuttingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-warning nav-icon"></i>
-								<p>By Orc</p>
+								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -147,7 +147,7 @@
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportMoldingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-primary nav-icon"></i>
-								<p>By Orc</p>
+								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -209,7 +209,7 @@
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportSewingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-danger nav-icon"></i>
-								<p>By Orc</p>
+								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -270,7 +270,7 @@
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportPackingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-success nav-icon"></i>
-								<p>By Orc</p>
+								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">

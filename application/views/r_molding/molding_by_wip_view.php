@@ -122,10 +122,10 @@
   $(document).ready(function(){
     var table = $('#wipTableMolding').DataTable({
       dom: 'Blfrtip',
-      // lengthMenu: [[10, 25, 50,100,200,300,400], [10, 25, 50,100,200,300,400]],
-      // buttons: [
-      //   'excel','print'
-      // ],
+      lengthMenu: [[10, 25, 50,100,200,300,400], [10, 25, 50,100,200,300,400]],
+      buttons: [
+        'excel','print'
+      ],
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  

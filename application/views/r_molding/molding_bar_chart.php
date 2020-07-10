@@ -39,7 +39,7 @@
     <section class="content">
       <div class="container-fluid">
         <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report</h2>
-        <div class="col-md-10" style="height:5; width:100;">
+        <div class="col-md-12" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">
                     <canvas id="barMolding" style="height:5; width:100"></canvas>
@@ -104,6 +104,10 @@ function formatDate(date) {
         var chartReportMoldingCanvas = $('#barMolding').get(0).getContext('2d');
         var chartReportMoldingLabels = [];
         var chartReportMoldingValues = [];
+        var chartReportMoldingEff = [];
+        var arrChartDataEff = [];
+        var arrChartDataVal = [];
+        var arrChartLabel =[];
 
         let dateSystem = Date(); 
         let compare = formatDate(dateSystem);
@@ -118,7 +122,7 @@ function formatDate(date) {
 
          
         let endLength = data.length;
-        let startLength = endLength - 7 ;
+        let startLength = endLength - 30 ;
 
         resultDatas = resultFilter.slice(startLength, endLength);
 
@@ -126,28 +130,27 @@ function formatDate(date) {
         var arrChartLabel = [];
 
         $.each(resultDatas, function(i, item) {
+
+          arrChartDataEff.push(JSON.parse(item.eff));
+          arrChartDataVal.push(JSON.parse(item.qty_mold));
+          arrChartLabel.push(item.tgl); 
           
-          arrChartData.push({
-                            'val' : JSON.parse(item.qty_mold),
-                            'eff' : JSON.parse(item.eff)
-                             });
-          arrChartLabel.push({'tgl': item.tgl});
            
          });
-         var outputMax = Math.max(...arrChartData.map(o => o.val),0);
-         var effMax = Math.max(...arrChartData.map(o => o.eff),0);
+         var outputMax = Math.max.apply(null, arrChartDataVal);
+        var effMax = Math.max.apply(null,arrChartDataEff);
+
+        var arrColor = [];
+        for (x= 0; x <= arrChartDataVal.length; x++) {
+          arrColor.push(
+          randomColor()
+          );
+        }
 
          new Chart(chartReportMoldingCanvas,{
             type:'bar',
             data: {
-              labels: [
-                arrChartLabel[0]['tgl'],
-                arrChartLabel[1]['tgl'],
-                arrChartLabel[2]['tgl'],
-                arrChartLabel[3]['tgl'],
-                arrChartLabel[4]['tgl'],
-                arrChartLabel[5]['tgl'],
-                ],
+              labels: arrChartLabel,
               datasets: [
                 {
                   type: 'line',
@@ -155,32 +158,14 @@ function formatDate(date) {
                   backgroundColor : "#3377ff",
                   label: 'Efficiency',
                   yAxisID: 'axisBarLine',
-                  data: [
-                    arrChartData[0]['eff'],
-                    arrChartData[1]['eff'],
-                    arrChartData[2]['eff'],
-                    arrChartData[3]['eff'],
-                    arrChartData[4]['eff'],
-                    arrChartData[5]['eff'],
-                  ],
+                  data: arrChartDataEff,
                   fill: false
                 },
                 {
                 label: 'Output',
                 yAxisID: 'axisBarChart',
-                data: [
-                  arrChartData[0]['val'],
-                  arrChartData[1]['val'],
-                  arrChartData[2]['val'],
-                  arrChartData[3]['val'],
-                  arrChartData[4]['val'],
-                  arrChartData[5]['val'], 
-                ],
-                backgroundColor : [
-                  "#ff9900", "#ff9900", "#ff9900",
-                  "#ff9900", "#ff9900", "#ff9900",
-                  "#ff9900"
-                ],
+                data: arrChartDataVal,
+                backgroundColor : arrColor,
               }
               ]
             },
@@ -201,7 +186,7 @@ function formatDate(date) {
                   position:"right",
                   ticks: {
                     beginAtZero: true,
-                    max: parseInt(effMax) + 10,
+                    max: parseInt(effMax) + 30,
                     callback: function(value){
                       return value + "%";
                     }
@@ -225,6 +210,11 @@ function formatDate(date) {
 
       // }
     }); 
+    function randomColor() {
+        return "hsl(" + 360 * Math.random() + ',' +
+          (20 + 70 * Math.random()) + '%,' +
+          (65 + 10 * Math.random()) + '%)'
+      }
   }
     
 </script>

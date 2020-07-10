@@ -65,8 +65,8 @@ class ReportWipMoldingModel extends CI_Model{
     }    
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
+        $query = $this->db->query(" SELECT * FROM view_wip_molding_new WHERE
+wip_mold != '0' ");
 
         return $query->result();
     }

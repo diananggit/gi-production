@@ -62,7 +62,8 @@
           <table id="tableToSewing" class="table table-bordered table-striped" cellspacing="0" width="100%">
             <thead>
               <tr>
-              <th>Line</th>
+                <th>Tanggal</th>
+                <th>Line</th>
                 <th>Orc Number</th>
                 <th>Style</th>
                 <th>Color</th>
@@ -73,9 +74,12 @@
             <tbody>
             <?php foreach($sewing as $sw): ?>
                 <tr>
-                <td>
-                <?php echo $sw->line ?>
-                </td>
+                  <td>
+                    <?php echo $sw->tgl ?>
+                  </td>
+                  <td>
+                    <?php echo $sw->line ?>
+                  </td>
                   <td>
                     <?php echo $sw->orc ?>
                   </td>
@@ -93,7 +97,7 @@
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="5" style="text-align:right"></th>
+              <th colspan="6" style="text-align:right"></th>
                 <!-- <th></th> -->
               </tr>
             </tfoot>
@@ -129,7 +133,8 @@
   var table;
   $(document).ready(function(){  
     table = $('#tableToSewing').DataTable({
-      dom: 'Bfrtip',
+      dom: 'Blfrtip',
+      lengthMenu: [[10, 25, 50,100,200,300,400], [10, 25, 50,100,200,300,400]],
       buttons: [
         'copy','csv','excel','pdf','print'
       ],
@@ -146,7 +151,7 @@
  
             // Total over all pages
             total = api
-                .column( 4)
+                .column( 5)
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -154,7 +159,7 @@
  
             // Total over this page
             pageTotal = api
-                .column( 4, { page: 'current'} )
+                .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -164,7 +169,7 @@
             // $( api.column( 3 ).footer() ).html(
             //     'Total :' + total
             // );
-            $( api.column( 4 ).footer() ).html(
+            $( api.column( 5 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
         }
@@ -206,6 +211,7 @@
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
+                    item.tgl,
                     item.line,
                     item.orc,
                     item.style,
