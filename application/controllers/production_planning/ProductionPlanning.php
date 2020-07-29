@@ -18,7 +18,7 @@ class ProductionPlanning extends CI_Controller{
 
     function index(){
         $data = array();
-        $this->load->view('production_planning/index',$data);
+        $this->load->view('production_planning/ProductionPlanning2',$data);
     }
     
     // get data planning by line
