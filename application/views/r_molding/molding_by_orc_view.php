@@ -72,25 +72,25 @@
             <tbody>
               <?php foreach($moldingorc as $mc): ?>
                 <tr>
-												<td>
-													<?php echo date('d-m-Y', strtotime($mc->tgl)) ?>
-												</td>
-												<td>
-													<?php echo $mc->orc ?>
-												</td>
-												<td>
-													<?php echo $mc->style ?>
-												</td>
-												<td>
-													<?php echo $mc->color ?>
-												</td>
-												<td>
-													<?php echo $mc->size ?>
-												</td>
-												<td>
-													<?php echo $mc->qty_mold ?>
-												</td>
-											</tr>
+                  <td>
+                    <?php echo date('d-m-Y', strtotime($mc->tgl)) ?>
+                  </td>
+                  <td>
+                    <?php echo $mc->orc ?>
+                  </td>
+                  <td>
+                    <?php echo $mc->style ?>
+                  </td>
+                  <td>
+                    <?php echo $mc->color ?>
+                  </td>
+                  <td>
+                    <?php echo $mc->size ?>
+                  </td>
+                  <td>
+                    <?php echo $mc->qty_mold ?>
+                  </td>
+                </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
@@ -100,7 +100,6 @@
             </tfoot>
           </table>
           </div>
-        
 
         <!-- Small boxes (Stat box) -->
 
@@ -111,7 +110,6 @@
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -140,7 +138,6 @@
                     typeof i === 'number' ?
                         i : 0;
             };
- 
             // Total over all pages
             total = api
                 .column( 5 )
@@ -148,8 +145,6 @@
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-
-            
  
             // Total over this page
             pageTotal = api
@@ -163,17 +158,11 @@
             $( api.column( 5 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
-
-            // $( api.column( 2 ).footer() ).html(
-            //     'Total Balance:' + total2
-            // );
         }
     });
-    
 
   $('.datepicker').datepicker({
    format: 'yyyy-mm-dd',
-  
    
   });
   });
@@ -181,7 +170,6 @@
   $('#filter').click(function(){
 
     $('#orcTableList').css('display','');
-    // e.preventDefault();
 
     var from_date = $('#from_date').val();  
     var to_date = $('#to_date').val();  
@@ -199,18 +187,12 @@
         $.ajax({  
               url:"<?php echo site_url('ReportMoldingByOrc/filter');?>",  
               method:"POST",  
-              // data:{from_date:from_date, to_date:to_date},  
               data: {'dataStr': dataStr},
               dataType: 'json',
               success:function(data)  
               {  
                 // console.log('data: ', data);
                 table.clear();
-
-                // var output = [];
-                // for (var 1=0; i<data.lenght; i++) {
-                //   output.push('<option value="' + data[i].orc +  data[i].qty_order) + data[i].qty_cutting +'">' + '</option>');
-                // }
                 $.each(data, function(i, item){
                   table.row.add([
                     item.tgl,
@@ -221,8 +203,6 @@
                     item.qty_mold,
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
               }  
           });  
       }

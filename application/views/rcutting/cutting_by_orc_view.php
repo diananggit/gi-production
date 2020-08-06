@@ -73,8 +73,8 @@
             <tbody>
               <?php foreach($cuttingorc as $orc): ?>
                 <tr>
-                <td>
-                  <?php echo date('d-m-Y', strtotime($orc->tgl)) ?>
+                  <td>
+                    <?php echo date('d-m-Y', strtotime($orc->tgl)) ?>
                   </td>
                   <td>
                     <?php echo $orc->orc ?>
@@ -91,7 +91,6 @@
                   <td>
                     <?php echo $orc->cutting_sam ?>
                   </td>
-                 
                 </tr>
                 <?php endforeach ?>
             </tbody>
@@ -102,8 +101,6 @@
             </tfoot>
           </table>
           </div>
-        
-
         <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
@@ -153,8 +150,6 @@
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-
-            
  
             // Total over this page
             pageTotal = api
@@ -168,17 +163,12 @@
             $( api.column( 4 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
-
-            // $( api.column( 2 ).footer() ).html(
-            //     'Total Balance:' + total2
-            // );
         }
     });
     
 
   $('.datepicker').datepicker({
    format: 'yyyy-mm-dd',
-  
    
   });
   });
@@ -211,10 +201,6 @@
                 // console.log('data: ', data);
                 table.clear();
 
-                // var output = [];
-                // for (var 1=0; i<data.lenght; i++) {
-                //   output.push('<option value="' + data[i].orc +  data[i].qty_order) + data[i].qty_cutting +'">' + '</option>');
-                // }
                 $.each(data, function(i, item){
                   table.row.add([
                     item.tgl,
@@ -225,8 +211,7 @@
                     item.cutting_sam,
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
+                      
               }  
           });  
       }
@@ -235,7 +220,6 @@
   {
           alert("Please Select Date");  
   }
-    // }  
   });
     
 </script>

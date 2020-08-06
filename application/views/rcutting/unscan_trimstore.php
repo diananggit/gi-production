@@ -26,7 +26,6 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.container-fluid -->
@@ -101,10 +100,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var table = $('#wipTable').DataTable({
-					// dom: 'Bfrtip',
-					// buttons: [
-					// 	'copy', 'csv', 'excel', 'pdf', 'print'
-					// ],
+				
 					"footerCallback": function ( row, data, start, end, display ) {
 						var api = this.api(), data;
 			

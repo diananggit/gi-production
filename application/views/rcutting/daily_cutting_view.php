@@ -29,7 +29,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark" >GLOBALINDO INTIMATES</h1>
+          <h4 class="m-0 text-dark" >
+              <b> GLOBALINDO INTIMATES,
+              <span id="dailyDate" style="color:red;"></span>
+              </b>
+          </h4>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -55,8 +59,6 @@
                   <div class="media-left">
                   <h5 id="result1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency1" style="color: #1f2d3d; font-family: Times New Roman "></h5>
-                  <h5 id="wip1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="send1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   </div>
                 </div>
               </div>
@@ -72,8 +74,6 @@
                   <div class="media-left">
                   <h5 id="result2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="wip2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="send2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   </div>
                 </div>
               </div>
@@ -88,11 +88,9 @@
             </div>
             <div class="card-body">
               <div class="media">
-                  <div class="media-left">
+                  <div>
                   <h5 id="resultSewing" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="wip3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="send3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   </div>
                 </div>
             </div>
@@ -166,12 +164,17 @@
           hari = tgl.getDate();
         }
       }
-      //  console.log('tgl1: ', tgl);
       console.log('hari',hari);
       var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
           (hari < 10 ? "0" + hari.toString() : hari.toString());
 
           console.log('tanggal: ', tanggal);
+
+        const tglNow = tanggal;
+
+        // assign value JS to html. Date now !!!
+        document.getElementById('dailyDate').innerHTML = tanggal;
+          
 
       return $.ajax({
         url: '<?php echo site_url('ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
@@ -261,22 +264,10 @@
         url: '<?php echo site_url('ReportDaily/ajax_get_packing'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
-          // if(tanggal === undefined){
-          // var output3 = parseInt(rst.qty);
-          // var efficiency3 = (rst.eff);
-              // if(output3 === null){
-              //   document.write("data kosong");
-              // }else{  
-                var output3 = parseInt(rst.qty);
-                var efficiency3 = (rst.eff);
-          // if(output3 >= 0){
+            var output3 = parseInt(rst.qty);
+            var efficiency3 = (rst.eff);
             $('#result4').text('Result  :' + output3);
           $('#efficiency4').text('Efficiency  : ' + efficiency3 + " %");
-          // }
-          
-              // }
-            // }
-          
         },
       });
     }

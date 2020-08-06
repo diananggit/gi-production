@@ -9,12 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <?php $this->load->view('_partials/css'); ?>
- 
 
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
   <!-- Navbar -->
   <?php $this->load->view('_partials/navbar.php'); ?>
   <!-- /.navbar -->
@@ -93,42 +91,21 @@
                 </tr>
                 <?php endforeach ?>
             </tbody>
-            <!-- <tfoot align="right">
-              <tr><th></th><th></th><th></th><th></th><th></th></tr>
-            </tfoot> -->
             <tfoot>
               <tr>
-              <th colspan="6" style="text-align:right">Total:</th>
-                <!-- <th></th> -->
-                
+                <th colspan="6" style="text-align:right">Total:</th>
               </tr>
-              
             </tfoot>
           </table>
-        
-
-        <!-- Small boxes (Stat box) -->
-
-        <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
-
 
 <script type="text/javascript">
   //date range
@@ -165,12 +142,6 @@
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-
-            // Update footer
-            // $( api.column( 0).footer() ).html('Total');
-            // $( api.column( 3).footer() ).html(total);
-            // $( api.column( 4).footer() ).html(totalb);
-             // Update footer
             $( api.column( 4 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
@@ -181,7 +152,6 @@
 
   $('.datepicker').datepicker({
   format: 'yyyy-mm-dd',
-  
 
   });
   });
@@ -223,8 +193,7 @@
                     item.sam,
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
+                  
               }  
           });  
       }
@@ -233,7 +202,6 @@
   {
           alert("Please Select Date");  
   }
-    // }  
   });
     
 </script>

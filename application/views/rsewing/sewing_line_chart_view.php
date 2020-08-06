@@ -29,13 +29,8 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h2 style="text-align: center; color: #dc3545">Globalindo Intimates - Sewing Report</h2> -->
             </div><!-- /.col -->
-            <!-- <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right"> -->
-              <!-- <button type="button" id="linkWeekly" class="btn btn-danger" style="color: white;"><i class="fa fa-table"><a href="<?php echo site_url('summaryproduction') ?>"></i>REMARK</button> -->
-            <!-- </ol>
-          </div> -->
+            
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
@@ -49,7 +44,11 @@
           <!--modal pilihan-->
           
         </div>
-        <h2 style="text-align: center; color: #dc3545">Globalindo Intimates - Sewing Report</h2>
+        <h4 style="text-align: center; color:red" >
+          <b>Globalindo Intimates - Sewing Report,
+            <span id="dailyDate" style="color:red;"></span>
+          </b>
+        </h4>
         <div class="col-md-12">
           <div class="card">
             <div class="card-body" >
@@ -57,8 +56,6 @@
             </div>
           </div>
         </div>
-
-
         <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
@@ -83,12 +80,44 @@
 
 
   <script type="text/javascript">
+
     var day = new Date();
     var hr = day.getDay();
+    var tgl;
+    var tgl1;
+    console.log('hr: ', hr);
 
     showReportSewingLine();
 
     function showReportSewingLine() {
+      var thn = day.getFullYear();
+      var bln = day.getMonth() + 1;
+      if(hr == 1){
+        var hari = day.getDate()-3;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }else{
+        var hari = day.getDate()-1;
+        if(hari <= 0){
+          bln -= 1;
+          tgl = new Date(thn, bln, 0);
+          hari = tgl.getDate();
+        }
+      }
+      //  console.log('tgl1: ', tgl);
+      console.log('hari',hari);
+      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
+          (hari < 10 ? "0" + hari.toString() : hari.toString());
+
+          console.log('tanggal: ', tanggal);
+
+        const tglNow = tanggal;
+
+        // assign value JS to html. Date now !!!
+        document.getElementById('dailyDate').innerHTML = tanggal;
    
       $.ajax({
         url: '<?php echo site_url('reportBarSewingLine/ajax_get_qty_sewing_line'); ?>',
@@ -182,21 +211,11 @@
                   },
 
                 ]
-                //     xAxes: [{
-                //     // Change here
-                // 	barPercentage: 0.4
-                // }]
 
               },
               onClick: function(event, array) {
                 let element = this.getElementAtEvent(event);
                 console.log('element: ', element);
-                // $('#modal_change_remaks').modal('show');
-
-                // $('#modal_change_remaks').on('shown.bs.modal', function(){
-
-                // $('#sixdays').click(function(event, array) {
-                  // let element = this.gentElementAtEvent(event);
                   if (element.length > 0) {
                     var series = element[0]._model.datasetLabel;
                     var label = element[0]._model.label;
@@ -205,8 +224,6 @@
                     var line = [label, value];
 
                     localStorage.setItem('lineChart', line);
-
-                    // alert(label+"dengan nilai"+value);S
 
                     window.open('<?php echo site_url("SewingByLine"); ?>', '_self');
                   }
