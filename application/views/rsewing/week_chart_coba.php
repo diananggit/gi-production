@@ -36,7 +36,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report</h2>
+        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Sewing Report</b></h2>
         <!-- <div class="col-md-6"> -->
             <div class="card">
                 <div class="card-body">
@@ -48,9 +48,6 @@
           <div class="card-tools">
             <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-bar-chart"></i>Per Week</button>                
           </div>
-       
- 
-        <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
@@ -80,7 +77,6 @@
       console.log('lineArr: ', lineArr);
       var lineSplit = lineArr.split(",");
       line = lineSplit[0];
-// var label = lineSplit[1];
 LineDailyChart();
 
 //function format
@@ -98,8 +94,6 @@ LineDailyChart();
         return [year, month, day].join('-');
     }  
 
-    
-
 function LineDailyChart() {
     $.ajax({
       url: '<?php echo site_url('LineWeekChart/ajax_get_daily_sewing_line'); ?>'  ,
@@ -113,8 +107,6 @@ function LineDailyChart() {
       var chartSewingLineLabels = [];
       var chartSewingLineValues = [];
       var chartSewingLineEff = [];
-      // var a = "%";
-      // var eff = chartSewingLineEff.concat(a);
         console.log('data', data);
 
 // get date for system
@@ -129,10 +121,6 @@ function LineDailyChart() {
       return hero.tgl < compare;
     });
 
-    // get last index off array
-    // let lastIndex = data.map( datas => { return datas.tgl; }).indexOf('2020-01-29');
-
-    // slicing array get data view 6 array from last data array.
     let endLength = data.length;
     let startLength = endLength - 7 ;
 
@@ -211,14 +199,9 @@ $('#linkWeekly').click(function(){
 
     window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
 
-
   })
 
-
 $('#line').val(line);
-// $('#label').val(label);
-
-
 
 })
 </script>

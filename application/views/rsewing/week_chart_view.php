@@ -20,7 +20,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -30,7 +29,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report</h2>
+        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Sewing Report</b></h2>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -40,9 +39,6 @@
                 </div>
             </div>
         </div>
-       
- 
-        <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
@@ -51,7 +47,6 @@
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
  
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -71,16 +66,12 @@
   <!-- Main Sidebar Container -->
   <?php $this->load->view('_partials/sidebar.php'); ?>
 
-
 <script>
 $(document).ready(function(){
 var lineArr = localStorage.getItem('lineChart');
 var lineSplit = lineArr.split(",");
 var line = lineSplit[0];
 var label = lineSplit[1];
-
-// console.log('line: ', line);
-// console.log('label: ', label);
 
 $('#line').val(line);
 $('#label').val(label);

@@ -29,7 +29,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -43,7 +42,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h3 class="card-title">Globalindo Intimates - WIP Report</h3>
+                          <h3 class="card-title"><b>Globalindo Intimates - WIP Report</b></h3>
                          
                       </div>
                       <div class="card-body">
@@ -59,8 +58,6 @@
                                     <td>QTY WIP Cutting</td>
                                     <td>QTY Sewn</td>
                                     <td>Sewing WIP</td>
-                                    <!-- <td>Packed</td>
-                                    <td>WIP Packing</td> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +97,6 @@
                             <tfoot>
                                 <tr>
                                 <th colspan="9" style="text-align:right">Total:</th>
-                                    <!-- <th></th> -->
                                 </tr>
                             </tfoot>
                           </table>
@@ -113,21 +109,13 @@
           </div>
             <!-- </div> -->
           </div>
-          <!-- <div class="card-tools">
-          <a href="#" type="button" id="singleOrc" class="btn btn-primary" class="fa fa-upload"><i ></i> OK</a>
-        </div> -->
-
-          <!-- Small boxes (Stat box) -->
-
-          <!-- /.row (main row) -->
+         
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <?php $this->load->view('_partials/footer.php'); ?>
-
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->

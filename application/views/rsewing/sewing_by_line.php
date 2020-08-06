@@ -38,7 +38,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Sewing Line Report</h2>
+          <h2 style="text-align: center; color: #007bff"><b>Globalindo Intimates - Sewing Line Report</b></h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label><input type="text" id="line" style="text-align: center;" class="form-control" disabled></label>
           </div>

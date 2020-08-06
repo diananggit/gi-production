@@ -39,7 +39,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #ffc107"" >Globalindo Intimates - Cutting Report by Style</h2>
+        <h2 style="text-align: center; color: #ffc107"><b>Globalindo Intimates - Cutting Report by Style</b></h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -63,52 +63,41 @@
               <tr>
                 <th>Tanggal</th>
                 <th>Style</th>
-                <!-- <th>Tanggal</th> -->
                 <th>Qty (Pcs)</th>
                 <th>SAM </th>
-                
               </tr>
             </thead>
             <tbody>
             <?php foreach($cuttingstyle as $cs): ?>
-                <tr>
+              <tr>
                 <td>
                   <?php echo date('d-m-Y', strtotime($cs->tgl)) ?>
-                  </td>
-                  <td>
-                    <?php echo $cs->style ?>
-                  </td>
-                  <td>
+                </td>
+                <td>
+                  <?php echo $cs->style ?>
+                </td>
+                <td>
                   <?php echo $cs->qty ?>
-                  </td>
-                  <td>
+                </td>
+                <td>
                   <?php echo $cs->cutting_sam ?>
-                  </td>
-                </tr>
-                <?php endforeach ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
               <th colspan="4" style="text-align:right">Total:</th>
-                <!-- <th></th> -->
               </tr>
-              
-              
             </tfoot>
           </table>
           </div>
-        
-
-        <!-- Small boxes (Stat box) -->
-
-        <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -120,7 +109,6 @@
 
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
-
 
 <script type="text/javascript">
   //date range
@@ -165,11 +153,9 @@
           
         }
     });
-    
 
   $('.datepicker').datepicker({
    format: 'yyyy-mm-dd',
-  
    
   });
   });
@@ -208,11 +194,8 @@
                     item.style,
                     item.qty,
                     item.cutting_sam
-                 
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
               }  
           });  
       }
@@ -221,7 +204,6 @@
   {
           alert("Please Select Date");  
   }
-    // }  
   });
     
 </script>

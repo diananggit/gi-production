@@ -39,7 +39,7 @@
       <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Sewing Line Report</h2>
+                <h2 style="text-align: center; color: #007bff"><b>Globalindo Intimates - Sewing Line Report</b></h2>
                 <div class="form-group mx-sm-4 mb-3 mt-3">
                   <input type="text" id="line">
                 </div>
@@ -53,58 +53,41 @@
                     <?php endforeach; ?>
                 </select>
                 </div>
-                <!-- <div class="from-group mx-sm-4 mb-3 mt-3">
-                    <label> Select Line </label>
-                    </br>
-                <select class="form-control select2" id="line" name="line" style="width: 30%" placeholder="please select line"></select>
-                </div> -->
                 <div class="card-body mt-1">
-            
                  <hr/>
-            <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
                 <div class="row">
-                    <!-- <div class="col-md-"> -->
-                         <div class="card card-info" >
-                            <div class="card-header">
-                    <!-- <h3 class="card-title"></h3> -->
-                            </div>
-                            <div class="card-body">
-                                <table id="tableSewingMonth" class="table table-border table-striped" >
-                                    <thead>
-                                        <tr>
-                                            <tr>
-                                                <th>Line</th>
-                                                <th>ORC</th>
-                                                <th>Style</th>
-                                                <th>Color</th>
-                                                <th>Sam</th>
-                                                <th>Output</th>
-                                                <!-- <th>Efficiency</th>
-                                                <th>Man Power</th> -->
-                                            </tr>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
+                  <div class="card card-info" >
+                    <div class="card-header">
                     </div>
-                    <!-- <div class="col-md-8"> -->
-                        <div class="card card-info">
-                            <div class="card-header">
-                    <!-- <h3 class="card-title"></h3> -->
-                            </div>
-                            <div class="card-body">
-                                <canvas id="barSewingMonthChart" ></canvas>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                      <table id="tableSewingMonth" class="table table-border table-striped" >
+                          <thead>
+                              <tr>
+                                <th>Line</th>
+                                <th>ORC</th>
+                                <th>Style</th>
+                                <th>Color</th>
+                                <th>Sam</th>
+                                <th>Output</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                          <tfoot>
+                          </tfoot>
+                      </table>
                     </div>
                 </div>
-          <!-- Small boxes (Stat box) -->
-
+                </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-body">
+                        <canvas id="barSewingMonthChart" ></canvas>
+                    </div>
+                </div>
+              </div>
+            </div>
           <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
@@ -139,26 +122,6 @@
         paging: false,
         searching: false
       });
-
-      // load_month();
-
-      // function load_month() {
-      //   $('#month').empty();
-      //   $.ajax({
-          // url: "<//?php echo site_url('linedailychart/ajax_get_all_month'); ?>",
-      //     type: 'GET',
-      //     dataType: 'json',
-      //   }).done(function(data){
-      //       console.log('data: ', data);
-      //       $.each(data, function(i, item){
-      //           $('#month').append($('<option>', {
-      //           value: item.month,
-      //           text: item.month                    
-      //           }));
-      //       });
-      //   });
-      //   load_line();
-      // }
       
        $('#month').change(function() {
         var month = $(this).val()
@@ -181,8 +144,7 @@
                     item.color,
                     item.sam,
                     item.qty_sewing,
-                    // item.effisiensi,
-                    // item.op,
+                   
                 ]).draw();
             })
           }),
@@ -199,11 +161,7 @@
             var arrChartData = [];
             var arrChartLabel = [];
             $.each(data, function(i, item){
-                // chartSewingLineValues.push(parseInt(item.qty_sewing));
-                // chartSewingLineLabels.push(item.week);
-                // chartSewingLineEff.push(item.effisiensi);
               arrChartData.push(JSON.parse(item.qty_sewing)),
-                            // 'eff' : JSON.parse(item.effisiensi)
                            
               arrChartLabel.push(item.week);
             });
@@ -238,18 +196,6 @@
               },
               scales: {
                 yAxes: [
-                //   {
-                //   id:'axisBarLine',
-                //   type:"linear",
-                //   position:"right",
-                //   ticks: {
-                //     beginAtZero: true,
-                //     // max: parseInt(effMax) + 10,
-                //     callback: function(value){
-                //       return value + "%";
-                //     }
-                //   }
-                // },
                 {
                   id: 'axisBarChart',
                   type: "linear",

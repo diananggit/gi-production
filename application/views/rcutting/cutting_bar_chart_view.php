@@ -38,7 +38,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #ffc107"" >Globalindo Intimates - Cutting Report</h2>
+        <h2 style="text-align: center; color: #ffc107" ><b>Globalindo Intimates - Cutting Report</b></h2>
         <div class="col-md-12" style="height:5; width:100;">
             <div class="card">
                 <div class="card-body">

@@ -38,7 +38,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #ffc107"" >Globalindo Intimates - Cutting Report by Line</h2>
+        <h2 style="text-align: center; color: #ffc107" >Globalindo Intimates - Cutting Report by Line</h2>
         <div class="form-group">
           <label>Plese Select Line</label>
 

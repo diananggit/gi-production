@@ -28,7 +28,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -38,7 +37,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report (Per Shift)</h2>
+        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Molding Report (Per Shift)</b></h2>
         <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Shift</label>
             </br>
@@ -60,8 +59,6 @@
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -72,8 +69,6 @@
 
 <!-- jQuery -->
 <?php $this->load->view('_partials/js.php'); ?>
-
-
 
 <script type="text/javascript">
     var table;

@@ -42,7 +42,7 @@
           <div class="row">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Globalindo Intimates - Summary Report</h3>
+                <h3 class="card-title"><b>Globalindo Intimates - Summary Report</b></h3>
                 <h3 id="dateSummary" class="text-primary"></h3>
               </div>
               <div class="card-body">

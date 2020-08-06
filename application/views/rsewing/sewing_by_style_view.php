@@ -31,7 +31,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -41,7 +40,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report by Style</h2>
+        <h2 style="text-align: center; color: #dc3545" ><b>Intimates - Sewing Report by Style</b> </h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -65,42 +64,35 @@
               <tr>
                 <th>Tanggal</th>
                 <th>Style</th>
-                <!-- <th>Tanggal</th> -->
                 <th> SAM</th>
                 <th>Qty (Pcs)</th>
-                
               </tr>
             </thead>
             <tbody>
             <?php foreach($sewingstyle as $ss): ?>
-                <tr>
-                  <td>
-                    <?php echo $ss->style ?>
-                  </td>
-                  <td>
+              <tr>
+                <td>
+                  <?php echo $ss->style ?>
+                </td>
+                <td>
                   <?php echo date('d-m-Y', strtotime($ss->tgl)) ?>
-                  </td>
-                  <td>
+                </td>
+                <td>
                   <?php echo $ss->sam ?>
-                  </td>
-                  <td>
+                </td>
+                <td>
                   <?php echo $ss->qty_out ?>
-                  </td>
-                </tr>
-                <?php endforeach ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
               <th colspan="4" style="text-align:right">Total:</th>
-              
-                <!-- <th></th> -->
               </tr>
             </tfoot>
           </table>
           </div>
-        
-
-        <!-- Small boxes (Stat box) -->
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
@@ -151,9 +143,6 @@
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-                 // Total over all pages
-           
- 
             // // Total over this page
             pageTotal = api
                 .column( 3, { page: 'current'} )
@@ -166,17 +155,12 @@
             $( api.column( 3 ).footer() ).html(
                 +pageTotal + '( ' +total +' Total)'
             );
-
-
-         
-           
         }
     });
     
 
   $('.datepicker').datepicker({
    format: 'yyyy-mm-dd',
-  
    
   });
   });
@@ -201,12 +185,10 @@
         $.ajax({  
               url:"<?php echo site_url('reportsewing/filter');?>",  
               method:"POST",  
-              // data:{from_date:from_date, to_date:to_date},  
               data: {'dataStr': dataStr},
               dataType: 'json',
               success:function(data)  
               {  
-                // console.log('data: ', data);
                 table.clear();
                 $.each(data, function(i, item){
                   table.row.add([
@@ -217,8 +199,6 @@
                    
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
               }  
           });  
       }
@@ -227,7 +207,6 @@
   {
           alert("Please Select Date");  
   }
-    // }  
   });
     
 </script>

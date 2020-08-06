@@ -31,7 +31,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -50,11 +49,6 @@
           <div class="card-body mt-1">
             <div class="row">
               <div class="col-md-4">
-
-                <!-- <div class="form-group">
-                              <label>ORC:</label>
-                              <select id="orc" name="orc" class="form-control select2" data-placeholder="Select an ORC"></select>
-                            </div> -->
                 <div class="form-group">
                   <label>QTY ORDER:</label>
                   <input type="text" id="total_input" name="total_input" class="form-control" disabled>
@@ -93,13 +87,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th colspan="3" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
-                                    </tr>
+                                  <tr>
+                                      <th colspan="3" style="text-align:right">Total:</th>
+                                  </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -122,12 +114,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="3" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
                                     </tr>
                                 </tfoot>
                             </table>
@@ -137,23 +127,13 @@
             <div class="card-tools">
               <a href="#" class="btn btn-success" ><i class="fa fa-arrow-right"></i>NEXT</a>
             </div>
-            <!-- </div> -->
           </div>
-          <!-- <div class="card-tools">0
-          <a href="#" type="button" id="singleOrc" class="btn btn-primary" class="fa fa-upload"><i ></i> OK</a>
-        </div> -->
-
-
-          <!-- Small boxes (Stat box) -->
-
-          <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <?php $this->load->view('_partials/footer.php'); ?>
-
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -165,9 +145,6 @@
 
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
-  <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
   
   <script type="text/javascript">
     var table;
@@ -256,34 +233,11 @@
           }
 
         });
-      //  var table;
-      //  $('#orc').change(function(){
-      //   table = $('#tableOrc').DataTable() 
-      
-      //  }); 
 
     });
 
     });
 
-   
-
-    // function showDataTable() {
-
-    // }
-    // });
-    // var table;
-    //    $('#orc').change(function(){
-    //     table = $('#tableOrc').DataTable().destroy();
-    //     $ajax({
-    //       url:'',
-    //       type: 'GET',
-    //       dataType: 'json',
-    //       success: function(){
-
-    //       }
-    //     });
-    //    }); 
   </script>
 </body>
 

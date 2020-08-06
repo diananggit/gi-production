@@ -31,7 +31,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -41,7 +40,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Sewing Report by Single ORC</h2>
+          <h2 style="text-align: center; color: #007bff"><b>Globalindo Intimates - Sewing Report by Single ORC</b></h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Orc Number</label>
             </br>
@@ -83,7 +82,6 @@
 
             </div>
             <hr />
-            <!-- <h2 style="color: #007bff">Sewing Detail Status</h2> -->
             <div class="row">
               <div class="col-md-12">
                 <div class="card card-primary">
@@ -103,10 +101,6 @@
                       <tbody>
                       </tbody>
                       <tfoot>
-                        <!-- <tr>
-                          <th colspan="4" style="text-align:right">Total:</th>
-                           <th></th> -->
-                        <!-- </tr>  -->
                       </tfoot>
                     </table>
                   </div>
@@ -134,7 +128,6 @@
                       <tfoot>
                         <tr>
                           <th colspan="5" style="text-align:right">Total:</th>
-                          <!-- <th></th> -->
                         </tr>
                       </tfoot>
                     </table>
@@ -155,7 +148,6 @@
             <div class="card-tools">
               <a href="<?php echo site_url('ReportDetailSewing'); ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i>NEXT</a>
             </div>
-            <!-- </div> -->
           </div>
 
           <!-- Small boxes (Stat box) -->
@@ -179,13 +171,7 @@
 
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
-  <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
-
-  <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-
-
-
+  
   <script type="text/javascript">
     var table;
     $(document).ready(function() {
@@ -247,7 +233,6 @@
                 value: item.orc,
                 text: item.orc
               }));
-              // })).trigger('change');
             });
           }
         })
@@ -291,9 +276,6 @@
               ]).draw();
            
             })
-
-
-            
 
           }),
 
@@ -344,15 +326,12 @@
             chartSewingLineAssemblyValues.push(parseInt(item.qt_ass));
 
           });
-          // if (chartSewingChart != undefined) {
-          //   chartSewingChart.destroy();
-          // }
+         
           if (window.bar != undefined)
             window.bar.destroy();
           window.bar = new Chart(chartSewingLineCanvas, {
             type: 'bar',
             data: {
-              // labels: ['Cp','Bw','Cu','As'],
 
               datasets: [{
                   label: 'Cp',
@@ -390,10 +369,6 @@
             }
           });
         })
-        // ),
-
-
-
 
       });
 

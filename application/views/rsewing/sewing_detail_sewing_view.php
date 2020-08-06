@@ -31,7 +31,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -41,7 +40,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Sewing Report by Single ORC</h2>
+          <h2 style="text-align: center; color: #007bff"><b>Intimates - Sewing Report by Single ORC</b></h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Orc Number</label>
             </br>
@@ -50,11 +49,6 @@
           <div class="card-body mt-1">
             <div class="row">
               <div class="col-md-4">
-
-                <!-- <div class="form-group">
-                              <label>ORC:</label>
-                              <select id="orc" name="orc" class="form-control select2" data-placeholder="Select an ORC"></select>
-                            </div> -->
                 <div class="form-group">
                   <label>ORDER QTY:</label>
                   <input type="text" id="order" name="order" class="form-control" disabled>
@@ -82,10 +76,8 @@
             </div>
             <hr />
             <h2 style="text-align: center; color: #007bff">Sewing Bundle Detail Status</h2>
-            <!-- <div class="row"> -->
             <div class="card card-success" >
               <div class="card-header">
-                <!-- <h3 class="card-title">Sewing Detail Status</h3> -->
               </div>
               <div class="card-body">
                 <table id="tableOrc" class="table table-border table-striped" width="100%">
@@ -103,33 +95,19 @@
                   <tfoot>
                   <tr>
                   <th colspan="4" style="text-align:right">Total:</th>
-                    <!-- <th></th> -->
                   </tr>
                   </tfoot>
                 </table>
               </div>
             </div>
-            <!-- <div class="card-tools">
-              <a href="<?php echo site_url('ReportWipCutting'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>NEXT</a>
-            </div> -->
-            <!-- </div> -->
+            
           </div>
-          <!-- <div class="card-tools">0
-          <a href="#" type="button" id="singleOrc" class="btn btn-primary" class="fa fa-upload"><i ></i> OK</a>
-        </div> -->
-
-
-          <!-- Small boxes (Stat box) -->
-
-          <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <?php $this->load->view('_partials/footer.php'); ?>
-
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -140,12 +118,6 @@
 
   <!-- jQuery -->
   <?php $this->load->view('_partials/js.php'); ?>
-  <script src="<?php echo base_url('plugins/select2/select2.full.min.js'); ?>"></script>
-
-  <script src="<?php echo base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <script src="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-  
-  
 
   <script type="text/javascript">
     var table;
@@ -201,7 +173,6 @@
                 value: item.orc,
                 text: item.orc
               }));
-              // })).trigger('change');
             });
           }
         })
@@ -220,10 +191,7 @@
             $('#style').val(data[0].style);
             $('#balance').val(data[0].balance_to_cut);
             table.clear();
-
-
             $.each(data, function(i, item){
-            //   console.log('item.day', item.day);
               table.row.add([
               item.bundle_sew,
               item.qty_pcs,
@@ -233,38 +201,14 @@
                                     
             })
 
-
           }
 
         });
-      //  var table;
-      //  $('#orc').change(function(){
-      //   table = $('#tableOrc').DataTable() 
-      
-      //  }); 
 
     });
 
     });
 
-   
-
-    // function showDataTable() {
-
-    // }
-    // });
-    // var table;
-    //    $('#orc').change(function(){
-    //     table = $('#tableOrc').DataTable().destroy();
-    //     $ajax({
-    //       url:'',
-    //       type: 'GET',
-    //       dataType: 'json',
-    //       success: function(){
-
-    //       }
-    //     });
-    //    }); 
   </script>
 </body>
 

@@ -27,7 +27,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -37,7 +36,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report by Date Range</h2>
+        <h2 style="text-align: center; color: #dc3545" ><b>Intimates - Sewing Report by Date Range</b> </h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -89,7 +88,7 @@
                     <?php echo $orc->sam ?>
                   </td>
                 </tr>
-                <?php endforeach ?>
+              <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>

@@ -40,7 +40,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report by Date Range</h2>
+        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Molding Report by Date Range</b></h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
           <div class="input-group">

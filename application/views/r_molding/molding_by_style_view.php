@@ -39,7 +39,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report by Style</h2>
+        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Molding Report by Style</b></h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 
@@ -63,30 +63,27 @@
               <tr>
                 <th>Tanggal</th>
                 <th>Style</th>
-                <!-- <th>Tanggal</th> -->
                 <th>Qty (Pcs)</th>
-                
               </tr>
             </thead>
             <tbody>
             <?php foreach($moldingstyle as $ms): ?>
-                <tr>
+              <tr>
                 <td>
                   <?php echo date('d-m-Y', strtotime($ms->tgl)) ?>
-                  </td>
-                  <td>
-                    <?php echo $ms->style ?>
-                  </td>
-                  <td>
+                </td>
+                <td>
+                  <?php echo $ms->style ?>
+                </td>
+                <td>
                   <?php echo $ms->qt ?>
-                  </td>
-                </tr>
-                <?php endforeach ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
               <th colspan="3" style="text-align:right"></th>
-                <!-- <th></th> -->
               </tr>
             </tfoot>
           </table>

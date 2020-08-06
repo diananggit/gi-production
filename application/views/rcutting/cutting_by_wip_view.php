@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <?php $this->load->view('_partials/css.php'); ?>
- 
 
 </head>
 
@@ -44,8 +43,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h3 class="card-title">Globalindo Intimates - WIP Report</h3>
-                         
+                        <h3 class="card-title"><b>Globalindo Intimates - WIP Report</b></h3>
                       </div>
                       <div class="card-body">
                           <table id="wipTable" class="table table-bordered table-striped" style="width: 100%">
@@ -78,7 +76,6 @@
                             <tfoot>
                                 <tr>
                                 <th colspan="4" style="text-align:right">Total:</th>
-                                    <!-- <th></th> -->
                                 </tr>
                             </tfoot>
                           </table>

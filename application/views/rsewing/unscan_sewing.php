@@ -39,7 +39,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header alert-info">
-									<h3 class="card-title">Globalindo Intimates - Barcode In Line</h3>
+									<h3 class="card-title"><b>Globalindo Intimates - Barcode In Line</b></h3>
 								</div>
 								<div class="card-body">
 									<table id="wipTable" class="table table-bordered table-striped" style="width: 100%">

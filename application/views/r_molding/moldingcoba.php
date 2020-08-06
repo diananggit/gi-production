@@ -29,7 +29,6 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -39,7 +38,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #007bff">Globalindo Intimates - Molding Balancing</h2>
+          <h2 style="text-align: center; color: #007bff"><b>Globalindo Intimates - Molding Balancing</b></h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Orc Number</label>
             </br>
@@ -67,7 +66,6 @@
               </div>
             </div>
             <hr />
-            <!-- <h2 style="color: #007bff">Molding Detail Status</h2> -->
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary" >

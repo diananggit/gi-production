@@ -31,7 +31,6 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<!-- <h1 class="m-0 text-dark" style="text-align: center;"></h1> -->
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.container-fluid -->
@@ -110,9 +109,6 @@
 										<?php endforeach ?>
 									</tbody>
 									<tfoot>
-										<!-- <tr>
-											<th colspan="8" style="text-align:right">Total:</th>
-										</tr> -->
 									</tfoot>
 								</table>
 							</div>
@@ -122,7 +118,6 @@
 		</div>
 		<!-- /.content-wrapper -->
 		<?php $this->load->view('_partials/footer.php'); ?>
-
 
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
@@ -139,8 +134,6 @@
 		//date range
 		var table;
 		$(".select2").select2();
-
-		// $(document).ready(function() {
 
 		table = $('#tableOrc').DataTable();
 		$('.datepicker').datepicker({
@@ -188,7 +181,6 @@
 					$.ajax({
 						url: "<?php echo site_url('ReportOutputMolding/filter'); ?>",
 						method: "POST",
-						// data:{from_date:from_date, to_date:to_date},  
 						data: {
 							'dataStr': dataStr
 						},
@@ -207,9 +199,7 @@
 									item.color,
 									item.qty_outer,
 									item.qty_midmold,
-									// item.qty,
 									item.qty_linning,
-									// item.balance,
 								]).draw();
 
 							});   
