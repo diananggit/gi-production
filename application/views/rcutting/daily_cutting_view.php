@@ -37,7 +37,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('SummaryProduction') ?>"></i>SUMMARY</button>
+            <button type="button" id="linkWeekly" class="btn btn-warning"><i class="fa fa-table"><a href="<?php echo site_url('SummaryProduction') ?>"></i><b>&nbsp SUMMARY</b></button>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -52,13 +52,13 @@
           <div class="col-md-4">
             <div class="card card-danger">
               <div class="card-header text-center">
-                <a href="<?php echo site_url('ReportBarChartCutting'); ?>" class="card-title">Cutting Department</a>
+                <a href="<?php echo site_url('ReportBarChartCutting'); ?>" class="card-title"><b>Cutting Department</b></a>
               </div>
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                  <h5 id="result1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="efficiency1" style="color: #1f2d3d; font-family: Times New Roman "></h5>
+                    <h5 id="result1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                    <h5 id="efficiency1" style="color: #1f2d3d; font-family: Times New Roman "></h5>
                   </div>
                 </div>
               </div>
@@ -67,13 +67,13 @@
           <div class="col-md-4">
             <div class="card card-warning">
               <div class="card-header">
-                <a href="<?php echo site_url('ReportBarChartMolding' ); ?>" class="card-title">Molding Department</a>
+                <a href="<?php echo site_url('ReportBarChartMolding' ); ?>" class="card-title"><b>Molding Department</b></a>
               </div>
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                  <h5 id="result2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                    <h5 id="result2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                    <h5 id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   </div>
                 </div>
               </div>
@@ -84,14 +84,14 @@
         <div class="col-md-4">
           <div class="card card-success">
             <div class="card-header">
-              <a href="<?php echo site_url('ReportBarChartSewing'); ?>" class="card-title">Sewing Department</a>
+              <a href="<?php echo site_url('ReportBarChartSewing'); ?>" class="card-title"><b>Sewing Department</b></a>
             </div>
             <div class="card-body">
               <div class="media">
-                  <div>
+                <div>
                   <h5 id="resultSewing" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   <h5 id="efficiency3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  </div>
+                </div>
                 </div>
             </div>
           </div>
@@ -99,13 +99,14 @@
         <div class="col-md-4">
           <div class="card card-primary">
             <div class="card-header">
-              <a href="<?php echo site_url('ReportBarChartPacking'); ?>" class="card-title">Packing Department</a>
+              <a href="<?php echo site_url('ReportBarChartPacking'); ?>" class="card-title"><b>Packing Department</b></a>
             </div>
             <div class="card-body">
             <div class="media">
                   <div class="media-left">
-                  <h5 id="result4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="efficiency4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                    
+                    <h5 id="result4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                    <h5 id="efficiency4" style="color: #1f2d3d; font-family: Times New Roman"></h5>
                   </div>
                 </div>
             </div>
