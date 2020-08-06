@@ -39,7 +39,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report by ORC</h2>
+        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Sewing Report by Date Range</h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 

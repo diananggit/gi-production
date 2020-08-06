@@ -40,10 +40,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report by ORC</h2>
+        <h2 style="text-align: center; color: #dc3545" >Globalindo Intimates - Molding Report by Date Range</h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
-
           <div class="input-group">
             <div class="input-group-prepend">
             </div>
@@ -67,7 +66,7 @@
               <th>Style</th>
               <th>Color</th>
               <th>Size</th>
-              <th>Qty_Molding</th>
+              <th>Qty Molding</th>
               </tr>
             </thead>
             <tbody>
