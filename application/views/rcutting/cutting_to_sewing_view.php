@@ -40,7 +40,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2 style="text-align: center; color: #dc3545"><b>Globalindo Intimates - Cutting to Sewing Report</b></h2>
+        <h2 style="text-align: center; color: #ff6600"><b>Globalindo Intimates - Cutting to Sewing Report</b></h2>
         <div class="form-group">
           <label>Plese Select Production Range</label>
 

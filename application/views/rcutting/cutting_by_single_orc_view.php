@@ -41,7 +41,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #ffc107"><b>Globalindo Intimates - Cutting Report by Single ORC</b></h2>
+          <h2 style="text-align: center; color: #ff6600"><b>Globalindo Intimates - Cutting Report by Single ORC</b></h2>
           <div class="form-group mx-sm-4 mb-3 mt-3">
             <label>Plese Select Orc Number</label>
             </br>

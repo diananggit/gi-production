@@ -39,7 +39,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
-					<h2 style="text-align: center; color: #dc3545">Globalindo Intimates - Molding Report by Machine</h2>
+					<h2 style="text-align: center; color: #007bff"><b>Globalindo Intimates - Molding Report by Machine</b></h2>
 					<div class="form-group">
 						<label>Plese Select Production Range</label>
 

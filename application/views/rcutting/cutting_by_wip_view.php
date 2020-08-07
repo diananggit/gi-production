@@ -43,7 +43,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title"><b>Globalindo Intimates - WIP Report</b></h3>
+                        <h3 class="card-title" style="color: #ff6600;"><b>Globalindo Intimates - WIP Report</b></h3>
                       </div>
                       <div class="card-body">
                           <table id="wipTable" class="table table-bordered table-striped" style="width: 100%">

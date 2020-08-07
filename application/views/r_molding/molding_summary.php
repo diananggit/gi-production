@@ -42,7 +42,7 @@
 						<!-- <div class="col-30"> -->
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title"><b>Intimates - Summary Molding Report</b></h3>
+								<h3 class="card-title" style="color: #007bff;"><b>Intimates - Summary Molding Report</b></h3>
 								<h3 id="dateSummary" class="text-primary"></h3>
 							</div>
 							<div class="card-body">
