@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportBarSewingLineModel extends CI_Model{
-    var $table="view_sewing_bar_line";
+    var $table="view_sewing_line";
 
     public function get_all(){
         date_default_timezone_set('Asia/Jakarta');
