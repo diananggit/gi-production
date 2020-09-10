@@ -52,7 +52,7 @@
             <div class="container-fluid">
                 <h4 style="text-align: left; color: #007bff" >
                     &nbsp;<i class="fa fa-calendar-o text-succes nav-icon"></i>
-                    Production Planning Line
+                    Production Planning Board
                     <span>
                         <a style="float: right; color: #000000;" href=<?php echo $URLIframe ?> target="_blank">
                             <i class="fa fa-expand text-succes nav-icon"></i>
