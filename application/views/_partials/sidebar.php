@@ -166,6 +166,35 @@
 						</li>
 					</ul>
 				</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fa fa-cogs text-danger"></i>
+						<p>
+							<b>Mechanic Report</b>
+							<i class="fa fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo site_url('Downtime'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p>DownTime by Machine</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('ReportPackingByOrc'); ?>" class="nav-link">
+								<i class="fa fa-tachometer text-danger nav-icon"></i>
+								<p>Downtime by Line</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('ReportPackingSingleOrc'); ?>" class="nav-link">
+								<i class="fa fa-users text-danger nav-icon"></i>
+								<p>Downtime by Mechanic</p>
+							</a>
+						</li>
+						</ul>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
