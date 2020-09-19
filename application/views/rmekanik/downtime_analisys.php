@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Downtime | Dashboard</title>
+	<title>Machine Analys | Dashboard</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
@@ -42,60 +42,53 @@
 						<!-- <div class="col-30"> -->
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title" style="color: #007bff;"><b>Intimates - Downtime Report</b></h3>
+								<h3 class="card-title text-center" style="color: #007bff;"><b>Machine Downtime Volume Analisys</b></h3>
 								<h3 id="dateSummary" class="text-primary"></h3>
 							</div>
 							<div class="card-body">
 								<table id="sumaryTable" class="table table-bordered table-striped" style="width: Auto">
 									<thead>
 										<tr>
-											<th class='bg-secondary'>M.Code</th>
-											<th class='bg-secondary'>Merk</th>
-											<th class='bg-secondary'width=100px>Line</th>
-											<th class='bg-secondary' width=60px>Date</th>
-											<th class='bg-secondary' width= 150px>Repaired by</th>
-											<th class='bg-secondary' width= 110px>Symptom</th>
-											<th class='bg-secondary' >Start</th>
-											<th class='bg-secondary'>End</th>
-											<th class='bg-secondary'>Downtime</th>
-											
+											<th class='bg-primary'>Type</th>
+											<th class='bg-primary'>Brand</th>
+											<th class='bg-primary'>S.Number</th>
+											<?php
+											$month = 9;
+											$year  = 2020;
+
+											for ($d=1; $d<=31; $d++)
+											{
+												$time=mktime(9, 0, 0, $month, $d, $year);
+												if(date('m',$time)==$month)
+												echo "<td class='bg-secondary'>".date('d',$time)."</td>";
+
+											}
+											?>
 											<!-- <td>PACK H-1</td>
                                     <td>CUM PACKED QTY</td>
                                     <td>WIP PACKING</td>                                     -->
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($downtime as $dt) : ?>
+										<?php foreach($analisys as $an): ?>
 											<tr>
-												<td>
-													<?= $dt['barcode_machine'] ?>
-												</td>
-												<td>
-													<?= $dt['machine_brand'] ?>
-												</td>
-												<td>
-													<?= $dt['line'] ?>
-												</td>
-												<td>
-													<?= $dt['tgl'] ?>
-												</td>
-												<td>
-													<?= $dt['Nama'] ?>
-												</td>
-												<td>
-													<?= $dt['sympton'] ?>
-												</td>
-												<td>
-													<?= $dt['start_repairing'] ?>
-												</td>
-												<td>
-													<?= $dt['end_repairing'] ?>
-												</td>
-												<td>
-													<?= $dt['DownTime'] ?>
-												</td>
+												<td><?= $an['machine_type']?></td>
+												<td><?= $an['machine_brand']?></td>
+												<td><?= $an['machine_sn']?></td>
+												<?php
+											$month = 9;
+											$year  = 2020;
+
+											for ($d=1; $d<=31; $d++)
+											{
+												$time=mktime(9, 0, 0, $month, $d, $year);
+												if(date('m',$time)==$month)
+												echo "<td>".date('d',$time)."</td>";
+
+											}
+											?>
 											</tr>
-										<?php endforeach ?>
+											<?php endforeach?>
 									</tbody>
 								</table>
 							</div>

@@ -178,13 +178,13 @@
 						<li class="nav-item">
 							<a href="<?php echo site_url('Downtime'); ?>" class="nav-link">
 								<i class="fa fa-line-chart text-danger nav-icon"></i>
-								<p>DownTime by Machine</p>
+								<p>DownTime</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportPackingByOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('Machineanalisys'); ?>" class="nav-link">
 								<i class="fa fa-tachometer text-danger nav-icon"></i>
-								<p>Downtime by Line</p>
+								<p>Downtime by Machine</p>
 							</a>
 						</li>
 						<li class="nav-item">
