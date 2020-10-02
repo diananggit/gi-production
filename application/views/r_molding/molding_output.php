@@ -162,7 +162,7 @@
 		$('#filter').click(function() {
 			var from_date = $('#from_date').val();
 			var to_date = $('#to_date').val();
-			var machine = $('#machine').val()
+			var machine = $('#machine').val();
 
 			var tgl1 = new Date($('#from_date').val());
 			var tgl2 = new Date($('#to_date').val());

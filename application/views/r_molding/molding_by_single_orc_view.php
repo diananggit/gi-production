@@ -252,7 +252,7 @@
                 item.in_sewing,
                 item.qty_mold,
                 item.qty_sewing_out,
-                item.actual_qt,
+                "0",
               ]).draw();
               table2.row.add([
                 "Qty Balance",
@@ -263,7 +263,7 @@
               ]).draw();
               table2.row.add([
                 "Wip",
-                item.actual_qt,
+                "0",
                 item.wip_molding,
                 item.wip_sewing,
                 "0",

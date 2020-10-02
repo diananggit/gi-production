@@ -182,17 +182,23 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="<?php echo site_url('ReportSummaryDowntime'); ?>" class="nav-link">
+								<i class="fa fa-users text-danger nav-icon"></i>
+								<p>Daily DownTime</p>
+							</a>
+						</li>
+						<!-- <li class="nav-item">
 							<a href="<?php echo site_url('Machineanalisys'); ?>" class="nav-link">
 								<i class="fa fa-tachometer text-danger nav-icon"></i>
 								<p>Downtime by Machine</p>
 							</a>
-						</li>
-						<li class="nav-item">
+						</li> -->
+						<!-- <li class="nav-item">
 							<a href="<?php echo site_url('ReportPackingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-users text-danger nav-icon"></i>
 								<p>Downtime by Mechanic</p>
 							</a>
-						</li>
+						</li> -->
 						</ul>
 				</li>
 			</ul>

@@ -38,64 +38,52 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<!-- <div class="col-30"> -->
-						<div class="card">
-							<div class="card-header">
-								<h3 class="card-title" style="color: #007bff;"><b>Intimates - Downtime Report</b></h3>
-								<h3 id="dateSummary" class="text-primary"></h3>
+					<h2 style="text-align: center; color: #007bff"><b>Intimates - Downtime Report</b></h3>
+					</br>
+					<div class="form-group">
+					<div class="input-group">
+							<div class="input-group-prepend">
 							</div>
+							<div class="col-md-2">
+								<select class="form-control select2" id="line" name="line"></select>
+							</div>
+							<div class="col-md-2">
+								<input type="text" name="from_date" id="from_date" class="datepicker form-control" placeholder="From Date">
+							</div>
+							<div class="col-md-2">
+								<input type="text" name="to_date" id="to_date" class="datepicker form-control" placeholder="To Date">
+							</div>
+
+							<div class="col-md-2">
+								<input type="button" name="filter" id="filter" value="Filter" class="btn btn-info">
+							</div>
+						</div>
+						</br>
+						<!-- <div class="col-30"> -->
+						<div class="card" >
+							<!-- <div class="card-header">
+								<h3 id="dateSummary" class="text-primary"></h3>
+							</div> -->
 							<div class="card-body">
-								<table id="sumaryTable" class="table table-bordered table-striped" style="width: Auto">
+								
+								<table id="sumaryTable" class="table table-bordered table-striped" style="width: Auto; ">
 									<thead>
 										<tr>
-											<td class='bg-secondary'>M.Code</td>
-											<td class='bg-secondary'>Merk</td>
 											<td class='bg-secondary'width=100px>Line</td>
-											<td class='bg-secondary' width=60px>Date</td>
-											<td class='bg-secondary' width= 150px>Repaired by</td>
+											<td class='bg-secondary'>Merk</td>
+											<td class='bg-secondary' width=70px>Date</td>
+											<td class='bg-secondary' width= 150px>Attended Mechanic</td>
 											<td class='bg-secondary' width= 110px>Symptom</td>
-											<td class='bg-secondary' >Start</td>
-											<td class='bg-secondary'>End</td>
-											<td class='bg-secondary'>Downtime</td>
-											
-											<!-- <td>PACK H-1</td>
-                                    <td>CUM PACKED QTY</td>
-                                    <td>WIP PACKING</td>                                     -->
+											<td class='bg-secondary' >Start Time</td>
+											<td class='bg-secondary'>Respond Time</td>
+											<td class='bg-secondary'>Finished Time</td>
+											<td class='bg-secondary'>Respon Duration</td>
+											<td class='bg-secondary'>Repair Duration</td>
+											<td class='bg-secondary'>Total Duration</td>
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($downtime as $dt) : ?>
-											<tr>
-												<td>
-													<?= $dt['barcode_machine'] ?>
-												</td>
-												<td>
-													<?= $dt['machine_brand'] ?>
-												</td>
-												<td>
-													<?= $dt['line'] ?>
-												</td>
-												<td>
-													<?= $dt['tgl'] ?>
-												</td>
-												<td>
-													<?= $dt['Nama'] ?>
-												</td>
-												<td>
-													<?= $dt['sympton'] ?>
-												</td>
-												<td>
-													<?= $dt['start_repairing'] ?>
-												</td>
-												<td>
-													<?= $dt['end_repairing'] ?>
-												</td>
-												<td>
-													<?= $dt['DownTime'] ?>
-												</td>
-											</tr>
-										<?php endforeach ?>
+										
 									</tbody>
 								</table>
 							</div>
@@ -127,9 +115,12 @@
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			var table = $('#sumaryTable').DataTable({
-				"scrollY": 200,
+	var table
+	$(".select2").select2();
+
+		// $(document).ready(function() {
+			table = $('#sumaryTable').DataTable({
+				// "scrollY": 200,
 				"scrollX": true,
 				dom: 'Blfrtip',
 				lengthMenu: [
@@ -140,10 +131,114 @@
 					'excel', 'csv'
 				],
 
-
-
 			});
-		});
+
+			$('.datepicker').datepicker({
+				format: 'yyyy-mm-dd',
+			});
+
+			load_line();
+
+			function load_line(){
+				$('#line').empty();
+				$.ajax({
+					url: "<?php echo site_url('Downtime/get_line'); ?>",
+					type: 'get',
+					dataType: 'json',
+				}).done(function(data) {
+				$.each(data, function(i, item) {
+					$('#line').append($('<option>', {
+						value: item.line,
+						text: item.line
+					}));
+				});
+				});
+			}
+
+			function timeStringToFloat(time) {
+				var hoursMinutes = time.split(/[.:]/);
+				var hours = parseInt(hoursMinutes[0], 10);
+				var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+				return hours + minutes / 60;
+				console.log('minutes', minute);
+			}
+
+			$('#filter').click(function(){
+				var from_date = $('#from_date').val();
+				var to_date = $('#to_date').val();
+				var line = $('#line').val();
+
+				var tgl1 = new Date($('#from_date').val());
+				var tgl2 = new Date($('#to_date').val());
+
+				var dataStr = {
+					'from_date': from_date,
+					'to_date': to_date,
+					'line': line,
+				};
+
+				if (from_date != '' && to_date != '' && line != '') {
+					if (tgl1 > tgl2) {
+						alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
+					} else {
+						$.ajax({
+							url: "<?php echo site_url('Downtime/filter'); ?>",
+							method: "POST",
+							data: {
+								'dataStr': dataStr
+							},
+							dataType: 'json',
+						}).done(function(data){
+
+							
+
+						if (data.length > 0) {
+							table.clear();
+							$('#sumaryTable').css('display', '');							
+							$.each(data, function(i, item) {
+								// chartSewingLineLabels.push(item.tgl);
+								var hms = item.respon_duration;   
+								var a = hms.split(':'); 
+								console.log('hms', hms);
+								var respon = (+a[0]) * 60 + (+a[1]);
+								console.log('respon', respon);
+
+								var times = item.repair_duration;
+								var b = times.split(':');
+								var repair = (+b[0]) * 60 + (+b[1]);
+
+								var total = respon + repair
+							
+								// respon.push(item.respon_duration);
+							
+								table.row.add([
+									item.line,
+									item.machine_brand,
+									item.tgl_waiting,
+									item.Nama,
+									item.sympton,
+									item.start_waiting,
+									item.start_repairing,
+									item.end_repairing,
+									respon,
+									repair,
+									total,
+									// item.repair_duration,
+									// item.total_repair,
+								]).draw();
+
+							});   
+
+						} else {   
+							alert("Please Select Date");
+						}
+						});
+					}
+					}
+				});	
+			// })
+
+		// });
 	</script>
 </body>
 

@@ -8,19 +8,23 @@ class Downtime extends CI_Controller{
     }
     
     public function index(){
-        $data['downtime'] = $this->ReportDowntimeModel->get_all();
-        $this->load->view('rmekanik/downtime_by_machine',$data);
+        // $data['downtime'] = $this->ReportDowntimeModel->get_all();
+        $this->load->view('rmekanik/downtime_by_machine');
         // var_dump($data);
     }
 
-    // public function filter(){
-    //     // $this->load->model('ReportCuttingModel');
-    //     // $data['v_style_cutting']=$this->ReportCuttingModel->
-    //     $rst = $this->ReportCuttingModel->get_by_daterange();
-    //     // print_r($rst);
-    //     // die();
-    //     // get_by_daterange();
-    //     // $this->load->view('cutting_by_style_view',$data);
-    //     echo json_encode($rst);
-    // }
+    public function filter()
+	{
+		$rst = $this->ReportDowntimeModel->get_by_daterange();
+
+		echo json_encode($rst);
+    }
+    
+    public function get_line(){
+        $data = $this->ReportDowntimeModel->get_all_line();
+
+        echo json_encode($data);
+    }
+
+   
 }
