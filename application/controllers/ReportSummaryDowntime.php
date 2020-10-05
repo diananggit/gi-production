@@ -5,6 +5,7 @@ class ReportSummaryDowntime extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('ReportDowntimeModel');
+        $this->load->model('ReportutilizeModel');
     }
     
     public function index(){
@@ -18,5 +19,10 @@ class ReportSummaryDowntime extends CI_Controller{
         
         echo json_encode($result);
     }
+
+    public function get_utilize($tgl_waiting){
+		$data=$this->ReportutilizeModel->get_all($tgl_waiting);
+		echo json_encode($data);
+	}
 
 }

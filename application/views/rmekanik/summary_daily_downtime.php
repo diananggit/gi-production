@@ -41,13 +41,26 @@
 					<h2 style="text-align: center; color: #007bff"><b>Intimates - Downtime Report</b></h3>
 					</br>
 					<div class="form-group">
-					<div class="input-group">
+						<div class="input-group">
 							<div class="input-group-prepend">
 							</div>
 							<div class="col-md-2">
 								<input type="text" name="date" id="date" class="datepicker form-control">
 							</div>
 							
+						</div>
+						</br>
+						<div class="col-md-3">
+							<div class="info-box mb-2 bg-info">
+								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style=" font-family: Times New Roman" >Mechanic Utilize(try)</span>
+									<span class="info-box-number" id="respon"></span>
+									<span class="info-box-number" id="repair"></span>
+									<span class="info-box-number" id="utilize"></span>
+									
+								</div>
+							</div>
 						</div>
 						</br>
 						<div class="card" >
@@ -73,7 +86,6 @@
 									<tfoot>
 										<tr>
 										<th colspan="11" style="text-align:right">Total:</th>
-											<!-- <th></th> -->
 										</tr>
 									</tfoot>
 								</table>
@@ -108,7 +120,6 @@
 
 	<script type="text/javascript">
 	var table
-	// $(".select2").select2();
 
 		$(document).ready(function() {
 			table = $('#dailyTable').DataTable({
@@ -155,14 +166,7 @@
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-				// update footer by showing the total with the reference of the table
-				$(api.column(0).footer()).html('');
-				$(api.column(1).footer()).html('');
-				$(api.column(2).footer()).html('');
-				$(api.column(3).footer()).html('');
-				$(api.column(4).footer()).html('');
-				$(api.column(5).footer()).html('');
-				$(api.column(6).footer()).html('');
+				
 				$(api.column(7).footer()).html('Total');
 				$(api.column(8).footer()).html(respon);
 				$(api.column(9).footer()).html(repair);
@@ -182,6 +186,37 @@
             //search by tanggal
 			$('#date').change(function(){
 				tgl_waiting = $(this).val()
+				$.when(
+					$.ajax({
+						url: '<?php echo site_url("ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
+					type: 'GET',
+                     dataType: 'json',
+					success: function(rst){
+						table.clear();
+						$.each(rst, function(i,item){
+
+						var time = item.repon;   
+						var as = time.split(':');  
+						var respond = (+as[0]) * 60 + (+as[1]);
+						console.log('respond', respond);
+
+						var duration = item.repair;   
+						var cd = duration.split(':'); 
+						var repaired = (+cd[0]) * 60 + (+cd[1]);
+
+						var jumlah = respond + repaired;
+						var util = (jumlah / 840 ) * 100;
+
+						// $('#utilize').text('Utilize : ' + jumlah + " %")
+						$('#respond').text('Respon Duration : ' + jumlah + " %")
+						$('#utilize').text(util+ " %")
+						})
+						;
+
+					},
+					
+				}),
+
                  $.ajax({
                      url: '<?php echo site_url("ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
                      type: 'GET',
@@ -192,9 +227,7 @@
 					 $.each(data, function(i,item){
 						var hms = item.respon_duration;   
 						var as = hms.split(':'); 
-						// console.log('hms', hms);
 						var respon = (+as[0]) * 60 + (+as[1]);
-						console.log('respon', respon);
 
 						var times = item.repair_duration;
 						var bs = times.split(':');
@@ -203,7 +236,6 @@
 						var total = [respon + repair];
 						console.log('total', total);
 
-						
 						table.row.add([
 							item.line,
 							item.machine_brand,
@@ -219,6 +251,8 @@
 						 ]).draw();
 					 })
                  })
+				
+			)
 				
 					
 				});	
