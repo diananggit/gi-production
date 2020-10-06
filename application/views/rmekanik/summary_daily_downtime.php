@@ -204,7 +204,7 @@
 						var repaired = (+cd[0]) * 60 + (+cd[1]);
 
 						var jumlah = respond + repaired;
-						var util = (jumlah / (420*34) ) * 100;
+						var util = (repaired / (420*29) ) * 100;
 						hasil = util.toFixed(2);
 
 						// $('#utilize').text('Utilize : ' + jumlah + " %")
