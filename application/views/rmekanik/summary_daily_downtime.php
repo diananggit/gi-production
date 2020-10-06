@@ -50,7 +50,7 @@
 							
 						</div>
 						</br>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="info-box mb-2 bg-info">
 								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
 								<div class="info-box-content">
