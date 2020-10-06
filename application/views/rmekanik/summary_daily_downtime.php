@@ -50,15 +50,14 @@
 							
 						</div>
 						</br>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="info-box mb-2 bg-info">
 								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
 								<div class="info-box-content">
-									<span class="info-box-text" style=" font-family: Times New Roman" >Mechanic Utilize(try)</span>
+									<span class="info-box-number" style="color: #1f2d3d;"  >Mechanic Utilize(try)</span>
 									<span class="info-box-number" id="respon"></span>
 									<span class="info-box-number" id="repair"></span>
 									<span class="info-box-number" id="utilize"></span>
-									
 								</div>
 							</div>
 						</div>
@@ -188,7 +187,7 @@
 				tgl_waiting = $(this).val()
 				$.when(
 					$.ajax({
-						url: '<?php echo site_url("ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
+					url: '<?php echo site_url("ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
 					type: 'GET',
                      dataType: 'json',
 					success: function(rst){
@@ -205,11 +204,13 @@
 						var repaired = (+cd[0]) * 60 + (+cd[1]);
 
 						var jumlah = respond + repaired;
-						var util = (jumlah / 840 ) * 100;
+						var util = (jumlah / (420*34) ) * 100;
+						hasil = util.toFixed(2);
 
 						// $('#utilize').text('Utilize : ' + jumlah + " %")
-						$('#respond').text('Respon Duration : ' + jumlah + " %")
-						$('#utilize').text(util+ " %")
+						$('#respon').text('Total Respon Duration : ' + respond+ "Menit")
+						$('#repair').text('Total Repair Duration : ' + repaired + " Menit")
+						$('#utilize').text('Utilize: ' + hasil+ " %")
 						})
 						;
 
