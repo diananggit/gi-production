@@ -180,6 +180,8 @@
 
 			$('.datepicker').datepicker({
 				format: 'yyyy-mm-dd',
+				// endDate:ageDate,
+    autoclose: true
 			});
 
             //search by tanggal
@@ -197,18 +199,23 @@
 						var time = item.repon;   
 						var as = time.split(':');  
 						var respond = (+as[0]) * 60 + (+as[1]);
-						console.log('respond', respond);
+						var jam = (+as[0]) ;
+						var menit = (+as[1]) ;
+						console.log('jam', jam);
+						
 
 						var duration = item.repair;   
 						var cd = duration.split(':'); 
 						var repaired = (+cd[0]) * 60 + (+cd[1]);
+						var jam = (+cd[0]) ;
+						var menit = (+cd[1]) ;
 
 						var jumlah = respond + repaired;
 						var util = (repaired / (420*29) ) * 100;
 						hasil = util.toFixed(2);
 
 						// $('#utilize').text('Utilize : ' + jumlah + " %")
-						$('#respon').text('Total Respon Duration : ' + respond+ "Menit")
+						$('#respon').text('Total Respon Duration : ' + respond+ " Menit")
 						$('#repair').text('Total Repair Duration : ' + repaired + " Menit")
 						$('#utilize').text('Utilize: ' + hasil+ " %")
 						})
