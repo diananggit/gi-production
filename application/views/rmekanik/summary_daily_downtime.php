@@ -69,6 +69,7 @@
 										<tr>
 											<td class='bg-secondary'width=100px>Line</td>
 											<td class='bg-secondary'>Merk</td>
+											<td class='bg-secondary'>Machine Type</td>
 											<td class='bg-secondary' width=70px>Date</td>
 											<td class='bg-secondary' width= 150px>Attended Mechanic</td>
 											<td class='bg-secondary' width= 110px>Symptom</td>
@@ -83,9 +84,9 @@
 									<tbody>
 									</tbody>
 									<tfoot>
-										<tr>
-										<th colspan="11" style="text-align:right">Total:</th>
-										</tr>
+										<!-- <tr>
+										<th colspan="12" style="text-align:right">Total:</th>
+										</tr> -->
 									</tfoot>
 								</table>
 							</div>
@@ -125,70 +126,66 @@
 				// "scrollY": 200,
 				"scrollX": true,
 				dom: 'Blfrtip',
+				// "pagingType": "full_numbers",
+				"paging": true,
+				// "lengthMenu": [10, 25, 50, 75, 100],
 				lengthMenu: [
-					[10, 25, 50, 100, 200, 300, 400],
-					[10, 25, 50, 100, 200, 300, 400]
+					[100, 200, 300, 400],
+					[ 100, 200, 300, 400]
 				],
 				buttons: [
 					'excel', 'csv'
 				],
-
-				"footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
-			//computing column Total of the complete result
-			var respon = api
-                .column( 8 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-				var repair = api
-                .column( 9 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-				var total = api
-                .column( 10 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-				
-				$(api.column(7).footer()).html('Total');
-				$(api.column(8).footer()).html(respon);
-				$(api.column(9).footer()).html(repair);
-				$(api.column(10).footer()).html(total);
- 
-        },
-		"processing": true,
-        // "serverSide": enable,
-        // "ajax": "Downtime.php"
 			
 			});
 
 			$('.datepicker').datepicker({
 				format: 'yyyy-mm-dd',
-				// endDate:ageDate,
-    autoclose: true
+    			autoclose: true
 			});
 
             //search by tanggal
 			$('#date').change(function(){
 				tgl_waiting = $(this).val()
 				$.when(
-					$.ajax({
+				
+                 $.ajax({
+                     url: '<?php echo site_url("ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
+                     type: 'GET',
+                     dataType: 'json',
+                 }).done(function(data){
+					
+                     table.clear();
+					 $.each(data, function(i,item){
+						var hms = item.respon_duration;   
+						var as = hms.split(':'); 
+						var respon = (+as[0]) * 60 + (+as[1]);
+
+						var times = item.repair_duration;
+						var bs = times.split(':');
+						var repair = (+bs[0]) * 60 + (+bs[1]);
+
+						var total = [respon + repair];
+						console.log('total', total);
+
+						table.row.add([
+							item.line,
+							item.machine_brand,
+							item.machine_type,
+							item.tgl_waiting,
+							item.Nama,
+							item.sympton,
+							item.start_waiting,
+							item.start_repairing,
+							item.end_repairing,
+							respon,
+							repair,
+							total,
+						 ]).draw();
+					 })
+				 }),
+				 
+				 $.ajax({
 					url: '<?php echo site_url("ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
 					type: 'GET',
                      dataType: 'json',
@@ -223,42 +220,8 @@
 
 					},
 					
-				}),
+				})
 
-                 $.ajax({
-                     url: '<?php echo site_url("ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
-                     type: 'GET',
-                     dataType: 'json',
-                 }).done(function(data){
-					
-                     table.clear();
-					 $.each(data, function(i,item){
-						var hms = item.respon_duration;   
-						var as = hms.split(':'); 
-						var respon = (+as[0]) * 60 + (+as[1]);
-
-						var times = item.repair_duration;
-						var bs = times.split(':');
-						var repair = (+bs[0]) * 60 + (+bs[1]);
-
-						var total = [respon + repair];
-						console.log('total', total);
-
-						table.row.add([
-							item.line,
-							item.machine_brand,
-							item.tgl_waiting,
-							item.Nama,
-							item.sympton,
-							item.start_waiting,
-							item.start_repairing,
-							item.end_repairing,
-							respon,
-							repair,
-							total,
-						 ]).draw();
-					 })
-                 })
 				
 			)
 				
