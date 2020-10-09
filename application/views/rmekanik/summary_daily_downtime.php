@@ -66,7 +66,7 @@
 							<div class="card-body">
 								<table id="dailyTable" class="table table-bordered table-striped" style="width: Auto; ">
 									<thead>
-										<tr>
+										<tr><td class='bg-secondary'>Floor</td>
 											<td class='bg-secondary'width=100px>Line</td>
 											<td class='bg-secondary'>Merk</td>
 											<td class='bg-secondary'>Machine Type</td>
@@ -169,6 +169,7 @@
 						console.log('total', total);
 
 						table.row.add([
+							item.floor,
 							item.line,
 							item.machine_brand,
 							item.machine_type,
