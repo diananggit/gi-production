@@ -187,6 +187,12 @@
 								<p>Daily DownTime</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('ReportDowntimeMachinetype'); ?>" class="nav-link">
+								<i class="fa fa-users text-danger nav-icon"></i>
+								<p> DownTime Machine Type</p>
+							</a>
+						</li>
 						<!-- <li class="nav-item">
 							<a href="<?php echo site_url('Machineanalisys'); ?>" class="nav-link">
 								<i class="fa fa-tachometer text-danger nav-icon"></i>
