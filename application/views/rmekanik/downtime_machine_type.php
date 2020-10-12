@@ -120,7 +120,7 @@
         document.getElementById('dailyDate').innerHTML = tanggal;
    
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeMachineType/get_data_machine_type'); ?>',
+        url: '<?php echo site_url('ReportDowntimeMachinetype/get_data_machine_type'); ?>',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
