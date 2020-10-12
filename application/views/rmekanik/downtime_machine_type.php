@@ -49,12 +49,23 @@
             <span id="dailyDate" style="color:red;"></span>
           </b>
         </h4>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+            </div>
+            <div class="col-md-2">
+            <select class="form-control select2" id="month" name="month" style="width: 80%"></select>
+              <!-- <input type="text" name="month" id="month" class="form-control select2"> -->
+            </div>
+          </div>
+        </br>
         <div class="col-md-10">
           <div class="card">
             <div class="card-body" >
               <canvas id="barDowntime"></canvas>
             </div>
           </div>
+        </div>
         </div>
         <!-- Small boxes (Stat box) -->
 
@@ -81,46 +92,29 @@
 
   <script type="text/javascript">
 
-    var day = new Date();
-    var hr = day.getDay();
-    var tgl;
-    var tgl1;
-    console.log('hr: ', hr);
+  $(".select2").select2();
 
-    showReportSewingLine();
+  load_month();
 
-    function showReportSewingLine() {
-      var thn = day.getFullYear();
-      var bln = day.getMonth() + 1;
-      if(hr == 1){
-        var hari = day.getDate()-3;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }else{
-        var hari = day.getDate()-1;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }
-      //  console.log('tgl1: ', tgl);
-      console.log('hari',hari);
-      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-          (hari < 10 ? "0" + hari.toString() : hari.toString());
-
-          console.log('tanggal: ', tanggal);
-
-        const tglNow = tanggal;
-
-        // assign value JS to html. Date now !!!
-        document.getElementById('dailyDate').innerHTML = tanggal;
-   
+			function load_month(){
+				$('#month').empty();
+				$.ajax({
+					url: "<?php echo site_url('ReportDowntimeMachinetype/get_month'); ?>",
+					type: 'get',
+					dataType: 'json',
+				}).done(function(data) {
+				$.each(data, function(i, item) {
+					$('#month').append($('<option>', {
+						value: item.month,
+						text: item.month
+					}));
+				});
+				});
+			}
+      $('#month').change(function() {
+        month = $(this).val()
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeMachinetype/get_data_machine_type'); ?>',
+        url: '<?php echo site_url('ReportDowntimeMachinetype/get_data_machine_type'); ?>/' + month,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -143,8 +137,11 @@
               randomColor()
             );
           }
-          new Chart(chartDowntimeCanvas, {
-            type: 'horizontalBar',
+
+          if(window.bar != undefined)
+            window.bar.destroy();
+            window.bar = new Chart(chartDowntimeCanvas, {
+            type: 'bar',
             data: {
               labels: chartReportDowntimeLabels,
               datasets: [{
@@ -170,15 +167,15 @@
               scales: {
                 xAxes: [{
                 ticks: {
-                    min: 0 // Edit the value according to what you need
+                    // min: 0 // Edit the value according to what you need
                 }
             }],
                 yAxes: [{
-                    tickss: {
-                    beginAtZero: true,
-                   
+                    ticks: {
+                    // beginAtZero: true,
+                    min:0
                   },
-                  min:0
+                  
 
                 }]
 
@@ -196,7 +193,7 @@
           (10 + 70 * Math.random()) + '%,' +
           (55 + 10 * Math.random()) + '%)'
       }
-    }
+    });
   </script>
 </body>
 

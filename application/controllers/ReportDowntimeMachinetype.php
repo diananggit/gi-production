@@ -11,9 +11,17 @@ class ReportDowntimeMachinetype extends CI_Controller{
         $this->load->view('rmekanik/downtime_machine_type');
     }
 
-    public function get_data_machine_type(){
-        $data=$this->ReportDowntimeMachineTypeModel->get_all();
+    public function get_data_machine_type($month){
+        $data=$this->ReportDowntimeMachineTypeModel->get_by_month($month);
         echo json_encode($data);
     }
+    
+    public function get_month(){
+        $data = $this->ReportDowntimeMachineTypeModel->get_month();
+
+        echo json_encode($data);
+    }
+
+  
     
 }
