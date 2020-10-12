@@ -168,6 +168,11 @@
                 }
               },
               scales: {
+                xAxes: [{
+                ticks: {
+                    min: 0 // Edit the value according to what you need
+                }
+            }],
                 yAxes: [{
                     tickss: {
                     beginAtZero: true,
