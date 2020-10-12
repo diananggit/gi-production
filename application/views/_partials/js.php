@@ -27,7 +27,7 @@
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/dataTables.buttons.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.flash.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/jszip.min.js'); ?>"></script>
-<script src="<?php echo base_url('plugins/datatables.net-buttons/js/pdfmake.min.js'); ?>"></script>
+<!-- <script src="</?php echo base_url('plugins/datatables.net-buttons/js/pdfmake.min.js'); ?>"></script> -->
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/vfs_fonts.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?php echo base_url('plugins/datatables.net-buttons/js/buttons.print.min.js'); ?>"></script>

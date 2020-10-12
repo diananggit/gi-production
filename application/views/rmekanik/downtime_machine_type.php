@@ -171,9 +171,9 @@
                 yAxes: [{
                     tickss: {
                     beginAtZero: true,
-                    min:0,
+                   
                   },
-                  
+                  min:0
 
                 }]
 

@@ -179,13 +179,45 @@
   <script type="text/javascript">
   $(document).ready(function(){
     var table = $('#sumaryTable').DataTable({
-        "scrollY":200,
+        // "scrollY":200,
         "scrollX": true,
         dom: 'Blfrtip',
       lengthMenu: [[10, 25, 50,100,200,300,400], [10, 25, 50,100,200,300,400]],
       buttons: [
         'excel','csv'
       ],
+
+      // order: [[0, 'asc']],
+      //   rowGroup: {
+      //       startRender: null,
+      //       endRender: function ( rows, group ) {
+      //         var cut = rows
+      //               .data()
+      //               .pluck(9)
+      //               .reduce( function (a, b) {
+      //                   return a + b;
+      //               }, 0) / rows.count();
+ 
+      //           var ageAvg = rows
+      //               .data()
+      //               .pluck(10)
+      //               .reduce( function (a, b) {
+      //                   return a + b*1;
+      //               }, 0) / rows.count();
+ 
+      //           return $('<tr/>')
+      //               .append( '<td colspan="10">'+group+'</td>' )
+      //               .append( '<td>'+ageAvg.toFixed(0)+'</td>' )
+      //               // .append( '<td/>' )
+      //               .append( '<td>'+cut+'</td>' )
+      //               .append( '<td/>' )
+      //               .append( '<td/>' )
+      //               .append( '<td/>' )
+      //               .append( '<td/>' )
+      //       },
+      //       // dataSrc: 0
+      //   }
+
     });
   });
    
