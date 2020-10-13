@@ -298,7 +298,7 @@
                 "Output",
                 item.in_sewing,
                 item.qty_sewing_out,
-                item.actual_qt,
+                "0",
               ]).draw();
               table2.row.add([
                 "Qty Balance",

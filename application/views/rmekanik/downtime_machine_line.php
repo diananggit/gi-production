@@ -35,6 +35,8 @@
         </div><!-- /.container-fluid -->
       </div>
       
+      <!-- /.content-header -->
+
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -43,7 +45,7 @@
           
         </div>
         <h4 style="text-align: center; color:red" >
-          <b>Globalindo Intimates - Dowtime Report Machine Type,
+          <b>Globalindo Intimates - Dowtime Report 
             <span id="dailyDate" style="color:red;"></span>
           </b>
         </h4>
@@ -52,22 +54,18 @@
             <div class="input-group-prepend">
             </div>
             <div class="col-md-2">
-            <select class="form-control is-warning select2" id="month" name="month" style="width: 80%"></select>
-              <!-- <input type="text" name="month" id="month" class="form-control select2"> -->
+            <select class="form-control is-warning select2" id="line" name="line style="width: 80%"></select>
             </div>
           </div>
         </br>
         <div class="col-md-10">
           <div class="card">
             <div class="card-body" >
-              <canvas id="barDowntime"></canvas>
+              <canvas id="barDowntimeLine"></canvas>
             </div>
           </div>
         </div>
         </div>
-        <!-- Small boxes (Stat box) -->
-
-        <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -92,45 +90,44 @@
 
   $(".select2").select2();
 
-  load_month();
+  load_line();
 
-			function load_month(){
-				$('#month').empty();
+			function load_line(){
+				$('#line').empty();
 				$.ajax({
-					url: "<?php echo site_url('ReportDowntimeMachinetype/get_month'); ?>",
+					url: "<?php echo site_url('ReportDowntimeLine/get_line'); ?>",
 					type: 'get',
 					dataType: 'json',
 				}).done(function(data) {
 				$.each(data, function(i, item) {
-					$('#month').append($('<option>', {
-						value: item.month,
-						text: item.month
+					$('#line').append($('<option>', {
+						value: item.line,
+						text: item.line
 					}));
 				});
 				});
 			}
-      $('#month').change(function() {
-        month = $(this).val()
+      $('#line').change(function() {
+        line = $(this).val()
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeMachinetype/get_data_machine_type'); ?>/' + month,
+        url: '<?php echo site_url('ReportDowntimeLine/get_data_machine_line'); ?>/' + line,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          var chartDowntimeCanvas = $('#barDowntime').get(0).getContext('2d');
+          var chartDowntimeCanvas = $('#barDowntimeLine').get(0).getContext('2d');
           var chartReportDowntimeLabels = [];
-          var chartDoentimeValues = [];
-         
+          var chartDowntimeValues = [];
 
           $.each(data, function(i, item) {
 
-            chartDoentimeValues.push(parseInt(item.tot_machine));
-            chartReportDowntimeLabels.push(item.machine_type);
+            chartDowntimeValues.push(parseInt(item.tot_machine));
+            chartReportDowntimeLabels.push(item.month);
           });
          
 
           var arrColor = [];
-          for (x = 0; x <= chartDoentimeValues.length; x++) {
+          for (x = 0; x <= chartDowntimeValues.length; x++) {
             arrColor.push(
               randomColor()
             );
@@ -145,7 +142,7 @@
               datasets: [{
                   borderColor: "#ff3333",
                   label: 'Machine Downtime',
-                  data: chartDoentimeValues,
+                  data: chartDowntimeValues,
                   backgroundColor : arrColor,
                   fill: false
                 },               
