@@ -38,7 +38,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
-					<h2 style="text-align: center; color: #007bff"><b>Intimates - Downtime Report</b></h3>
+					<h2 style="text-align: center; color: grey"><b>Intimates - Downtime Report</b></h3>
 					</br>
 					<div class="form-group">
 					<div class="input-group">

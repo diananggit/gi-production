@@ -42,7 +42,7 @@
           <!--modal pilihan-->
           
         </div>
-        <h4 style="text-align: center; color:red" >
+        <h4 style="text-align: center; color:grey" >
           <b>Globalindo Intimates - Dowtime Report Machine Type,
             <span id="dailyDate" style="color:red;"></span>
           </b>

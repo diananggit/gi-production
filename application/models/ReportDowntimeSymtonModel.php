@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ReportDowntimeMachineLineModel extends CI_Model{
-    var $table="v_breakdown_line";
+class ReportDowntimeSymtonModel extends CI_Model{
+    var $table="v_montly_shimpton";
 
     public function get_all(){
         date_default_timezone_set('Asia/Jakarta');
@@ -19,14 +19,13 @@ class ReportDowntimeMachineLineModel extends CI_Model{
         return $rst->result();
     }
 
-    public function get_line(){
+    public function get_sympton(){
         $this->db->select('DISTINCT(month)');
-        $query = $this->db->get('v_breakdown_line');
+        $query = $this->db->get('v_montly_shimpton');
         return $query->result();
     }
 
-    public function get_by_line($month){
-        // $resutReplace=str_replace("%20"," ",$line);
+    public function get_by_sympton($month){
         $rst = $this->db->get_where($this->table, array('month' => $month ));
         return $rst->result();
     }

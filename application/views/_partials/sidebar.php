@@ -168,7 +168,7 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fa fa-cogs text-danger"></i>
+						<i class="nav-icon fa fa-cogs text-secondary"></i>
 						<p>
 							<b>Mechanic Report</b>
 							<i class="fa fa-angle-left right"></i>
@@ -177,26 +177,32 @@
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
 							<a href="<?php echo site_url('Downtime'); ?>" class="nav-link">
-								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<i class="fa fa-line-chart text-secondary nav-icon"></i>
 								<p>DownTime</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportSummaryDowntime'); ?>" class="nav-link">
-								<i class="fa fa-users text-danger nav-icon"></i>
+								<i class="fa fa-calendar text-secondary nav-icon"></i>
 								<p>Daily DownTime</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportDowntimeMachinetype'); ?>" class="nav-link">
-								<i class="fa fa-users text-danger nav-icon"></i>
+								<i class=" fa fa-th-large text-secondary nav-icon"></i>
 								<p> DownTime Machine Type</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?php echo site_url('ReportDowntimeLine'); ?>" class="nav-link">
-								<i class="fa fa-users text-danger nav-icon"></i>
+								<i class="fa fa-pie-chart text-secondary nav-icon"></i>
 								<p> DownTime Machine By Line</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('ReportDowntimeSymton'); ?>" class="nav-link">
+								<i class="fa fa-bars text-secondary nav-icon"></i>
+								<p> DownTime By Sympton</p>
 							</a>
 						</li>
 						<!-- <li class="nav-item">

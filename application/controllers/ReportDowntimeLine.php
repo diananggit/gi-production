@@ -11,8 +11,8 @@ class ReportDowntimeLine extends CI_Controller{
         $this->load->view('rmekanik/downtime_machine_line');
     }
 
-    public function get_data_machine_line($line){
-        $data=$this->ReportDowntimeMachineLineModel->get_by_line($line);
+    public function get_data_machine_line($month){
+        $data=$this->ReportDowntimeMachineLineModel->get_by_line($month);
         echo json_encode($data);
     }
     

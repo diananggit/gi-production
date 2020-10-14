@@ -34,15 +34,10 @@
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
-      
       <!-- /.content-header -->
-
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          
-          <!--modal pilihan-->
-          
         </div>
         <h4 style="text-align: center; color:grey" >
           <b>Globalindo Intimates - Dowtime Report 
@@ -54,14 +49,14 @@
             <div class="input-group-prepend">
             </div>
             <div class="col-md-2">
-            <select class="form-control is-warning select2" id="month" name="month" style="width: 80%"></select>
+            <select class="form-control select2" id="month" name="month" style="width: 80%"></select>
             </div>
           </div>
         </br>
-        <div class="col-md-30">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-body" >
-              <canvas id="barDowntimeLine"></canvas>
+              <canvas id="barDowntimeShimton"></canvas>
             </div>
           </div>
         </div>
@@ -90,39 +85,39 @@
 
   $(".select2").select2();
 
-  load_line();
+  load_shimton();
 
-			function load_line(){
-				$('#month').empty();
-				$.ajax({
-					url: "<?php echo site_url('ReportDowntimeLine/get_line'); ?>",
-					type: 'get',
-					dataType: 'json',
-				}).done(function(data) {
-				$.each(data, function(i, item) {
-					$('#month').append($('<option>', {
-						value: item.month,
-						text: item.month
-					}));
-				});
-				});
-			}
+  function  load_shimton(){
+        $('#month').empty();
+        $.ajax({
+            url: "<?php echo site_url('ReportDowntimeSymton/get_sympton'); ?>",
+            type: 'get',
+            dataType: 'json',
+        }).done(function(data) {
+        $.each(data, function(i, item) {
+            $('#month').append($('<option>', {
+                value: item.month,
+                text: item.month
+            }));
+        });
+        });
+    }
       $('#month').change(function() {
         month = $(this).val()
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeLine/get_data_machine_line'); ?>/' + month,
+        url: '<?php echo site_url('ReportDowntimeSymton/get_data_machine_sympton'); ?>/' + month,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          var chartDowntimeCanvas = $('#barDowntimeLine').get(0).getContext('2d');
+          var chartDowntimeCanvas = $('#barDowntimeShimton').get(0).getContext('2d');
           var chartReportDowntimeLabels = [];
           var chartDowntimeValues = [];
 
           $.each(data, function(i, item) {
 
             chartDowntimeValues.push(parseInt(item.tot_machine));
-            chartReportDowntimeLabels.push(item.line);
+            chartReportDowntimeLabels.push(item.sympton);
           });
          
 
@@ -162,12 +157,10 @@
               scales: {
                 xAxes: [{
                 ticks: {
-                    // min: 0 // Edit the value according to what you need
                 }
             }],
                 yAxes: [{
                     ticks: {
-                    // beginAtZero: true,
                     min:0
                   },
                   
@@ -185,8 +178,8 @@
 
       function randomColor() {
         return "hsl(" + 360 * Math.random() + ',' +
-          (10 + 70 * Math.random()) + '%,' +
-          (55 + 10 * Math.random()) + '%)'
+          (10 + 85 * Math.random()) + '%,' +
+          (65 + 10 * Math.random()) + '%)'
       }
     });
   </script>

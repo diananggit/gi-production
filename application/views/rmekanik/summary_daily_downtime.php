@@ -38,7 +38,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
-					<h2 style="text-align: center; color: #007bff"><b>Intimates - Downtime Report</b></h3>
+					<h2 style="text-align: center; color: grey"><b>Intimates - Downtime Report</b></h3>
 					</br>
 					<div class="form-group">
 						<div class="input-group">
@@ -51,7 +51,7 @@
 						</div>
 						</br>
 						<div class="col-md-6">
-							<div class="info-box mb-2 bg-info">
+							<div class="info-box mb-2 bg-secondary">
 								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
 								<div class="info-box-content">
 									<span class="info-box-number" style="color: #1f2d3d;"  >Mechanic Utilize(try)</span>
