@@ -205,6 +205,12 @@
 								<p> DownTime By Sympton</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('ReportDowntimeAnalize'); ?>" class="nav-link">
+								<i class="fa fa-plus-square-o text-secondary nav-icon"></i>
+								<p> DownTime Analise Machine</p>
+							</a>
+						</li>
 						<!-- <li class="nav-item">
 							<a href="<?php echo site_url('Machineanalisys'); ?>" class="nav-link">
 								<i class="fa fa-tachometer text-danger nav-icon"></i>
