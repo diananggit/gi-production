@@ -141,25 +141,25 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportPackingByStyle'); ?>" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="fa fa-tags text-success nav-icon"></i>
 								<p>By Style</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportPackingByOrc'); ?>" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="fa fa-suitcase text-success nav-icon"></i>
 								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportPackingSingleOrc'); ?>" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="fa fa-tag text-success nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportWipPacking'); ?>" class="nav-link">
+							<a href="#" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-success nav-icon"></i>
 								<p>By WIP</p>
 							</a>

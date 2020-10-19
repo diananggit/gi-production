@@ -151,7 +151,7 @@
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
-        var hari = day.getDate()-3;
+        var hari = day.getDate()-2;
         if(hari <= 0){
           bln -= 1;
           tgl = new Date(thn, bln, 0);
@@ -200,7 +200,7 @@
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
-        var hari = day.getDate()-3;
+        var hari = day.getDate()-2;
         if(hari <= 0){
           bln -= 1;
           tgl = new Date(thn, bln, 0);
@@ -242,7 +242,7 @@
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
-        var hari = day.getDate()-3;
+        var hari = day.getDate()-2;
         if(hari <= 0){
           bln -= 1;
           tgl = new Date(thn, bln, 0);
@@ -279,7 +279,7 @@
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
-        var hari = day.getDate()-3;
+        var hari = day.getDate()-2;
         if(hari <= 0){
           bln -= 1;
           tgl = new Date(thn, bln, 0);
