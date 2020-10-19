@@ -130,7 +130,54 @@
 						</li>
 					</ul>
 				</li>
-
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fa fa-youtube-play text-danger"></i>
+						<p>
+							<b>Sewing Live Report</b>
+							<i class="fa fa-angle-left right"></i>
+						</p>
+					</a>
+					
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorFirstA'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p>First Floor A</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorFirstB'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p>First Floor B</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorSecondA'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p>Second Floor A</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorSecondB'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p>Second Floor B</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorThirdA'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p> Third Floor A</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('sewing_live_report_controller/SewingLiveReportFloorThirdB'); ?>" class="nav-link">
+								<i class="fa fa-line-chart text-danger nav-icon"></i>
+								<p> Third Floor B</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa fa-cubes text-success"></i>
