@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-secondary elevation-4 bg-default-gradient">
 	<!-- Brand Logo -->
-	<a href="<?php echo site_url('ReportDaily'); ?>" class="brand-link">
+	<a href="<?php echo site_url('report_cutting/ReportDaily'); ?>" class="brand-link">
 		<span class="brand-text font-weight-light"><strong class="text-danger"><b>Production</b></strong><small class="text-success"><b>Report</b></small></span>
 	</a>
 

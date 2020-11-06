@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="card-tools">
-          <a href="<?php echo site_url('ReportDaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
-          <a href="<?php echo site_url('ReportMoldingShift'); ?>" class="btn btn-danger" ><i class="fa fa-pencil"></i>SHIFT</a>
+          <a href="<?php echo site_url('report_cutting/ReportDaily'); ?>" class="btn btn-success" ><i class="fa fa-arrow-left"></i>BACK</a>
+          <a href="<?php echo site_url('report_molding/ReportMoldingShift'); ?>" class="btn btn-danger" ><i class="fa fa-pencil"></i>SHIFT</a>
         </div>
         
         
@@ -97,7 +97,7 @@ function formatDate(date) {
   
   function showReportMolding() {
     $.ajax({
-      url: "<?php echo site_url('ReportBarChartMolding/ajax_get_qty_molding') ; ?>",
+      url: "<?php echo site_url('report_molding/ReportBarChartMolding/ajax_get_qty_molding') ; ?>",
       type: "GET",
       dataType: 'json', 
        }).done(function(data){

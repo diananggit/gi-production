@@ -3,12 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportDaily extends CI_Controller {
 	public function __construct(){
+		$model = 'report_cutting/ReportDailyModel';
+        $model2 = 'report_sewing/ReportDailySewingModel';
+		$model3 = 'report_packing/ReportDailyPackingModel';
+		$model4 = 'report_molding/ReportDailyModelMolding';
 	
 		parent::__construct();
-		$this->load->model('ReportDailyModel');
-		$this->load->model('ReportDailySewingModel');
-		$this->load->model('ReportDailyPackingModel');
-		$this->load->model('ReportDailyModelMolding');
+		$this->load->model($model,'ReportDailyModel');
+		$this->load->model($model2,'ReportDailySewingModel');
+		$this->load->model($model3,'ReportDailyPackingModel');
+		$this->load->model($model4,'ReportDailyModelMolding');
 	}
 
 
