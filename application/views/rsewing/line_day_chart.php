@@ -137,7 +137,7 @@
 
         $.when(
           $.ajax({
-            url: '<?php echo site_url("LineDayChart/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("report_sewing/LineDayChart/ajax_get_by_line_day"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -155,7 +155,7 @@
             })
           }),
           $.ajax({
-            url: '<?php echo site_url("LineDayChart/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("report_sewing/LineDayChart/ajax_get_by_line_day"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}

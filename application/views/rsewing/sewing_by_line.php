@@ -277,7 +277,7 @@
         console.log(line);
         $.when(
           $.ajax({
-            url: '<?php echo site_url("SewingByLine/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("report_sewing/SewingByLine/ajax_get_by_line_day"); ?>',
             type: 'POST',
             data: {
               'line': line
@@ -318,7 +318,7 @@
           }),
 
           $.ajax({
-            url: '<?php echo site_url("SewingByLine/ajax_get_by_line"); ?>',
+            url: '<?php echo site_url("report_sewing/SewingByLine/ajax_get_by_line"); ?>',
             type: 'POST',
             data: {
               'line': line
@@ -351,7 +351,7 @@
 
           }),
           $.ajax({
-            url: '<?php echo site_url("SewingByLine/ajax_get_by_line_day"); ?>',
+            url: '<?php echo site_url("report_sewing/SewingByLine/ajax_get_by_line_day"); ?>',
             type: 'POST',
             data: {
               'line': line
@@ -408,7 +408,7 @@
             var url;
 
           $.ajax({
-            url: '<?php echo site_url("SewingByLine/ajax_update"); ?>' ,
+            url: '<?php echo site_url("report_sewing/SewingByLine/ajax_update"); ?>' ,
             method: 'POST',
             dataType: 'json',
             data: $('#form-edit-remaks').serialize(),
@@ -425,17 +425,17 @@
       $('#linkWeekChart').click(function(){
       localStorage.setItem('dayChart', line);
       console.log('lineI: ', line);
-      window.open('<?php echo site_url("LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
+      window.open('<?php echo site_url("report_sewing/LineDayChart/ajax_get_by_line"); ?>/' + line, "_self");
       })
 
       $('#linkWeekly').click(function(){
         localStorage.setItem('weekChart', line);
-        window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
+        window.open('<?php echo site_url("report_sewing/LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
       })
 
       $('#linkMonthly').click(function(){
         localStorage.setItem('monthChart', line);
-        window.open('<?php echo site_url("LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
+        window.open('<?php echo site_url("report_sewing/LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
       })
 
       $('linkRemak').click(function(){

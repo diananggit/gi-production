@@ -130,7 +130,7 @@
 
         $.when(
           $.ajax({
-            url: '<?php echo site_url("LineMonthlyChart/ajax_get_by_line_month"); ?>',
+            url: '<?php echo site_url("report_sewing/LineMonthlyChart/ajax_get_by_line_month"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -149,7 +149,7 @@
             })
           }),
           $.ajax({
-            url: '<?php echo site_url("LineMonthlyChart/ajax_get_by_line_month2"); ?>' ,
+            url: '<?php echo site_url("report_sewing/LineMonthlyChart/ajax_get_by_line_month2"); ?>' ,
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr},

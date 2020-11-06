@@ -64,9 +64,11 @@
               <tr>
                 <th>Tanggal</th>
                 <th>ORC</th>
-                <th>Qty_Order</th>
-                <th>Qty_Packing</th>
-                <!-- <th>Qty_Balance</th> -->
+                <th>Style</th>
+                <th>color</th>
+                <th>Order</th>
+                <th>Packing</th>
+                <th>Packing Sam</th>
               </tr>
             </thead>
             <tbody>
@@ -79,20 +81,26 @@
                     <?php echo $orc->orc ?>
                   </td>
                   <td>
-                  <?php echo $orc->order ?>
+                    <?php echo $orc->style ?>
                   </td>
                   <td>
-                  <?php echo $orc->qty ?>
+                    <?php echo $orc->color ?>
                   </td>
-                 <!-- <td>
-                   <?php echo $orc->balance ?>
-                 </td> -->
+                  <td>
+                  <?php echo $orc->qtyOrder ?>
+                  </td>
+                  <td>
+                  <?php echo $orc->qtyActual ?>
+                  </td>
+                 <td> 
+                 <?php echo $orc->packing_sam ?>
+                 </td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
               <tr>
-              <th colspan="4" style="text-align:right">Total:</th>
+              <th colspan="6" style="text-align:right">Total:</th>
                 <!-- <th></th> -->
                 
               </tr>
@@ -131,7 +139,7 @@
     table = $('#tableOrc').DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'copy','csv','excel','pdf','print'
+       'csv','excel','pdf','print'
       ],
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
@@ -146,7 +154,7 @@
  
             // Total over all pages
             total = api
-                .column( 3 )
+                .column( 5 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -154,14 +162,14 @@
  
             // Total over this page
             pageTotal = api
-                .column( 3, { page: 'current'} )
+                .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 3 ).footer() ).html(
+            $( api.column( 5 ).footer() ).html(
                 'Total Packing :' + total
             );
         }
@@ -195,7 +203,6 @@
         $.ajax({  
               url:"<?php echo site_url('ReportPackingByOrc/filter');?>",  
               method:"POST",  
-              // data:{from_date:from_date, to_date:to_date},  
               data: {'dataStr': dataStr},
               dataType: 'json',
               success:function(data)  
@@ -206,13 +213,13 @@
                   table.row.add([
                     item.tgl,
                     item.orc,
-                    item.order,
-                    item.qty,
+                    item.style,
+                    item.color,
+                    item.qtyOrder,
+                    item.qtyActual,
                     // item.balance,
                   ]).draw();
                 });
-                    // $('#tableStyle').DataTable().destroy();
-                    // $('#tableStyle').html(data);  
               }  
           });  
       }

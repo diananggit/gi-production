@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportPackingBySingleOrcModel extends CI_Model{
-    var $table="view_single_packing";
+    var $table="v_single_packing";
     var $column_order = array('orc','style','color','tgl','qty','order','etd');
     
     

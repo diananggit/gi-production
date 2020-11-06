@@ -21,25 +21,25 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportCuttingByOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_cutting/ReportCuttingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-warning nav-icon"></i>
 								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportCuttingSingleOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_cutting/ReportCuttingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-warning nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportWipCutting'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_cutting/ReportWipCutting'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-warning nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportCuttingToSewing'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_cutting/ReportCuttingToSewing'); ?>" class="nav-link">
 								<i class="fa fa-arrow-circle-right text-warning nav-icon"></i>
 								<p>Cutting To Sewing</p>
 							</a>
@@ -57,31 +57,31 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportMoldingByOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/ReportMoldingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-primary nav-icon"></i>
 								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportMoldingSingleOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/ReportMoldingSingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-primary nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportWipMolding'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/ReportWipMolding'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-primary nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportOutputMolding'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/ReportOutputMolding'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-primary nav-icon"></i>
 								<p>By Machine</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('SummaryMolding'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/SummaryMolding'); ?>" class="nav-link">
 								<i class="fa fa-list-alt text-primary nav-icon"></i>
 								<p>Summary Molding</p>
 							</a>
@@ -99,25 +99,25 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportSewingByOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_sewing/ReportSewingByOrc'); ?>" class="nav-link">
 								<i class="fa fa-suitcase text-danger nav-icon"></i>
 								<p>By Date Range</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportSewingBySingleOrc'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_sewing/ReportSewingBySingleOrc'); ?>" class="nav-link">
 								<i class="fa fa-tag text-danger nav-icon"></i>
 								<p>By Single Orc</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportSewingWip'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_sewing/ReportSewingWip'); ?>" class="nav-link">
 								<i class="fa fa-exclamation-triangle text-danger nav-icon"></i>
 								<p>WIP Report</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('reportBarSewingLine'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_sewing/ReportBarSewingLine'); ?>" class="nav-link">
 								<i class="fa fa-bar-chart text-danger nav-icon"></i>
 								<p> Daily Sewing Output</p>
 							</a>
@@ -223,39 +223,45 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url('Downtime'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/Downtime'); ?>" class="nav-link">
 								<i class="fa fa-line-chart text-secondary nav-icon"></i>
 								<p>DownTime</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportSummaryDowntime'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/ReportSummaryDowntime'); ?>" class="nav-link">
 								<i class="fa fa-calendar text-secondary nav-icon"></i>
 								<p>Daily DownTime</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportDowntimeMachinetype'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/ReportDowntimeMachinetype'); ?>" class="nav-link">
 								<i class=" fa fa-th-large text-secondary nav-icon"></i>
 								<p> DownTime Machine Type</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportDowntimeLine'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/ReportDowntimeLine'); ?>" class="nav-link">
 								<i class="fa fa-pie-chart text-secondary nav-icon"></i>
 								<p> DownTime Machine By Line</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportDowntimeSymton'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/ReportDowntimeSymton'); ?>" class="nav-link">
 								<i class="fa fa-bars text-secondary nav-icon"></i>
 								<p> DownTime By Sympton</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('ReportDowntimeAnalize'); ?>" class="nav-link">
+							<a href="<?php echo site_url('downtime_mechanic/ReportDowntimeAnalize'); ?>" class="nav-link">
 								<i class="fa fa-plus-square-o text-secondary nav-icon"></i>
 								<p> DownTime Analise Machine</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('downtime_mechanic/DowntimeShimptonDaily'); ?>" class="nav-link">
+								<i class="fa fa-plus-square-o text-secondary nav-icon"></i>
+								<p> DownTime Daily Sympton</p>
 							</a>
 						</li>
 						<!-- <li class="nav-item">

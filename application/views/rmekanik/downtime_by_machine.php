@@ -142,7 +142,7 @@
 			function load_line(){
 				$('#line').empty();
 				$.ajax({
-					url: "<?php echo site_url('Downtime/get_line'); ?>",
+					url: "<?php echo site_url('downtime_mechanic/Downtime/get_line'); ?>",
 					type: 'get',
 					dataType: 'json',
 				}).done(function(data) {
@@ -182,7 +182,7 @@
 						alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
 					} else {
 						$.ajax({
-							url: "<?php echo site_url('Downtime/filter'); ?>",
+							url: "<?php echo site_url('downtime_mechanic/Downtime/filter'); ?>",
 							method: "POST",
 							data: {
 								'dataStr': dataStr

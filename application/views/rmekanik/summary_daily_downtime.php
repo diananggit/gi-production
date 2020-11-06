@@ -150,7 +150,7 @@
 				$.when(
 				
                  $.ajax({
-                     url: '<?php echo site_url("ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
+                     url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
                      type: 'GET',
                      dataType: 'json',
                  }).done(function(data){
@@ -187,7 +187,7 @@
 				 }),
 				 
 				 $.ajax({
-					url: '<?php echo site_url("ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
+					url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
 					type: 'GET',
                      dataType: 'json',
 					success: function(rst){

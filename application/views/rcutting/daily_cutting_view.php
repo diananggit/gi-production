@@ -52,7 +52,7 @@
           <div class="col-md-4">
             <div class="card card-danger">
               <div class="card-header text-center">
-                <a href="<?php echo site_url('ReportBarChartCutting'); ?>" class="card-title"><b>Cutting Department</b></a>
+                <a href="<?php echo site_url('report_cutting/ReportBarChartCutting'); ?>" class="card-title"><b>Cutting Department</b></a>
               </div>
               <div class="card-body">
                 <div class="media">

@@ -54,12 +54,13 @@
 							<div class="card-body">
 								<table id="analiseTable" class="table table-bordered table-striped" style="width: Auto; ">
 									<thead>
-										<tr><td class='bg-secondary'>Month</td>
+										<tr>
+											<td class='bg-secondary'>Month</td>
 											<td class='bg-secondary'width=100px>Machine Type</td>
 											<td class='bg-secondary'width= 150px>Serial Number</td>
 											<td class='bg-secondary'>Barcode Machine</td>
 											<td class='bg-secondary'width= 150px >Sympton</td>
-											<td class='bg-secondary' width= 100px>Total Downtime</td>
+											<td class='bg-secondary' width= 100px>Total Break Machine</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -116,7 +117,7 @@
 			function load_month(){
 				$('#month').empty();
 				$.ajax({
-					url: "<?php echo site_url('ReportDowntimeAnalize/get_month'); ?>",
+					url: "<?php echo site_url('downtime_mechanic/ReportDowntimeAnalize/get_month'); ?>",
 					type: 'get',
 					dataType: 'json',
 				}).done(function(data) {
@@ -134,7 +135,7 @@
 			$('#month').change(function(){
 				month = $(this).val()
                  $.ajax({
-                     url: '<?php echo site_url("ReportDowntimeAnalize/get_datas"); ?>/' + month,
+                     url: '<?php echo site_url("downtime_mechanic/ReportDowntimeAnalize/get_datas"); ?>/' + month,
                      type: 'GET',
                      dataType: 'json',
                  }).done(function(data){

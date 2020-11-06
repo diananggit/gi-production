@@ -67,7 +67,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label>QTY ORDER:</label>
-                  <input type="text" id="qty_order" name="qty_order" class="form-control" disabled>
+                  <input type="text" id="order" name="order" class="form-control" disabled>
                 </div>
                 <!-- <div class="form-group">
                   <label>DDD:</label>
@@ -209,8 +209,7 @@
           success: function(data) {
             $('#style').val(data[0].style);
             $('#color').val(data[0].color);
-            $('#qty_order').val(data[0].total_qty);
-            // $('#etd').val(data[0].etd);
+            $('#order').val(data[0].qty);
             table.clear();
 
 

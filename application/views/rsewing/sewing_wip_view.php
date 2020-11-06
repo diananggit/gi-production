@@ -65,7 +65,7 @@
                                 <tr>
                                 <td>
                                   
-                                    <a href="<?php echo site_url('UnscanSewing/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
+                                    <a href="<?php echo site_url('report_sewing/UnscanSewing/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
                                 </td>
                                 <td>
                                     <?php echo $wip->style ?>
@@ -103,7 +103,7 @@
                       </div>
                   </div>
                   <div class="card-tools">
-                    <a href="<?php echo site_url('ReportSewingBySingleOrc'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="<?php echo site_url('report_sewing/ReportSewingBySingleOrc'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
                   </div>
               </div>
           </div>

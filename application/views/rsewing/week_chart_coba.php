@@ -96,7 +96,7 @@ LineDailyChart();
 
 function LineDailyChart() {
     $.ajax({
-      url: '<?php echo site_url('LineWeekChart/ajax_get_daily_sewing_line'); ?>'  ,
+      url: '<?php echo site_url('report_sewing/LineWeekChart/ajax_get_daily_sewing_line'); ?>'  ,
       type: 'POST',
       dataType: 'json',
       data: {
@@ -197,7 +197,7 @@ $('#linkWeekly').click(function(){
     
     localStorage.setItem('weekChart', line);
 
-    window.open('<?php echo site_url("LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
+    window.open('<?php echo site_url("report_sewing/LineDailyChart/ajax_get_by_line"); ?>/' + line, "_self");
 
   })
 

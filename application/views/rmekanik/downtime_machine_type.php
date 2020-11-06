@@ -97,7 +97,7 @@
 			function load_month(){
 				$('#month').empty();
 				$.ajax({
-					url: "<?php echo site_url('ReportDowntimeMachinetype/get_month'); ?>",
+					url: "<?php echo site_url('downtime_mechanic/ReportDowntimeMachinetype/get_month'); ?>",
 					type: 'get',
 					dataType: 'json',
 				}).done(function(data) {
@@ -112,7 +112,7 @@
       $('#month').change(function() {
         month = $(this).val()
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeMachinetype/get_data_machine_type'); ?>/' + month,
+        url: '<?php echo site_url('downtime_mechanic/ReportDowntimeMachinetype/get_data_machine_type'); ?>/' + month,
         type: 'GET',
         dataType: 'json',
         success: function(data) {

@@ -144,7 +144,7 @@
 		function load_machine() {
 			$('#machine').empty();
 			$.ajax({
-				url: "<?php echo site_url('ReportOutputMolding/get_machine'); ?>",
+				url: "<?php echo site_url('report_molding/ReportOutputMolding/get_machine'); ?>",
 				type: 'get',
 				dataType: 'json',
 			}).done(function(data) {
@@ -179,7 +179,7 @@
 					alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
 				} else {
 					$.ajax({
-						url: "<?php echo site_url('ReportOutputMolding/filter'); ?>",
+						url: "<?php echo site_url('report_molding/ReportOutputMolding/filter'); ?>",
 						method: "POST",
 						data: {
 							'dataStr': dataStr

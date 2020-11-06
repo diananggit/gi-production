@@ -160,7 +160,7 @@
 
         $.when(
           $.ajax({
-            url: '<?php echo site_url("LineDailyChart/ajax_get_by_line_week"); ?>',
+            url: '<?php echo site_url("report_sewing/LineDailyChart/ajax_get_by_line_week"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -182,7 +182,7 @@
           }),
 
           $.ajax({
-            url: '<?php echo site_url("LineDailyChart/ajax_get_by_line_week2"); ?>',
+            url: '<?php echo site_url("report_sewing/LineDailyChart/ajax_get_by_line_week2"); ?>',
             type: 'POST',
             dataType: 'json',
             data: {'dataStr' : dataStr}
@@ -252,7 +252,7 @@
 
     localStorage.setItem('monthChart', line);
 
-    window.open('<?php echo site_url("LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
+    window.open('<?php echo site_url("report_sewing/LineMonthlyChart/ajax_get_by_line"); ?>/' + line, "_self");
     })
 
     $('#line').val(line);

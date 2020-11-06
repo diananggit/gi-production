@@ -51,6 +51,17 @@
             <div class="col-md-2">
             <select class="form-control select2" id="month" name="month" style="width: 80%"></select>
             </div>
+            <!-- <div class="col-md-2">
+								<input type="text" name="from_date" id="from_date" class="datepicker form-control" placeholder="From Date">
+							</div>
+							<div class="col-md-2">
+								<input type="text" name="to_date" id="to_date" class="datepicker form-control" placeholder="To Date">
+							</div>
+
+							<div class="col-md-2">
+								<input type="button" name="filter" id="filter" value="Filter" class="btn btn-info">
+							</div> -->
+
           </div>
         </br>
         <div class="col-md-12">
@@ -90,7 +101,7 @@
   function  load_shimton(){
         $('#month').empty();
         $.ajax({
-            url: "<?php echo site_url('ReportDowntimeSymton/get_sympton'); ?>",
+            url: "<?php echo site_url('downtime_mechanic/ReportDowntimeSymton/get_sympton'); ?>",
             type: 'get',
             dataType: 'json',
         }).done(function(data) {
@@ -105,7 +116,7 @@
       $('#month').change(function() {
         month = $(this).val()
       $.ajax({
-        url: '<?php echo site_url('ReportDowntimeSymton/get_data_machine_sympton'); ?>/' + month,
+        url: '<?php echo site_url('downtime_mechanic/ReportDowntimeSymton/get_data_machine_sympton'); ?>/' + month,
         type: 'GET',
         dataType: 'json',
         success: function(data) {

@@ -93,7 +93,7 @@
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
-        var hari = day.getDate()-2;
+        var hari = day.getDate()-3;
         if(hari <= 0){
           bln -= 1;
           tgl = new Date(thn, bln, 0);
@@ -120,7 +120,7 @@
         document.getElementById('dailyDate').innerHTML = tanggal;
    
       $.ajax({
-        url: '<?php echo site_url('reportBarSewingLine/ajax_get_qty_sewing_line'); ?>',
+        url: '<?php echo site_url('report_sewing/reportBarSewingLine/ajax_get_qty_sewing_line'); ?>',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -181,6 +181,19 @@
                 }
               },
               scales: {
+                xAxes: [{
+                    display: false,
+                    barPercentage: 1.3,
+                    ticks: {
+                        max: 3,
+                    }
+                }, {
+                    display: true,
+                    ticks: {
+                        autoSkip: false,
+                        max: 4,
+                    }
+                }],
                 yAxes: [{
                     id: 'axisBarLine',
                     type: "linear",
@@ -225,7 +238,7 @@
 
                     localStorage.setItem('lineChart', line);
 
-                    window.open('<?php echo site_url("SewingByLine"); ?>', '_self');
+                    window.open('<?php echo site_url("report_sewing/SewingByLine"); ?>', '_self');
                   }
 
 
