@@ -52,7 +52,7 @@
           <div class="col-md-4">
             <div class="card card-danger">
               <div class="card-header text-center">
-                <a href="<?php echo site_url('report_cutting/ReportBarChartCutting'); ?>" class="card-title"><b>Cutting Department</b></a>
+                <a href="<?php echo site_url('ReportBarChartCutting'); ?>" class="card-title"><b>Cutting Department</b></a>
               </div>
               <div class="card-body">
                 <div class="media">
@@ -67,7 +67,7 @@
           <div class="col-md-4">
             <div class="card card-warning">
               <div class="card-header">
-                <a href="<?php echo site_url('report_molding/ReportBarChartMolding' ); ?>" class="card-title"><b>Molding Department</b></a>
+                <a href="<?php echo site_url('ReportBarChartMolding' ); ?>" class="card-title"><b>Molding Department</b></a>
               </div>
               <div class="card-body">
                 <div class="media">
@@ -84,7 +84,7 @@
         <div class="col-md-4">
           <div class="card card-success">
             <div class="card-header">
-              <a href="<?php echo site_url('report_sewing/ReportBarChartSewing'); ?>" class="card-title"><b>Sewing Department</b></a>
+              <a href="<?php echo site_url('ReportBarChartSewing'); ?>" class="card-title"><b>Sewing Department</b></a>
             </div>
             <div class="card-body">
               <div class="media">
@@ -99,7 +99,7 @@
         <div class="col-md-4">
           <div class="card card-primary">
             <div class="card-header">
-              <a href="<?php echo site_url('report_packing/ReportBarChartPacking'); ?>" class="card-title"><b>Packing Department</b></a>
+              <a href="<?php echo site_url('ReportBarChartPacking'); ?>" class="card-title"><b>Packing Department</b></a>
             </div>
             <div class="card-body">
             <div class="media">
@@ -178,7 +178,7 @@
           
 
       return $.ajax({
-        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
+        url: '<?php echo site_url('ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
         type: 'GET',
         dataType: 'json',
         
@@ -222,7 +222,7 @@
 
       console.log('tanggal: ', tanggal);
       return $.ajax({
-        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
+        url:'<?php echo site_url('ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
           var output2 = parseInt(rst.qty_sewing);
@@ -262,7 +262,7 @@
           (hari < 10 ? "0" + hari.toString() : hari.toString());
 
       return $.ajax({
-        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_packing'); ?>/' + tanggal,
+        url: '<?php echo site_url('ReportDaily/ajax_get_packing'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
             var output3 = parseInt(rst.qty);
@@ -301,7 +301,7 @@
           console.log('tanggal: ', tanggal);
 
       return $.ajax({
-        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_molding'); ?>/' + tanggal,
+        url:'<?php echo site_url('ReportDaily/ajax_get_molding'); ?>/' + tanggal,
         dataType: 'json',
         success: function(rst){
           var output4 = parseInt(rst.qty_mold);
