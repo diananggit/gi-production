@@ -62,22 +62,25 @@
 
           </div>
         </br>
-        <div class="col-md-12">
+        <div class="col-md-8">
           <div class="card">
             <div class="card-body" >
-            <canvas id="barDowntimeShimton"></canvas>
-            <!-- <table id="sumaryTable" class="table table-bordered table-striped" style="width: Auto; ">
+            <!-- <canvas id="barDowntimeShimton"></canvas> -->
+            <table id="sumaryTable" class="table table-bordered table-striped" style="width: Auto; ">
                 <thead>
                     <tr>
                         <td class='bg-secondary'width=100px>Date</td>
                         <td class='bg-secondary'>Sympton</td>
                         <td class='bg-secondary' width=70px>Total Breakdown</td>
+                        <td class='bg-secondary'>Respon Duration</td>
+                        <td class='bg-secondary' >Reapair Duration</td>
+                        <td class='bg-secondary' >Total Duration</td>
                     </tr>
                 </thead>
                 <tbody>
                     
                 </tbody>
-            </table> -->
+            </table>
             </div>
           </div>
         </div>
@@ -103,6 +106,26 @@
 
 
   <script type="text/javascript">
+
+var table
+
+$(document).ready(function() {
+  table = $('#sumaryTable').DataTable({
+    // "scrollY": 200,
+    "scrollX": true,
+    dom: 'Blfrtip',
+    // "pagingType": "full_numbers",
+    "paging": true,
+    // "lengthMenu": [10, 25, 50, 75, 100],
+    lengthMenu: [
+      [100, 200, 300, 400],
+      [ 100, 200, 300, 400]
+    ],
+    buttons: [
+      'excel', 'csv'
+    ],
+  
+  });
 
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
@@ -134,101 +157,44 @@
                         'dataStr': dataStr
                     },
                     dataType: 'json',
-                    success: function(data) {
-                    console.log(data);
+                  }).done(function(data){
+						
+						table.clear();
+            table.clear();
+						$.each(data, function(i,item){
+              var hms = item.respon;   
+							var as = hms.split(':'); 
+							var respon = (+as[0]) * 60 + (+as[1]);
 
-                    let result = data.reduce((object, item) => {
-                      let category = item.sympton;
-                      let amount =  parseInt(item.tot_machine);
-                      if (!object.hasOwnProperty(category)) { object[category] = 0; }
-                      object[category] += amount;
-                    return object;
-                    }, {});
+							var times = item.repair;
+							var bs = times.split(':');
+							var repair = (+bs[0]) * 60 + (+bs[1]);
 
-                    let results = Object.entries(result).map(( [k, v] ) => ({ label: k, tot: v  }));
-                  
-                    var chartDowntimeCanvas = $('#barDowntimeShimton').get(0).getContext('2d');
-                    var chartReportDowntimeLabels = [];
-                    var chartDowntimeValues = [];
+							var total = [respon + repair];
+							console.log('total', total);
 
-                    $.each(results, function(i, item) {
-
-                        chartDowntimeValues.push(parseInt(item.tot));
-                        chartReportDowntimeLabels.push(item.label);
-                    });
-                    
-
-                    var arrColor = [];
-                    for (x = 0; x <= chartDowntimeValues.length; x++) {
-                        arrColor.push(
-                        randomColor()
-                        );
-                    }
-
-                    if(window.bar != undefined)
-                        window.bar.destroy();
-                        window.bar = new Chart(chartDowntimeCanvas, {
-                        type: 'bar',
-                        data: {
-                        labels: chartReportDowntimeLabels,
-                        datasets: [{
-                            borderColor: "#ff3333",
-                            label: 'Machine Downtime',
-                            data: chartDowntimeValues,
-                            backgroundColor : arrColor,
-                            fill: false
-                            },               
-                        ]
-                        },
-
-                        options: {
-                        responsive: true,
-                        tooltips: {
-                            mode: 'label'
-                        },
-                        element: {
-                            line: {
-                            fill: false
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: false,
-                                barPercentage: 1.3,
-                                ticks: {
-                                    max: 3,
-                                }
-                            }, {
-                                display: true,
-                                ticks: {
-                                    autoSkip: false,
-                                    max: 4,
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                min:0
-                            },
-                            
-
-                            }]
-
-                        },
-                        
-                        },
-
-                    });
-                    }
+							
+							table.row.add([
+								item.month,
+								item.sympton,
+								item.tot_machine,
+                respon,
+                repair,
+                total
+								
+							]).draw();
+            })
+					})
                 
-                });
-                function randomColor() {
-                    return "hsl(" + 360 * Math.random() + ',' +
-                    (10 + 85 * Math.random()) + '%,' +
-                    (65 + 10 * Math.random()) + '%)'
-                }
+                
             }
         }
-    });	
+
+
+			});
+
+		})
+
       
   </script>
 </body>

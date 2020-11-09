@@ -174,10 +174,10 @@
 				$.ajax({
 						url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/filter"); ?>',
 						method: "POST",
-						data: {
-							'dataStr': dataStr
-						},
-						dataType: 'json',
+                    data: {
+                        'dataStr': dataStr
+                    },
+                    dataType: 'json',
 					}).done(function(data){
 						
 						table.clear();
