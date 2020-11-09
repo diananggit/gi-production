@@ -45,12 +45,19 @@
 							<div class="input-group-prepend">
 							</div>
 							<div class="col-md-2">
-								<input type="text" name="date" id="date" class="datepicker form-control">
+								<input type="text" name="from_date" id="from_date" class="datepicker form-control" placeholder="From Date">
+							</div>
+							<div class="col-md-2">
+								<input type="text" name="to_date" id="to_date" class="datepicker form-control" placeholder="To Date">
+							</div>
+
+							<div class="col-md-2">
+								<input type="button" name="filter" id="filter" value="Filter" class="btn btn-info">
 							</div>
 							
 						</div>
 						</br>
-						<div class="col-md-6">
+						<!-- <div class="col-md-6">
 							<div class="info-box mb-2 bg-secondary">
 								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
 								<div class="info-box-content">
@@ -59,7 +66,7 @@
 									<span class="info-box-number" id="repair"></span>
 									<span class="info-box-number" id="utilize"></span>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						</br>
 						<div class="card" >
@@ -144,93 +151,76 @@
     			autoclose: true
 			});
 
-            //search by tanggal
-			$('#date').change(function(){
-				tgl_waiting = $(this).val()
-				$.when(
+			$('#filter').click(function(){
+
+			var from_date = $('#from_date').val();
+			var to_date = $('#to_date').val();
+			var line = $('#line').val();
+
+			var tgl1 = new Date($('#from_date').val());
+			var tgl2 = new Date($('#to_date').val());
+
+			var dataStr = {
+				'from_date': from_date,
+				'to_date': to_date,
 				
-                 $.ajax({
-                     url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/get_datas"); ?>/' + tgl_waiting,
-                     type: 'GET',
-                     dataType: 'json',
-                 }).done(function(data){
-					
-                     table.clear();
-					 $.each(data, function(i,item){
-						var hms = item.respon_duration;   
-						var as = hms.split(':'); 
-						var respon = (+as[0]) * 60 + (+as[1]);
+			};
 
-						var times = item.repair_duration;
-						var bs = times.split(':');
-						var repair = (+bs[0]) * 60 + (+bs[1]);
+			if (from_date != '' && to_date != '') {
+            if (tgl1 > tgl2) {
+                alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
+            } else {
 
-						var total = [respon + repair];
-						console.log('total', total);
-
-						table.row.add([
-							item.floor,
-							item.line,
-							item.machine_brand,
-							item.machine_type,
-							item.tgl_waiting,
-							item.Nama,
-							item.sympton,
-							item.start_waiting,
-							item.start_repairing,
-							item.end_repairing,
-							respon,
-							repair,
-							total,
-						 ]).draw();
-					 })
-				 }),
-				 
-				 $.ajax({
-					url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/get_utilize"); ?>/' + tgl_waiting,
-					type: 'GET',
-                     dataType: 'json',
-					success: function(rst){
-						table.clear();
-						$.each(rst, function(i,item){
-
-						var time = item.repon;   
-						var as = time.split(':');  
-						var respond = (+as[0]) * 60 + (+as[1]);
-						var jam = (+as[0]) ;
-						var menit = (+as[1]) ;
-						console.log('jam', jam);
+				$.ajax({
+						url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/filter"); ?>',
+						method: "POST",
+						data: {
+							'dataStr': dataStr
+						},
+						dataType: 'json',
+					}).done(function(data){
 						
+						table.clear();
+						$.each(data, function(i,item){
+							var hms = item.respon_duration;   
+							var as = hms.split(':'); 
+							var respon = (+as[0]) * 60 + (+as[1]);
 
-						var duration = item.repair;   
-						var cd = duration.split(':'); 
-						var repaired = (+cd[0]) * 60 + (+cd[1]);
-						var jam = (+cd[0]) ;
-						var menit = (+cd[1]) ;
+							var times = item.repair_duration;
+							var bs = times.split(':');
+							var repair = (+bs[0]) * 60 + (+bs[1]);
 
-						var jumlah = respond + repaired;
-						var util = (repaired / (420*29) ) * 100;
-						hasil = util.toFixed(2);
+							var total = [respon + repair];
+							console.log('total', total);
 
-						// $('#utilize').text('Utilize : ' + jumlah + " %")
-						$('#respon').text('Total Respon Duration : ' + respond+ " Menit")
-						$('#repair').text('Total Repair Duration : ' + repaired + " Menit")
-						$('#utilize').text('Utilize: ' + hasil+ " %")
+							table.row.add([
+								item.floor,
+								item.line,
+								item.machine_brand,
+								item.machine_type,
+								item.tgl_waiting,
+								item.Nama,
+								item.sympton,
+								item.start_waiting,
+								item.start_repairing,
+								item.end_repairing,
+								respon,
+								repair,
+								total,
+							]).draw();
 						})
-						;
+					})
+                
+                
+            }
+        }
 
-					},
-					
-				})
 
-				
-			)
-				
-					
-				});	
-			// })
+			});
 
-		});
+		})
+
+			
 	</script>
 </body>
 

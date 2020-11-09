@@ -25,6 +25,12 @@ class ReportSummaryDowntime extends CI_Controller{
     public function get_utilize($tgl_waiting){
 		$data=$this->ReportutilizeModel->get_all($tgl_waiting);
 		echo json_encode($data);
-	}
+    }
+    public function filter()
+	{
+		$rst = $this->ReportDowntimeModel->get_by_daterange();
+
+		echo json_encode($rst);
+    }
 
 }
