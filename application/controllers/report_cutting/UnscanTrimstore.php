@@ -6,8 +6,9 @@ class UnscanTrimstore extends CI_Controller
 {
 	public	function __construct()
 	{
+		$model = 'report_cutting/UnscanTrimstoreModel';
 		parent::__construct();
-		$this->load->model('UnscanTrimstoreModel');
+		$this->load->model($model,'UnscanTrimstoreModel');
 	}
 
 	public function index()

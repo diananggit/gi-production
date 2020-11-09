@@ -5,7 +5,7 @@ class ReportBarChartSewing extends CI_Controller{
     public function __construct(){
         $model = 'report_sewing/ReportBarChartSewingModel';
         parent::__construct();
-        $this->load->model('ReportBarChartSewingModel');
+        $this->load->model($model,'ReportBarChartSewingModel');
         
     }
     public function index(){

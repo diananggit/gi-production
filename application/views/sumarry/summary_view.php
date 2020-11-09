@@ -157,7 +157,7 @@
               </div>
             </div>
               <div class="card-tools">
-                <a href="<?php echo site_url('ReportDaily'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+                <a href="<?php echo site_url('report_cutting/ReportDaily'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
               </div>
           </div>
         </div><!-- /.container-fluid -->

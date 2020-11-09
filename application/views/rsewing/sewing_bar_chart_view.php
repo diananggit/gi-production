@@ -95,7 +95,7 @@ function formatDate(date) {
   
   function showReportSewing() {
     $.ajax({
-      url: '<?php echo site_url('ReportBarChartSewing/ajax_get_qty_sewing') ; ?>',
+      url: '<?php echo site_url('report_sewing/ReportBarChartSewing/ajax_get_qty_sewing') ; ?>',
       type: 'GET',
       dataType: 'json',
     }).done(function(data){
@@ -184,6 +184,19 @@ function formatDate(date) {
                 }
               },
               scales: {
+                xAxes: [{
+                    display: false,
+                    barPercentage: 1.3,
+                    ticks: {
+                        max: 3,
+                    }
+                }, {
+                    display: true,
+                    ticks: {
+                        autoSkip: false,
+                        max: 4,
+                    }
+                }],
                 yAxes: [{
                   id:'axisBarLine',
                   type:"linear",

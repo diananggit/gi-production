@@ -52,19 +52,19 @@ class User extends CI_Controller
 			switch ($this->name) {
 				case "SUANDI":
 					// $this->updateActive($this->name);
-					redirect("ReportDaily");
+					redirect("report_cutting/ReportDaily");
 					break;
 				case "TETI":
 					// $this->updateActive($this->name);
-					redirect("ReportDaily");
+					redirect("report_cutting/ReportDaily");
 					break;
 				case "MANAGER":
 					// $this->updateActive($this->name);
-					redirect("ReportDaily");
+					redirect("report_cutting/ReportDaily");
 					break;
 				default:
 					// $this->updateActive($this->name);
-					redirect("ReportDaily");
+					redirect("report_cutting/ReportDaily");
 			}
 
 			// $this->load->view('dashboard');

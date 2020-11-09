@@ -59,7 +59,7 @@
                             <?php foreach($cuttingwip as $wip): ?>
                                 <tr>
                                   <td>
-                                    <a href="<?php echo site_url('UnscanTrimstore/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
+                                    <a href="<?php echo site_url('report_cutting/UnscanTrimstore/vieworc/'.$wip->orc); ?>"><?php echo $wip->orc ?></a>
                                   </td>
                                   <td>
                                       <?php echo $wip->style ?>
