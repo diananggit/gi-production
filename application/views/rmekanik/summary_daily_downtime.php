@@ -57,7 +57,7 @@
 							
 						</div>
 						</br>
-						<!-- <div class="col-md-6">
+						<div class="col-md-6">
 							<div class="info-box mb-2 bg-secondary">
 								<span class="info-box-icon"><i class="fa fa-gear"></i></span>
 								<div class="info-box-content">
@@ -66,7 +66,7 @@
 									<span class="info-box-number" id="repair"></span>
 									<span class="info-box-number" id="utilize"></span>
 								</div>
-							</div> -->
+							</div>
 						</div>
 						</br>
 						<div class="card" >
@@ -126,9 +126,13 @@
 
 
 	<script type="text/javascript">
-	var table
+	var table;
+
 
 		$(document).ready(function() {
+		var sumRespon ;
+		var sumRepair;
+
 			table = $('#dailyTable').DataTable({
 				// "scrollY": 200,
 				"scrollX": true,
@@ -153,6 +157,9 @@
 
 			$('#filter').click(function(){
 
+			sumRespon= 0;
+			sumRepair= 0;
+
 			var from_date = $('#from_date').val();
 			var to_date = $('#to_date').val();
 			var line = $('#line').val();
@@ -170,7 +177,7 @@
             if (tgl1 > tgl2) {
                 alert('Tanggal 1 tidak boleh lebih besar dari tanggal 2')
             } else {
-
+				
 				$.ajax({
 						url: '<?php echo site_url("downtime_mechanic/ReportSummaryDowntime/filter"); ?>',
 						method: "POST",
@@ -178,20 +185,33 @@
                         'dataStr': dataStr
                     },
                     dataType: 'json',
-					}).done(function(data){
+					}).done(async function(data){
 						
 						table.clear();
+						
 						$.each(data, function(i,item){
+
+
 							var hms = item.respon_duration;   
 							var as = hms.split(':'); 
 							var respon = (+as[0]) * 60 + (+as[1]);
 
+							sumRespon +=parseInt(respon);
+							
 							var times = item.repair_duration;
 							var bs = times.split(':');
 							var repair = (+bs[0]) * 60 + (+bs[1]);
 
-							var total = [respon + repair];
-							console.log('total', total);
+							sumRepair +=parseInt(repair);
+
+							var total = [sumRespon + sumRepair ];
+							// var jumlah = respond + repaired;
+
+								var util = (sumRepair / (420*29) ) * 100;
+								hasil = util.toFixed(2);
+
+							// console.log('total', total);
+
 
 							table.row.add([
 								item.floor,
@@ -209,10 +229,16 @@
 								total,
 							]).draw();
 						})
+						
+							$('#respon').text('Total Respon Duration : ' + sumRespon+ " Menit")
+							$('#repair').text('Total Repair Duration : ' + sumRepair + " Menit")
+							$('#utilize').text('Utilize: ' + hasil+ " %")
 					})
+					
                 
                 
-            }
+				 
+			}
         }
 
 
