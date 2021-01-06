@@ -21,9 +21,10 @@ class ReportDaily extends CI_Controller {
 		$this->load->view('rcutting/daily_cutting_view');
 	}
 
-	public function ajax_get_cutting($hr){
-		$data=$this->ReportDailyModel->get_all($hr);
-		echo json_encode($data);
+	public function ajax_get_cutting(){
+		$data=$this->ReportDailyModel->get_all();
+		$datas = json_encode($data);
+		echo $datas;
 	}
 
 	public function ajax_get_sewing($hr){

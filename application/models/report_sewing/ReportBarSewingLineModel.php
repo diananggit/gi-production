@@ -5,6 +5,7 @@ class ReportBarSewingLineModel extends CI_Model{
     var $table="view_sewing_line";
 
     public function get_all(){
+        // $this->db->select('DISTINCT(line)');
         date_default_timezone_set('Asia/Jakarta');
 
         $dayOfWeek = date('w');

@@ -57,8 +57,14 @@
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                    <h5 id="result1" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                    <h5 id="efficiency1" style="color: #1f2d3d; font-family: Times New Roman "></h5>
+                  <h5>
+                    <span style="color:red; font-family: Times New Roman; font-size:25px">Result :</span>
+                    <span id="result1" style="color: #1f2d3d; font-family: Times New Roman;font-size:25px"></span>
+                  </h5>
+                  <h5>
+                    <span style="color:red; font-family: Times New Roman; font-size:25px">Efficiency :</span>
+                    <span id="efficiency1" style="color: #1f2d3d; font-family: Times New Roman "></span> %
+                  </h5>
                   </div>
                 </div>
               </div>
@@ -72,8 +78,14 @@
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                    <h5 id="result2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                    <h5 id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman"></h5>
+                  <h5>
+                    <span style="color:red; font-family: Times New Roman; font-size:25px">Result :</span>
+                    <span id="result2" style="color: #1f2d3d; font-family: Times New Roman;font-size:25px"></span>
+                  </h5>
+                  <h5>
+                    <span style="color:red; font-family: Times New Roman; font-size:25px">Efficiency :</span>
+                    <span id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman "></span> 
+                  </h5>
                   </div>
                 </div>
               </div>
@@ -148,6 +160,9 @@
     showCuttingDepartment();
     
     function showCuttingDepartment(){
+      const output = [];
+      const efficiency = [];
+
       var thn = day.getFullYear();
       var bln = day.getMonth() + 1;
       if(hr == 1){
@@ -177,22 +192,37 @@
         document.getElementById('dailyDate').innerHTML = tanggal;
           
 
-      return $.ajax({
-        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_cutting'); ?>/' + tanggal, 
-        type: 'GET',
+      $.ajax({
+        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_cutting'); ?>' , 
+        method: 'GET',
+        async: false,
         dataType: 'json',
         
         success: function(rst){
-          console.log('rst', rst)
-          var output = parseInt(rst.qty);
-          var efficiency = (rst.eff);
-          $('#result1').text('Result   :  ' + output);
-          $('#efficiency1').text('Efficiency  : ' + efficiency + " %");
+          $.each(rst,function(index,val){
+            output.push(val.qty);
+            efficiency.push(val.eff);
+          });
 
-        }
+        },error : function(req, err) {
+                       console.log(err);
+                    }
       });
+      return [output,efficiency];
     
     }
+    //cal function get data from db
+    var resultDataCutting = showCuttingDepartment();
+
+    //mapping value 
+    let outputCutting = resultDataCutting[0];
+    let efficiencyCutting = resultDataCutting[1];
+
+    const outputcut = outputCutting;
+    const eff = efficiencyCutting;
+
+    document.getElementById('result1').innerHTML = outputcut;
+    document.getElementById('efficiency1').innerHTML = eff;
 
     showSewingDepartement();
 
