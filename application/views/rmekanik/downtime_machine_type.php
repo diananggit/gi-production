@@ -164,10 +164,18 @@
               },
               scales: {
                 xAxes: [{
-                ticks: {
-                    // min: 0 // Edit the value according to what you need
-                }
-            }],
+                    display: false,
+                    barPercentage: 1.3,
+                    ticks: {
+                        max: 3,
+                    }
+                }, {
+                    display: true,
+                    ticks: {
+                        autoSkip: false,
+                        max: 4,
+                    }
+                }],
                 yAxes: [{
                     ticks: {
                     // beginAtZero: true,

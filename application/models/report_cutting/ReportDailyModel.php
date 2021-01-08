@@ -15,9 +15,6 @@ class ReportDailyModel extends CI_Model{
             $ResultBookingTime = date('Y-m-d',strtotime($date1 . "-1 days"));
         }
 
-        // $this->db->where('tgl', $hr );            
-        
-        // $rst = $this->db->get($this->table);
         $rst = "SELECT
                 weekday( cutting_result.tgl ) AS hari,
                 cutting_result.tgl AS tgl,

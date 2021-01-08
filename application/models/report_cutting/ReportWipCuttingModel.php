@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportWipCuttingModel extends CI_Model{
-    // var $table = "v_wip_trimstore";
-    // var $column_order = array('orc','style','color','size','qty_in','qty_out','wip');
 
     var $table="view_wip_cutting_orc";
     var $column_order = array('orc','style','color','qty_cutting','qty_sewing','balance');

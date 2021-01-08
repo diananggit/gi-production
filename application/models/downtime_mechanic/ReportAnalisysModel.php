@@ -2,21 +2,29 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportAnalisysModel extends CI_Model{
-    var $table="V_Breackdown_Analysis";
 
     public function get_all(){
 
-       $query = $this->db->get($this->table);
-       return $query->result_array();
-        // return $this->db->last_query();
+    $rst = "SELECT
+                machine_breakdown.machine_type AS machine_type,
+                machine_breakdown.machine_brand AS machine_brand,
+                machine_breakdown.machine_sn AS machine_sn,
+                machine_breakdown.tgl AS tgl,
+                count( machine_breakdown.machine_sn ) AS `Time` 
+            FROM
+                machine_breakdown 
+            WHERE
+                machine_breakdown.machine_type IS NOT NULL 
+            GROUP BY
+                machine_breakdown.machine_sn,
+                machine_breakdown.tgl 
+            ORDER BY
+                machine_breakdown.tgl";
+    $query = $this->db->query($rst);
+
+    return $query->result_array();
+
+
     }
-    // public function get_all_start($hr){
-
-    //     $this->db->where('tgl', $hr );            
-        
-    //     $rst = $this->db->get($this->table);
-
-    //     // return $this->db->last_query();
-    //     return $rst->row();
-    // }
+    
 }

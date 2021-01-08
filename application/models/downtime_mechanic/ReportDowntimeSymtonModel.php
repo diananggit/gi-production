@@ -2,32 +2,79 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportDowntimeSymtonModel extends CI_Model{
-    var $table="v_montly_shimpton";
+    // var $table="v_montly_shimpton";
 
     public function get_all(){
         date_default_timezone_set('Asia/Jakarta');
 
-        $dayOfWeek = date('w');
-        if($dayOfWeek == 1){
+        $date   = date("Y-m-d H:i:s");
+        $dayNow = date('l');
+        $date1  = str_replace('-', '/', $date);
 
-            $this->db->where('tgl_waiting', date('Y-m-d', strtotime("- 3 day")));
-        }else if($dayOfWeek > 1){
-            $this->db->where('tgl_waiting', date('Y-m-d', strtotime("- 1 day")));
+        if( $dayNow == 'Monday' ){
+            $ResultBookingTime = date('Y-m-d',strtotime($date1 . "-2 days"));
+        }else{
+            $ResultBookingTime = date('Y-m-d',strtotime($date1 . "-1 days"));
         }
-        $rst = $this->db->get($this->table);
-        // return $this->db->last_query();
-        return $rst->result();
+
+        $rst = "SELECT
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ) AS `month`,
+                    `v_breackdown_machine`.`sympton` AS `sympton`,
+                    count( `v_breackdown_machine`.`sympton` ) AS `tot_machine` 
+                FROM
+                    `v_breackdown_machine`
+                WHERE 
+                `v_breackdown_machine`.`tgl_waiting` = '$ResultBookingTime'  
+                GROUP BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ),
+                    `v_breackdown_machine`.`sympton` 
+                HAVING
+                    `tot_machine` > 0 
+                ORDER BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` )";
+
+       $query = $this->db->query($rst);
+
+        return $query->result_array();
     }
 
     public function get_sympton(){
-        $this->db->select('DISTINCT(month)');
-        $query = $this->db->get('v_montly_shimpton');
-        return $query->result();
+        $rst = "SELECT DISTINCT
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ) AS `month`
+                FROM
+                    `v_breackdown_machine` 
+                GROUP BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ),
+                    `v_breackdown_machine`.`sympton` 
+                HAVING
+                    count( `v_breackdown_machine`.`sympton` ) > 0 
+                ORDER BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` )";
+                    
+        $query = $this->db->query($rst);
+        return $query->result_array();
     }
 
     public function get_by_sympton($month){
-        $rst = $this->db->get_where($this->table, array('month' => $month ));
-        return $rst->result();
+        $rst = "SELECT
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ) AS `month`,
+                    v_breackdown_machine.sympton AS sympton,
+                    Count(v_breackdown_machine.sympton) AS tot_machine
+                FROM
+                    v_breackdown_machine
+                WHERE
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ) = '$month'
+                GROUP BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ),
+                    v_breackdown_machine.sympton
+                HAVING
+                    `tot_machine` > 0
+                ORDER BY
+                    monthname( `v_breackdown_machine`.`tgl_waiting` ) ASC
+        
+                    ";
+        $query = $this->db->query($rst);
+        return $query->result_array();
     }
 
    

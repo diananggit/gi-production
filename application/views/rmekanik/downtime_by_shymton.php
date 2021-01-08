@@ -167,9 +167,18 @@
               },
               scales: {
                 xAxes: [{
-                ticks: {
-                }
-            }],
+                    display: false,
+                    barPercentage: 1.3,
+                    ticks: {
+                        max: 3,
+                    }
+                }, {
+                    display: true,
+                    ticks: {
+                        autoSkip: false,
+                        max: 4,
+                    }
+                }],
                 yAxes: [{
                     ticks: {
                     min:0
