@@ -203,8 +203,8 @@
 							var repair = (+bs[0]) * 60 + (+bs[1]);
 
 							sumRepair +=parseInt(repair);
-
-							var total = [sumRespon + sumRepair ];
+							var total = [respon+ repair ];
+							// var total = [sumRespon + sumRepair ];
 							// var jumlah = respond + repaired;
 
 								var util = (sumRepair / (420*29) ) * 100;
