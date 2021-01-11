@@ -21,11 +21,11 @@ class ReportBarChartCuttingModel extends CI_Model{
         GROUP BY
             `cutting_result`.`tgl`
                                 ORDER BY
-                                `cutting_result`.`tgl` DESC
+                                `cutting_result`.`tgl` asc
                                 
         ";
         $query = $this->db->query($rst);
 
-        return $query->result_array();
+        return $query->result();
     }
 }

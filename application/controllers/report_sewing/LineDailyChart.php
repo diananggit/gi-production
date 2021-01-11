@@ -32,21 +32,6 @@ class LineDailyChart extends CI_Controller{
 
     }
 
-    // public function ajax_get_all_month(){
-    //     if(isset($GET['lines'])){
-
-    //         $line = $_GET['lines'];
-
-    //         $data = $this->LineMonthlyChartModel->get_all();
-
-    //         echo json_encode($data);
-
-    //     }
-        
-        
-    // }
-
-
     public function ajax_get_all_line(){
         $data = $this->LineDailyChartModel->get_all();
 
@@ -71,13 +56,7 @@ class LineDailyChart extends CI_Controller{
 
     public function ajax_get_by_line($line){
         $data['line'] = $this->LineDailyChartModel->get_by_line($line);
-
-
         $this->load->view('rsewing/line_per_week', $data);
-
-        // $data = $this->LineDailyChartModel->get_by_line_week($line);
-
-        // echo json_encode($data);
     }
     
 

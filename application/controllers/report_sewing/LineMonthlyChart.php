@@ -22,11 +22,7 @@ class LineMonthlyChart extends CI_Controller{
         $this->load->view('rsewing/line_month_chart', $data);
 
     }
-    // public function ajax_get_by_month($month){
-    //     $result=$this->LineMonthlyChartModel->get_by_month($month);
-        
-    //     echo json_encode($result);
-    // }
+    
     public function ajax_get_all_month(){
         $data = $this->LineMonthlyChartModel->get_all();
 

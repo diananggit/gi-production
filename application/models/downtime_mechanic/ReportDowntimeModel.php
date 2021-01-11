@@ -20,7 +20,6 @@ class ReportDowntimeModel extends CI_Model{
 			$to_date = date('Y-m-d', strtotime($dataStr['to_date']));
 			
 			
-			
 			$this->db->group_start();
 			$this->db->where("tgl_waiting >=", $from_date);
 			$this->db->where("tgl_waiting <=", $to_date);
@@ -31,8 +30,6 @@ class ReportDowntimeModel extends CI_Model{
 		}
 
 	}
-
-	
 
 	public function get_all_line(){
         $this->db->select('DISTINCT(line)');

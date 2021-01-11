@@ -2,74 +2,28 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportCuttingToSewingModel extends CI_Model{
-    var $table="v_cutting_to_sewing";
-    var $column_order = array('orc','style','color','qty');
-    
-    
-    private function _get_datatables_query(){
-        $this->db->from($this->table);
-
-        $i = 0;
-
-        foreach ($this->column_search as $item)
-        {
-            if($_POST['search']['value'])
-            {
-
-                if($i===0) // first loop
-                {
-                    $this->db->group_start();
-                    $this->db->like($item, $_POST['search']['value']);
-                }
-                else
-                {
-                    $this->db->or_like($item, $_POST['search']['value']);
-                }
-
-                if(count($this->column_search) - 1 == $i) //last loop
-                    $this->db->group_end(); //close bracket
-            }
-            $i++;
-        }
-
-        if(isset($_POST['order']))
-        {
-            $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-        }
-        else if(isset($this->order))
-        {
-            $order = $this->order;
-            $this->db->order_by(key($order), $order[key($order)]);
-        }
-    }
-
-    function get_datatables()
-    {
-        $this->_get_datatables_query();
-        if($_POST['length'] != -1)
-            $this->db->limit($_POST['length'], $_POST['start']);
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    function count_filtered()
-    {
-        $this->_get_datatables_query();
-        $query = $this->db->get();
-        return $query->num_rows();
-    }
-
-    public function count_all()
-    {
-        $this->db->from($this->table);
-        return $this->db->count_all_results();
-    }    
+    // var $table="v_cutting_to_sewing";
+    // var $column_order = array('orc','style','color','qty');
 
     public function get_all(){
-        $this->db->from($this->table);
-        $query = $this->db->get();
+       
+        $rst = "SELECT
+                    `input_sewing`.`orc` AS `orc`,
+                    `input_sewing`.`style` AS `style`,
+                    `input_sewing`.`color` AS `color`,
+                    sum( `input_sewing`.`qty_pcs` ) AS `qty`,
+                    `input_sewing`.`tgl` AS `tgl`,
+                    `input_sewing`.`line` AS `line` 
+                FROM
+                    `input_sewing` 
+                GROUP BY
+                    `input_sewing`.`orc`,
+                    `input_sewing`.`tgl`";
 
-        return $query->result();
+            $query = $this->db->query($rst);
+
+            return $query->result();
+
     }
 
     public function get_by_daterange(){
@@ -79,25 +33,27 @@ class ReportCuttingToSewingModel extends CI_Model{
             $from_date = date('Y-m-d', strtotime($dataStr['from_date']));
             $to_date = date('Y-m-d', strtotime($dataStr['to_date']));
 
-            // $this->db->where("tgl BETWEEN CAST($from_date AS DATE) AND CAST($to_date AS DATE)");
-            $this->db->where("tgl >=", $from_date);
-            $this->db->where("tgl <=", $to_date);
-            $rst = $this->db->get('v_cutting_to_sewing');
-            return $rst->result();
-            // return $this->db->last_query();            
+            $rst ="SELECT
+                        `input_sewing`.`orc` AS `orc`,
+                        `input_sewing`.`style` AS `style`,
+                        `input_sewing`.`color` AS `color`,
+                        sum( `input_sewing`.`qty_pcs` ) AS `qty`,
+                        `input_sewing`.`tgl` AS `tgl`,
+                        `input_sewing`.`line` AS `line` 
+                    FROM
+                        `input_sewing`
+                    WHERE
+                    `input_sewing`.`tgl` >= '$from_date' AND `input_sewing`.`tgl` <= ' $to_date'
+                    GROUP BY
+                        `input_sewing`.`orc`,
+                        `input_sewing`.`tgl`";
+             $query = $this->db->query($rst);
+
+             return $query->result();           
         }
 
 
     }
-    
-
-    
-
-    // public function save($data)
-    // {
-    //     $this->db->insert($this->table, $data);
-    //     return $this->db->insert_id();
-    // }
-
+   
    
 }

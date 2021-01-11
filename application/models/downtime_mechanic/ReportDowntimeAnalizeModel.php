@@ -25,8 +25,7 @@ class ReportDowntimeAnalizeModel extends CI_Model{
     }
 
     public function get_by_month($month){
-        // $rst = $this->db->get_where($this->table, array('month' => $month));
-        // return $rst->result();
+       
         $rst = "SELECT
                     monthname( `v_breackdown_machine`.`tgl_waiting` ) AS `month`,
                     `v_breackdown_machine`.`sympton` AS `sympton`,
