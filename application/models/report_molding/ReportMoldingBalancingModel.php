@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportMoldingBalancingModel extends CI_Model{
     var $table="view_molding_balancing";
-    // var $column_order = array('orc','style','color','qt_outer','qt_milmold','qt_linning','qty_outermold',
-    // 'qty_midmold','qty_linning','wip_outer','wip_midmold','wip_linning');
-    
     
     private function _get_datatables_query(){
         $this->db->from($this->table);
