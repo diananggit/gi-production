@@ -37,8 +37,9 @@ class ReportDaily extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function ajax_get_molding($hr){
-		$data=$this->ReportDailyModelMolding->get_all($hr);
-		echo json_encode($data);
+	public function ajax_get_molding(){
+		$data=$this->ReportDailyModelMolding->get_all();
+		$datas =  json_encode($data);
+		echo $datas;
 	}
 }

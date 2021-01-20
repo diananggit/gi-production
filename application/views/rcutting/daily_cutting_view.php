@@ -304,45 +304,41 @@
     }
 
     showMoldingDepartment();
+    
 
     function showMoldingDepartment(){
-      var thn = day.getFullYear();
-      var bln = day.getMonth() + 1;
-      if(hr == 1){
-        var hari = day.getDate()-2;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }else{
-        var hari = day.getDate()-1;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }
-      //  console.log('tgl1: ', tgl);
-      console.log('hari',hari);
-      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-          (hari < 10 ? "0" + hari.toString() : hari.toString());
+      const output = [];
+      const efficiency = [];
 
-          console.log('tanggal: ', tanggal);
-
-      return $.ajax({
-        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_molding'); ?>/' + tanggal,
+      $.ajax({
+        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_molding'); ?>',
+        method: 'GET',
+        async: false,
         dataType: 'json',
         success: function(rst){
-          var output4 = parseInt(rst.qty_mold);
-          var efficiency4 = (rst.eff);
-          $('#result2').text('Result  :' + output4);
-          $('#efficiency2').text('Efficiency  : ' + efficiency4 + " %");
-
-        },
+          $.each(rst,function(index,val){
+            output.push(val.qty_mold);
+            efficiency.push(val.eff);
+          });
+        },error : function(req,err){
+          console.log(err);
+        }
           
       });
+      return [output,efficiency];
     }
+    // cal function get data from db
+    var resultDataMolding = showMoldingDepartment();
+
+    // mapping value
+    let outputMolding = resultDataMolding[0];
+    let efficiencyMolding = resultDataMolding[1];
+
+    const outputmold = outputMolding;
+    const effMold = efficiencyMolding;
+
+    document.getElementById('result2').innerHTML = outputmold;
+    document.getElementById('efficiency2').innerHTML = effMold;
   });
 </script>
 </body>
