@@ -5,8 +5,7 @@ class ReportBarChartSewingModel extends CI_Model{
     // var $table="view_sewing_daily_assembly";
 
     public function get_all(){
-        // $rst = $this->db->get($this->table);
-        // return $rst->result();
+       
         $rst = "SELECT
                     `view_sewing_bar_line`.`day` AS `day`,
                     `view_sewing_bar_line`.`tgl` AS `tgl`,

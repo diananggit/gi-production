@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReportSewingAllQtyModel extends CI_Model{
     var $table="view_all_qty";
-    // var $column_order = array('tgl','orc','style','color','in_cutting','order');
 
     public function get_all(){
         $this->db->select('DISTINCT(orc)');
