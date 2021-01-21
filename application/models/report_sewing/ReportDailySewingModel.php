@@ -33,12 +33,5 @@ class ReportDailySewingModel extends CI_Model{
         $query = $this->db->query($rst);
         return $query->result();
 
-
-        // $this->db->where('tgl', $hr );            
-        
-        // $rst = $this->db->get($this->table);
-
-        // return $this->db->last_query();
-        // return $rst->row();
     }
 }
