@@ -9,8 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <?php $this->load->view('_partials/css.php'); ?>
-  
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -78,14 +76,14 @@
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                  <h5>
-                    <span style="color:red; font-family: Times New Roman; font-size:25px">Result :</span>
-                    <span id="result2" style="color: #1f2d3d; font-family: Times New Roman;font-size:25px"></span>
-                  </h5>
-                  <h5>
-                    <span style="color:red; font-family: Times New Roman; font-size:25px">Efficiency :</span>
-                    <span id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman "></span> 
-                  </h5>
+                    <h5>
+                      <span style="color:red; font-family: Times New Roman; font-size:25px">Result :</span>
+                      <span id="result2" style="color: #1f2d3d; font-family: Times New Roman;font-size:25px"></span>
+                    </h5>
+                    <h5>
+                      <span style="color:red; font-family: Times New Roman; font-size:25px">Efficiency :</span>
+                      <span id="efficiency2" style="color: #1f2d3d; font-family: Times New Roman "></span> %
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -100,10 +98,16 @@
             </div>
             <div class="card-body">
               <div class="media">
-                <div>
-                  <h5 id="resultSewing" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                  <h5 id="efficiency3" style="color: #1f2d3d; font-family: Times New Roman"></h5>
-                </div>
+              <div class="media-left">
+                    <h5>
+                      <span style="color:red; font-family: Times New Roman; font-size:25px">Result :</span>
+                      <span id="resultSewing" style="color: #1f2d3d; font-family: Times New Roman;font-size:25px"></span>
+                    </h5>
+                    <h5>
+                      <span style="color:red; font-family: Times New Roman; font-size:25px">Efficiency :</span>
+                      <span id="efficiency3" style="color: #1f2d3d; font-family: Times New Roman "></span> %
+                    </h5>
+                  </div>
                 </div>
             </div>
           </div>
@@ -125,17 +129,12 @@
           </div>
         </div>
         </div>
-
-        <!-- Small boxes (Stat box) -->
-
-        <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <?php $this->load->view('_partials/footer.php'); ?>
-
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -151,46 +150,14 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var day = new Date();
-    var hr = day.getDay();
-    var tgl;
-    var tgl1;
-    console.log('hr: ', hr);
     
     showCuttingDepartment();
     
     function showCuttingDepartment(){
+      const tanggal = [];
       const output = [];
       const efficiency = [];
-
-      var thn = day.getFullYear();
-      var bln = day.getMonth() + 1;
-      if(hr == 1){
-        var hari = day.getDate()-2;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }else{
-        var hari = day.getDate()-1;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }
-      console.log('hari',hari);
-      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-          (hari < 10 ? "0" + hari.toString() : hari.toString());
-
-          console.log('tanggal: ', tanggal);
-
-        const tglNow = tanggal;
-
-        // assign value JS to html. Date now !!!
-        document.getElementById('dailyDate').innerHTML = tanggal;
-          
+      
 
       $.ajax({
         url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_cutting'); ?>' , 
@@ -200,99 +167,80 @@
         
         success: function(rst){
           $.each(rst,function(index,val){
+            tanggal.push(val.tgl);
             output.push(val.qty);
             efficiency.push(val.eff);
+           
           });
 
         },error : function(req, err) {
                        console.log(err);
                     }
       });
-      return [output,efficiency];
+      return [tanggal,output,efficiency];
     
     }
     //cal function get data from db
     var resultDataCutting = showCuttingDepartment();
 
     //mapping value 
-    let outputCutting = resultDataCutting[0];
-    let efficiencyCutting = resultDataCutting[1];
+    let tanggalCutting = resultDataCutting[0][0];
+    let outputCutting = resultDataCutting[1];
+    let efficiencyCutting = resultDataCutting[2];
+   
 
-    const outputcut = outputCutting;
+    const outputCut = outputCutting;
     const eff = efficiencyCutting;
+    const tanggalCut = tanggalCutting;
 
-    document.getElementById('result1').innerHTML = outputcut;
+    // assign value JS to html. Date now !!!
+    document.getElementById('result1').innerHTML = outputCut;
     document.getElementById('efficiency1').innerHTML = eff;
+    document.getElementById('dailyDate').innerHTML = tanggalCut;
 
     showSewingDepartement();
 
     function showSewingDepartement(){
-      var thn = day.getFullYear();
-      var bln = day.getMonth() + 1;
-      if(hr == 1){
-        var hari = day.getDate()-2;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }else{
-        var hari = day.getDate()-1;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }
-      //  console.log('tgl1: ', tgl);
-      console.log('hari',hari);
-
-      var tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-          (hari < 10 ? "0" + hari.toString() : hari.toString());
-
-      console.log('tanggal: ', tanggal);
-      return $.ajax({
-        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_sewing'); ?>/' + tanggal,
+      const output = [];
+      const efficiency = [];
+      const tanggal = [];
+     
+       $.ajax({
+        url:'<?php echo site_url('report_cutting/ReportDaily/ajax_get_sewing'); ?>',
+        method : 'GET',
+        async : false,
         dataType: 'json',
-        success: function(rst){
-          var output2 = parseInt(rst.qty_sewing);
-          var efficiency2 = (rst.eff);
-          $('#resultSewing').text('Result  :' + output2);
-          $('#efficiency3').text('Efficiency  : ' + efficiency2 + " %");
 
-        },
+        success: function(rst){
+          $.each(rst,function(index,val){
+            output.push(val.qty_sewing);
+            efficiency.push(val.eff);
+          })
+        },error : function(req, err) {
+                       console.log(err);
+                    }
           
       });
+      return [output,efficiency];
     }
+    var resultDataSewing = showSewingDepartement();
+
+    //mapping value 
+    let outputSewing = resultDataSewing[0];
+    let efficiencySewing = resultDataSewing[1];
+
+    const outputSew = outputSewing;
+    const effSew = efficiencySewing;
+
+    // assign value JS to html. Date now !!!
+    document.getElementById('resultSewing').innerHTML = outputSew
+    document.getElementById('efficiency3').innerHTML = effSew;
 
     showPackingDepartment();
 
     function showPackingDepartment(){
-
-      var thn = day.getFullYear();
-      var bln = day.getMonth() + 1;
-      if(hr == 1){
-        var hari = day.getDate()-2;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }else{
-        var hari = day.getDate()-1;
-        if(hari <= 0){
-          bln -= 1;
-          tgl = new Date(thn, bln, 0);
-          hari = tgl.getDate();
-        }
-      }
-      // console.log('tgl1: ', tgl);
-      console.log('',hari);
-      let tanggal = thn.toString() + "-" + (bln < 10 ? "0" + bln.toString() : bln.toString() ) + "-" + 
-          (hari < 10 ? "0" + hari.toString() : hari.toString());
-
-      return $.ajax({
-        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_packing'); ?>/' + tanggal,
+       $.ajax({
+        url: '<?php echo site_url('report_cutting/ReportDaily/ajax_get_packing'); ?>' ,
         dataType: 'json',
         success: function(rst){
             var output3 = parseInt(rst.qty);
@@ -304,7 +252,6 @@
     }
 
     showMoldingDepartment();
-    
 
     function showMoldingDepartment(){
       const output = [];

@@ -27,9 +27,10 @@ class ReportDaily extends CI_Controller {
 		echo $datas;
 	}
 
-	public function ajax_get_sewing($hr){
-		$data=$this->ReportDailySewingModel->get_all($hr);
-		echo json_encode($data);
+	public function ajax_get_sewing(){
+		$data=$this->ReportDailySewingModel->get_all();
+		$datas = json_encode($data);
+		echo $datas;
 	}
 
 	public function ajax_get_packing($hr){
