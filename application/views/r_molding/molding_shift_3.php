@@ -20,7 +20,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h3 class="card-title" style="color: #007bff;"><b>Molding Shift 2</b></h3>
+                          <h3 class="card-title" style="color: #007bff;"><b>Molding Shift 3</b></h3>
                          <div class="card-tools">
                             <a href="<?php echo site_url('report_molding/ReportMoldingPerShift'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
                         </div>
