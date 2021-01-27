@@ -7,6 +7,8 @@
 <link href="<?php echo base_url('plugins/datepicker/datepicker3.css');?>" rel="stylesheet">
 <link href="<?php echo base_url('plugins/datatables/dataTables.bootstrap4.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('plugins/datatables.net-buttons/css/buttons.dataTables.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('plugins/datatables/jquery.dataTables.css'); ?>" rel="stylesheet">
+
 
 
 <link href="<?php echo base_url('plugins/select2/select2.min.css'); ?>" rel="stylesheet">

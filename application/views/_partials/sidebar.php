@@ -81,9 +81,15 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('report_molding/SummaryMolding'); ?>" class="nav-link">
+							<a href="<?php echo site_url('report_molding/SummaryMolding'); ?>" class="nav-link" target="blank>
 								<i class="fa fa-list-alt text-primary nav-icon"></i>
 								<p>Summary Molding</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url('report_molding/ReportMoldingPerShift'); ?>" class="nav-link">
+								<i class="fa fa-list-alt text-primary nav-icon"></i>
+								<p>Molding By Machine Shift</p>
 							</a>
 						</li>
 					</ul>

@@ -207,6 +207,8 @@
       });
       table2 = $("#tableDepartment").DataTable();
 
+      // GET DATA ORC
+
       load_orc();
    
       function load_orc() {
