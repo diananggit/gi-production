@@ -16,4 +16,8 @@ class ReportMoldingShift2 extends CI_Controller{
         $data=$this->ReportMoldingShiftModel->get_shift_dua();
         echo json_encode($data);
     }
+    public function getDataTotalShift2(){
+        $data=$this->ReportMoldingShiftModel->get_Total_shift2();
+        echo json_encode($data);
+    }
 }

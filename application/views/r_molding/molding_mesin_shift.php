@@ -25,7 +25,6 @@
                             <a href="<?php echo site_url('report_molding/ReportMoldingShift2'); ?>" class="btn btn-success" ><i class="fa fa-arrow-right"></i>Shit2</a>
                             <a href="<?php echo site_url('report_molding/ReportMoldingShift3'); ?>" class="btn btn-info" ><i class="fa fa-arrow-right"></i>Shit3</a>
                           </div>
-        
                       </div>
                       <div class="card-body">
                           <table id="Molding1" class="table table-bordered table-striped" style="width: 100%">
@@ -44,13 +43,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
                             </tbody>
                             <tfoot>
-                                <!-- <tr>
-                                <th colspan="10" style="text-align:right">Total:</th>
-                                    <th></th>
-                                </tr> -->
+                            
+                            </tfoot>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-body">
+                      <table id="Molding2" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Total</td>
+                            </tr>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" style="text-align:right">Total:</th>
+                                </tr>
                             </tfoot>
                           </table>
                       </div>
@@ -77,9 +92,45 @@
       buttons: [
         'excel','print'
       ],
-      "lengthChange": false
+      "lengthChange": false,
       
       
+   
+    });
+    var table2 = $('#Molding2').DataTable({
+     
+      lengthMenu: false,
+      "searching": false ,
+    "paging":   false,
+        "ordering": false,
+        "info":     false,
+     
+      "lengthChange": false,
+      "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column( 1 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+ 
+            // Update footer
+            $( api.column( 1 ).footer() ).html(
+                'total Molding :' + total
+            );
+          }
    
     });
 
@@ -108,6 +159,35 @@
               item.qty_midmold,
               item.qty_linning,
             ]).draw();
+          });
+                
+        }  
+    })
+  }
+
+  showTotal();
+  function showTotal(){
+    $.ajax({
+        url:"<?php echo site_url('report_molding/ReportMoldingPerShift/getTotal');?>",  
+        method:"POST",  
+        dataType: 'json',
+        success:function(data)  
+        {  
+          table2.clear();
+          $.each(data, function(i, item){
+            table2.row.add([
+            "Total Outer",
+            item.qty_outer,
+            ]).draw();
+            table2.row.add([
+            "Total Midmold",
+            item.qty_midmold,
+            ]).draw();
+            table2.row.add([
+            "Total Linning",
+            item.qty_linning,
+            ]).draw();
+
           });
                 
         }  

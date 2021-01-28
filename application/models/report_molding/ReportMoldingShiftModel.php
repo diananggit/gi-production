@@ -151,5 +151,77 @@ class ReportMoldingShiftModel extends CI_Model
 		return $query->result();
     }
 
+    public function get_Total(){
+        $rst = "SELECT
+                    output_molding.shift AS shift,
+                    Sum(output_molding_detail.qty_outermold) AS qty_outer,
+                    Sum(output_molding_detail.qty_midmold) AS qty_midmold,
+                    Sum(output_molding_detail.qty_linningmold) AS qty_linning,
+                    COALESCE ( sum( `output_molding_detail`.`qty_outermold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_midmold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_linningmold` ), 0 ) AS qty_mold    
+                FROM
+                    (output_molding
+                JOIN output_molding_detail ON (output_molding_detail.id_output_molding = output_molding.id_output_molding))
+                WHERE
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ) = CURRENT_DATE AND
+                    output_molding.shift ='pertama'
+                GROUP BY
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ),
+                    
+                    output_molding.shift
+                
+                ORDER BY
+            output_molding.tgl DESC";
+        $query =$this->db->query($rst);
+		return $query->result();
+    }
+
+    public function get_Total_shift2(){
+        $rst = "SELECT
+                    output_molding.shift AS shift,
+                    Sum(output_molding_detail.qty_outermold) AS qty_outer,
+                    Sum(output_molding_detail.qty_midmold) AS qty_midmold,
+                    Sum(output_molding_detail.qty_linningmold) AS qty_linning,
+                    COALESCE ( sum( `output_molding_detail`.`qty_outermold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_midmold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_linningmold` ), 0 ) AS qty_mold    
+                FROM
+                    (output_molding
+                JOIN output_molding_detail ON (output_molding_detail.id_output_molding = output_molding.id_output_molding))
+                WHERE
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ) = CURRENT_DATE AND
+                    output_molding.shift ='kedua'
+                GROUP BY
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ),
+                    
+                    output_molding.shift
+                
+                ORDER BY
+            output_molding.tgl DESC";
+        $query =$this->db->query($rst);
+		return $query->result();
+    }
+
+    public function get_Total_shift3(){
+        $rst = "SELECT
+                    output_molding.shift AS shift,
+                    Sum(output_molding_detail.qty_outermold) AS qty_outer,
+                    Sum(output_molding_detail.qty_midmold) AS qty_midmold,
+                    Sum(output_molding_detail.qty_linningmold) AS qty_linning,
+                    COALESCE ( sum( `output_molding_detail`.`qty_outermold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_midmold` ), 0 ) + COALESCE ( sum( `output_molding_detail`.`qty_linningmold` ), 0 ) AS qty_mold    
+                FROM
+                    (output_molding
+                JOIN output_molding_detail ON (output_molding_detail.id_output_molding = output_molding.id_output_molding))
+                WHERE
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ) = CURRENT_DATE AND
+                    output_molding.shift ='ketiga'
+                GROUP BY
+                    date_format( `output_molding`.`tgl`, '%Y-%m-%d' ),
+                    
+                    output_molding.shift
+                
+                ORDER BY
+            output_molding.tgl DESC";
+        $query =$this->db->query($rst);
+		return $query->result();
+    }
+
 	
 }

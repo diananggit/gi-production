@@ -16,4 +16,8 @@ class ReportMoldingShift3 extends CI_Controller{
         $data=$this->ReportMoldingShiftModel->get_shift_tiga();
         echo json_encode($data);
     }
+    public function getDataTotalShift3(){
+        $data=$this->ReportMoldingShiftModel->get_Total_shift3();
+        echo json_encode($data);
+    }
 }

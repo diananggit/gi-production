@@ -16,4 +16,9 @@ class ReportMoldingPerShift extends CI_Controller{
         $data=$this->ReportMoldingShiftModel->get_all();
         echo json_encode($data);
     }
+
+    public function getTotal(){
+        $data=$this->ReportMoldingShiftModel->get_Total();
+        echo json_encode($data);
+    }
 }
