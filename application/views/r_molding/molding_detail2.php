@@ -20,10 +20,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h3 class="card-title" style="color: #007bff;"><b>Molding Shift 2</b></h3>
-                          <div class="card-tools">
-                          <a href="<?php echo site_url('report_molding/ReportMoldingPerShift'); ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
-                          </div>
+                          <h3 class="card-title" style="color: #007bff;"><b>Detail Molding Shift 2</b></h3>
                       </div>
                       <div class="card-body">
                           <table id="Molding1" class="table table-bordered table-striped" style="width: 100%">
@@ -35,6 +32,7 @@
                                     <td>Orc</td>
                                     <td>Color</td>
                                     <td>Size</td>
+                                    <td>No Bundle</td>
                                     <td>Output Outer</td>
                                     <td>Output Midmold</td>
                                     <td>Output Linning</td>
@@ -47,7 +45,7 @@
                                     <?php echo $ms->tgl ?>
                                   </td>
                                   <td>
-                                    <a href="<?php echo site_url('report_molding/ReportMoldingDetailShift2/vieworc/'.$ms->no_mesin); ?>"><?php echo $ms->no_mesin ?></a>
+                                      <?php echo $ms->no_mesin ?>
                                   </td>
                                   <td>
                                       <?php echo $ms->style ?>
@@ -62,10 +60,13 @@
                                       <?php echo $ms->size ?>
                                   </td>
                                   <td>
+                                      <?php echo $ms->no_bundle ?>
+                                  </td>
+                                  <td>
                                       <?php echo $ms->qty_outer ?>
                                   </td>
                                   <td>
-                                      <?php echo $ms->qty_midmold ?>
+                                      <?php echo $ms->mid_lining ?>
                                   </td>
                                   <td>
                                       <?php echo $ms->qty_linning ?>
@@ -75,26 +76,6 @@
                             </tbody>
                             <tfoot>
                             
-                            </tfoot>
-                          </table>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-body">
-                      <table id="Molding2" class="table table-bordered table-striped" style="width: 100%">
-                            <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Total</td>
-                            </tr>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="2" style="text-align:right">Total:</th>
-                                </tr>
                             </tfoot>
                           </table>
                       </div>
@@ -122,75 +103,9 @@
         'excel','print'
       ],
       "lengthChange": false,
-      
-      
    
     });
-    var table2 = $('#Molding2').DataTable({
-     
-      lengthMenu: false,
-      "searching": false ,
-    "paging":   false,
-        "ordering": false,
-        "info":     false,
-     
-      "lengthChange": false,
-      "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            total = api
-                .column( 1 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
- 
-            // Update footer
-            $( api.column( 1 ).footer() ).html(
-                'total Molding :' + total
-            );
-          }
-   
-    });
-
-  showTotal();
-  function showTotal(){
-    $.ajax({
-        url:"<?php echo site_url('report_molding/ReportMoldingShift2/getDataTotalShift2');?>",  
-        method:"POST",  
-        dataType: 'json',
-        success:function(data)  
-        {  
-          table2.clear();
-          $.each(data, function(i, item){
-            table2.row.add([
-            "Total Outer",
-            item.qty_outer,
-            ]).draw();
-            table2.row.add([
-            "Total Midmold",
-            item.qty_midmold,
-            ]).draw();
-            table2.row.add([
-            "Total Linning",
-            item.qty_linning,
-            ]).draw();
-
-          });
-                
-        }  
-    })
-  }
+  
 });
 
   

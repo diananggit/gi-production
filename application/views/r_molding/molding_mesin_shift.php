@@ -35,7 +35,6 @@
                                     <td>Style</td>
                                     <td>Orc</td>
                                     <td>Color</td>
-                                    <td>Shift</td>
                                     <td>Size</td>
                                     <td>Output Outer</td>
                                     <td>Output Midmold</td>
@@ -43,6 +42,37 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php foreach($moldshift as $ms): ?>
+                                <tr>
+                                  <td>
+                                    <?php echo $ms->tgl ?>
+                                  </td>
+                                  <td>
+                                    <a href="<?php echo site_url('report_molding/ReportMoldingDetail/vieworc/'.$ms->no_mesin); ?>"><?php echo $ms->no_mesin ?></a>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->style ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->orc ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->color ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->size ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->qty_outer ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->qty_midmold ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->qty_linning ?>
+                                  </td>
+                                </tr>
+                                <?php endforeach ?>
                             </tbody>
                             <tfoot>
                             
@@ -133,37 +163,6 @@
           }
    
     });
-
-   
-
- 
-  showMoldingShiftSatu();
-  function showMoldingShiftSatu(){
-    $.ajax({
-        url:"<?php echo site_url('report_molding/ReportMoldingPerShift/getDataShiftSatu');?>",  
-        method:"POST",  
-        dataType: 'json',
-        success:function(data)  
-        {  
-          table.clear();
-          $.each(data, function(i, item){
-            table.row.add([
-              item.tgl,
-              item.no_mesin,
-              item.style,
-              item.orc,
-              item.color,
-              item.shift,
-              item.size,
-              item.qty_outer,
-              item.qty_midmold,
-              item.qty_linning,
-            ]).draw();
-          });
-                
-        }  
-    })
-  }
 
   showTotal();
   function showTotal(){

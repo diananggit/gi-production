@@ -9,8 +9,11 @@ class ReportMoldingPerShift extends CI_Controller{
         
     }
     public function index(){
-        $this->load->view('r_molding/molding_mesin_shift');
+        $data['moldshift']=$this->ReportMoldingShiftModel->get_all();
+
+        $this->load->view('r_molding/molding_mesin_shift',$data);
     }
+    
 
     public function getDataShiftSatu(){
         $data=$this->ReportMoldingShiftModel->get_all();
