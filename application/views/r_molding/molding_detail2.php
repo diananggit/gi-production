@@ -33,6 +33,8 @@
                                     <td>Color</td>
                                     <td>Size</td>
                                     <td>No Bundle</td>
+                                    <td>Time</td>
+                                    <td>Time Periode</td>
                                     <td>Output Outer</td>
                                     <td>Output Midmold</td>
                                     <td>Output Linning</td>
@@ -61,6 +63,12 @@
                                   </td>
                                   <td>
                                       <?php echo $ms->no_bundle ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->time ?>
+                                  </td>
+                                  <td>
+                                      <?php echo $ms->timePeriodeMolding ?>
                                   </td>
                                   <td>
                                       <?php echo $ms->qty_outer ?>
