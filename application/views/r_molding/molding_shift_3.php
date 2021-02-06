@@ -175,7 +175,7 @@
                                 <td>Total L4</td>
                                 <td>Total L5</td>
                                 <td>Total L6</td>
-                                <td>Total LL7</td>
+                                <td>Total L7</td>
                             </tr>
                             </tr>
                             </thead>
