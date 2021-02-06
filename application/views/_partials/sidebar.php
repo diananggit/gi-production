@@ -81,7 +81,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url('report_molding/SummaryMolding'); ?>" class="nav-link" target="blank>
+							<a href="<?php echo site_url('report_molding/SummaryMolding'); ?>" class="nav-link" >
 								<i class="fa fa-list-alt text-primary nav-icon"></i>
 								<p>Summary Molding</p>
 							</a>

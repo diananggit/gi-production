@@ -14,6 +14,10 @@ class ReportMoldingShift2 extends CI_Controller{
         $this->load->view('r_molding/molding_shift_2',$data);
     }
     
+    public function getTotalMoldingPeriode(){
+        $data=$this->ReportMoldingShiftModel->getTotalMoldingPeriode2();
+        echo json_encode($data);
+    }
 
     public function getDataShiftSatu(){
         $data=$this->ReportMoldingShiftModel->get_shift_dua();

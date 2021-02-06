@@ -24,4 +24,56 @@ class ReportMoldingPerShift extends CI_Controller{
         $data=$this->ReportMoldingShiftModel->get_Total();
         echo json_encode($data);
     }
+
+    public function getTotalMoldingPeriode(){
+        $data=$this->ReportMoldingShiftModel->getTotalMoldingPeriode();
+        echo json_encode($data);
+    }
+
+    public function getDataMoldingShift1(){
+        $list = $this->ReportMoldingShiftModel->get_all();
+        $data = [];
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $field->tgl;
+            $row[] = $field->no_mesin;
+            $row[] = $field->style;
+            $row[] = $field->orc;                        
+            $row[] = $field->color;                        
+            $row[] = $field->size;                        
+            $row[] = $field->firsts_outer;
+            $row[] = $field->second_outer;
+            $row[] = $field->third_outer;
+            $row[] = $field->fourth_outer;
+            $row[] = $field->five_outer;
+            $row[] = $field->six_outer;
+            $row[] = $field->seven_outer;
+            $row[] = $field->firsts_midlinning;
+            $row[] = $field->second_midlinning;
+            $row[] = $field->third_midlinning;
+            $row[] = $field->fourt_midlinning;
+            $row[] = $field->five_midlinning;
+            $row[] = $field->six_midlinning;
+            $row[] = $field->seven_linning;
+            $row[] = $field->firsts_linning;
+            $row[] = $field->second_linning;
+            $row[] = $field->third_linning;
+            $row[] = $field->fourt_linning;
+            $row[] = $field->five_linning;
+            $row[] = $field->six_linning;
+            $row[] = $field->seven_linning;
+
+            $data[] = $row;
+        }        
+        $output = array(
+            "draw" => $_POST['draw'],
+            // "recordsTotal" => $this->User_model->count_all(),
+            // "recordsFiltered" => $this->User_model->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
 }

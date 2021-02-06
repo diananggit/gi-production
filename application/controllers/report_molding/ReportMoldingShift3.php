@@ -9,7 +9,15 @@ class ReportMoldingShift3 extends CI_Controller{
         
     }
     public function index(){
-        $this->load->view('r_molding/molding_shift_3');
+        $data['moldshift']=$this->ReportMoldingShiftModel->get_shift_tiga();
+        
+        $this->load->view('r_molding/molding_shift_3',$data);
+    }
+
+    
+    public function getTotalMoldingPeriode(){
+        $data=$this->ReportMoldingShiftModel->getTotalMoldingPeriode3();
+        echo json_encode($data);
     }
 
     public function getDataShiftTiga(){
