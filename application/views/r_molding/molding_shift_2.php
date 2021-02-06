@@ -55,7 +55,7 @@
                                     <td>L 4</td>
                                     <td>L 5</td>
                                     <td>L 6</td>
-                                    <td>L 7</td>
+                                    <td>L </td>
                                 </tr>
                             </thead>
                             <tbody>
