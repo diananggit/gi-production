@@ -197,7 +197,7 @@
                       <table id="Molding2" class="table table-bordered table-striped" style="width: 100%">
                             <thead>
                             <tr>
-                                <td>#</td>
+                                <td>.</td>
                                 <td>Total</td>
                             </tr>
                             </tr>
