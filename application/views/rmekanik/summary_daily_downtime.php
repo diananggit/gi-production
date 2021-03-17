@@ -85,6 +85,10 @@
 											<td class='bg-secondary'>Finished Time</td>
 											<td class='bg-secondary'>Respon Duration</td>
 											<td class='bg-secondary'>Repair Duration</td>
+											<td class='bg-secondary'>Delay Waiting</td>
+											<td class='bg-secondary'>Delay Repairing </td>
+											<td class='bg-secondary'>Respon Waiting</td>
+											<td class='bg-secondary'>Respon Repairing</td>
 											<td class='bg-secondary'>Total Duration</td>
 										</tr>
 									</thead>
@@ -196,16 +200,26 @@
 							var as = hms.split(':'); 
 							var respon = (+as[0]) * 60 + (+as[1]);
 
-							sumRespon +=parseInt(respon);
+							// sumRespon +=parseInt(respon);
 							
 							var times = item.repair_duration;
 							var bs = times.split(':');
 							var repair = (+bs[0]) * 60 + (+bs[1]);
 
-							sumRepair +=parseInt(repair);
-							var total = [respon+ repair ];
+							// sumRepair +=parseInt(repair);
+							// var total = [respon+ repair ];
+						
 							// var total = [sumRespon + sumRepair ];
 							// var jumlah = respond + repaired;
+							var day = item.date_waiting;
+							var waiting = (respon - (day * 555));
+
+							var day_repairing = item.date_repairing;
+							var repairing = (repair -  (day_repairing * 555));
+
+							var total = [waiting + repairing];
+							sumRespon +=parseInt(waiting);
+							sumRepair +=parseInt(repairing);
 
 								var util = (sumRepair / (420*29) ) * 100;
 								hasil = util.toFixed(2);
@@ -226,6 +240,10 @@
 								item.end_repairing,
 								respon,
 								repair,
+								item.date_waiting,
+								item.date_repairing,
+								waiting,
+								repairing,
 								total,
 							]).draw();
 						})
